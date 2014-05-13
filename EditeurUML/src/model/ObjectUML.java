@@ -2,19 +2,19 @@ package model;
 
 import java.util.ArrayList;
 
-public class ObjetUML {
+public class ObjectUML {
 	private String nom;
-	private ArrayList<Methode> listeMethode;
-	private ArrayList<Attribut> listeAttribut;
+	private ArrayList<Method> listeMethode;
+	private ArrayList<Attribute> listeAttribut;
 
-	private Coordonnees position;
+	private Coordinates position;
 	
 	
-	public ObjetUML(){
-		listeMethode= new ArrayList<Methode>();
-		listeAttribut=new ArrayList<Attribut>();
+	public ObjectUML(){
+		listeMethode= new ArrayList<Method>();
+		listeAttribut=new ArrayList<Attribute>();
 		//a changer , les coordonnées seront pas 0,0 par default
-		position=new Coordonnees(0,0);
+		position=new Coordinates(0,0);
 	}
 	
 	public void setNom(String nom){
@@ -26,7 +26,7 @@ public class ObjetUML {
 	
 	
 	//Gestion de la liste des méthodes:
-	public void ajouterMethode(Methode m){
+	public void ajouterMethode(Method m){
 		listeMethode.add(m);
 	}
 	int tailleListeMethode(){
@@ -36,7 +36,7 @@ public class ObjetUML {
 	
 	
 	//Gestion de la liste des attributs:
-	public void ajouterAttribut(Attribut a){
+	public void ajouterAttribut(Attribute a){
 		listeAttribut.add(a);
 	}
 	int tailleListeAttribut(){
@@ -56,7 +56,7 @@ public class ObjetUML {
 	 * @param obj UML Object to Compare position on the vertical axe
 	 * @return a positive number if the main object is above , negative else
 	 */
-	public int isAbove(ObjetUML obj){
+	public int isAbove(ObjectUML obj){
 		return obj.getY()-this.getY();
 	}
 	/**
@@ -64,7 +64,7 @@ public class ObjetUML {
 	 * @param obj UML Object to Compare position on the horizontal axe
 	 * @return a positive number if the main object is on the right, negative else
 	 */
-	public int isOnTheRigth(ObjetUML obj){
+	public int isOnTheRigth(ObjectUML obj){
 		return this.getX()-obj.getX();
 	}
 	

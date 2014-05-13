@@ -1,12 +1,12 @@
-package modele;
+package model;
 
-public class Attribut {
+public class Attribute {
 	String nom;
 	String type;
 	int visibiliteA;
 	
 	
-	public Attribut(String nom,String type,int visibiliteA){
+	public Attribute(String nom,String type,int visibiliteA){
 		this.nom=nom;
 		this.type=type;
 		this.visibiliteA=visibiliteA;

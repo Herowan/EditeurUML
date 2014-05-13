@@ -2,13 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
-public class Methode {
+public class Method {
 	String nom;
 	String returnType;
 	ArrayList<String> params;
 	int visibiliteM;
 	
-	public Methode(String nom,String returnType,int visibiliteM,ArrayList<String> params){
+	public Method(String nom,String returnType,int visibiliteM,ArrayList<String> params){
 		this.nom=nom;
 		this.returnType=returnType;
 		this.visibiliteM=visibiliteM;
