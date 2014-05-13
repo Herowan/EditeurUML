@@ -1,46 +1,50 @@
 package model;
 
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author Dashell
+ *
+ */
 public class ObjectUML {
-	private String nom;
-	private ArrayList<Method> listeMethode;
-	private ArrayList<Attribute> listeAttribut;
+	private String name;
+	private ArrayList<Method> methodeList;
+	private ArrayList<Attribute> attributList;
 
 	private Coordinates position;
 	
 	
 	public ObjectUML(){
-		listeMethode= new ArrayList<Method>();
-		listeAttribut=new ArrayList<Attribute>();
+		methodeList= new ArrayList<Method>();
+		attributList=new ArrayList<Attribute>();
 		//a changer , les coordonnées seront pas 0,0 par default
 		position=new Coordinates(0,0);
 	}
 	
-	public void setNom(String nom){
-		this.nom=nom;
+	public void setName(String name){
+		this.name=name;
 	}
-	public String getNom(){
-		return this.nom;
+	public String getName(){
+		return this.name;
 	}
 	
 	
 	//Gestion de la liste des méthodes:
-	public void ajouterMethode(Method m){
-		listeMethode.add(m);
+	public void addMethod(Method m){
+		methodeList.add(m);
 	}
-	int tailleListeMethode(){
-		return listeMethode.size();
+	int methodeListSize(){
+		return methodeList.size();
 	}
 	
 	
 	
 	//Gestion de la liste des attributs:
-	public void ajouterAttribut(Attribute a){
-		listeAttribut.add(a);
+	public void addAttribute(Attribute a){
+		attributList.add(a);
 	}
-	int tailleListeAttribut(){
-		return listeAttribut.size();
+	int attributListSize(){
+		return attributList.size();
 	}
 	//Gestion des coordonnées
 	public int getX(){

@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * 
+ * @author Dashell
+ *
+ */
 public class Coordinates {
 
 	int x;

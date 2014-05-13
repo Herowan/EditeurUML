@@ -1,17 +1,21 @@
 package model;
 
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author Dashell
+ *
+ */
 public class Method {
-	String nom;
+	String name;
 	String returnType;
 	ArrayList<String> params;
-	int visibiliteM;
+	int visibilityM;
 	
-	public Method(String nom,String returnType,int visibiliteM,ArrayList<String> params){
-		this.nom=nom;
+	public Method(String name,String returnType,int visibilityM,ArrayList<String> params){
+		this.name=name;
 		this.returnType=returnType;
-		this.visibiliteM=visibiliteM;
+		this.visibilityM=visibilityM;
 		this.params=params;
 	}
 	

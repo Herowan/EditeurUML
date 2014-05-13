@@ -1,25 +1,29 @@
 package model;
-
+/**
+ * 
+ * @author Dashell
+ *
+ */
 public class Attribute {
-	String nom;
+	String name;
 	String type;
-	int visibiliteA;
+	int visibilityA;
 	
 	
-	public Attribute(String nom,String type,int visibiliteA){
-		this.nom=nom;
+	public Attribute(String name,String type,int visibilityA){
+		this.name=name;
 		this.type=type;
-		this.visibiliteA=visibiliteA;
+		this.visibilityA=visibilityA;
 	}
 
 
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -33,13 +37,13 @@ public class Attribute {
 	}
 
 
-	public int getVisibiliteA() {
-		return visibiliteA;
+	public int getVisibilityA() {
+		return visibilityA;
 	}
 
 
-	public void setVisibiliteA(int visibiliteA) {
-		this.visibiliteA = visibiliteA;
+	public void setVisibilityA(int visibilityA) {
+		this.visibilityA = visibilityA;
 	}
 	
 	
