@@ -42,7 +42,7 @@ public class ObjectUML {
 		return methodeList.size();
 	}
 	
-	
+	//lol
 	
 	//Gestion de la liste des attributs:
 	public void addAttribute(Attribute a){
