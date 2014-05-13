@@ -10,15 +10,20 @@ public class ObjectUML {
 	private String name;
 	private ArrayList<Method> methodeList;
 	private ArrayList<Attribute> attributList;
-
+	//Type de l'objet , 1 pour une classe , 2 pour une interface, 3 pour une classe abstraite
+	private int objectType;
+	
 	private Coordinates position;
 	
 	
-	public ObjectUML(){
+	public ObjectUML(int objectType,int number){
 		methodeList= new ArrayList<Method>();
 		attributList=new ArrayList<Attribute>();
 		//a changer , les coordonnées seront pas 0,0 par default
 		position=new Coordinates(0,0);
+		//Création d'un objet vide
+		this.objectType=objectType;
+		name="Object"+number;
 	}
 	
 	public void setName(String name){
