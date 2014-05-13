@@ -6,6 +6,9 @@ public class ObjetUML {
 	private String nom;
 	private ArrayList<Methode> listeMethode;
 	private ArrayList<Attribut> listeAttribut;
+
+	
+	
 	
 	public ObjetUML(){
 		listeMethode= new ArrayList<Methode>();
