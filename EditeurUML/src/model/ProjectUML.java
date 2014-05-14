@@ -8,7 +8,7 @@ import java.util.Observable;
  *
  */
 public class ProjectUML extends Observable{
-	ArrayList<ObjectUML> objectsList;
+	private ArrayList<ObjectUML> objectsList;
 
 
 	public ProjectUML(){
@@ -34,7 +34,7 @@ public class ProjectUML extends Observable{
 		return objectsList.size();
 	}
 	
-	public void addProjectUml(int type){
+	public void addObjectUml(int type){
 		objectsList.add(new ObjectUML(type, objectsListSize()));
 		setChanged();
 		notifyObservers();
