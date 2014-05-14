@@ -19,7 +19,7 @@ public class DrawingTableControler implements MouseMotionListener{
 		while(i<model.objectsListSize()){
 			if (e.getX()>=model.getObjectUmlAtIndex(i).getX() && e.getX()<=model.getObjectUmlAtIndex(i).getX()+8
 					&& e.getY()>=model.getObjectUmlAtIndex(i).getY() && e.getY()<=model.getObjectUmlAtIndex(i).getY()+8){
-				model.setPositionObject(e.getX(), e.getY(), i);
+				model.setPositionObject(e.getX()-4, e.getY()-4, i);
 				
 				i=model.objectsListSize();
 			}
@@ -28,6 +28,8 @@ public class DrawingTableControler implements MouseMotionListener{
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent e) {}
+	public void mouseMoved(MouseEvent e) {
+		//model.setPositionObject(e.getX(), e.getY(), 1);
+	}
 
 }

@@ -41,7 +41,7 @@ public class JPanelDrawingTable extends JPanel{
 
 			//Draw square red on the left top
 			g.setColor(Color.GRAY);
-			g.fillRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getX(), 8, 8);
+			g.fillRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), 8, 8);
 			g.setColor(Color.BLACK);
 			g.drawRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), 8, 8);
 
