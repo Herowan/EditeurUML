@@ -8,10 +8,13 @@ package view;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.UIManager;
 
 import controller.AddObjectControler;
 import controller.DrawingTableController;
@@ -345,8 +348,8 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	private javax.swing.JMenuItem saveItemMenu;
 	private javax.swing.JMenuItem undoItemMenu;
 	// End of variables declaration//GEN-END:variables
-	
-	
+
+
 	//Method about Save/Open File
 	public void showOpenFileDialog() throws ClassNotFoundException{
 		JFileChooser fileChooser = new JFileChooser();
@@ -368,11 +371,12 @@ public class MainView extends javax.swing.JFrame implements Observer{
 			}
 		}
 	}
-	
+
 	private void showSaveFileDialog() {
+
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Specify a file to save");
-
+		UIManager.put("FileChooser.openButtonText","Save");
 		int userSelection = fileChooser.showSaveDialog(this);
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 
