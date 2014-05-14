@@ -86,5 +86,16 @@ public class ObjectUML implements Serializable{
 	public int isOnTheRigth(ObjectUML obj){
 		return this.getX()-obj.getX();
 	}
+
+	public int getObjectType() {
+		return OBJECTTYPE;
+	}
+
+
+	
+	public void setPosition(int x, int y){
+		position.setX(x);
+		position.setY(y);
+	}
 	
 }

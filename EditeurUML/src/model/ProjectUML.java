@@ -71,4 +71,11 @@ public class ProjectUML extends Observable implements Serializable{
 	}
 
 
+	
+	public void setPositionObject(int x, int y, int index){
+		objectsList.get(index).setPosition(x, y);
+		setChanged();
+		notifyObservers();
+	}
+	
 }
