@@ -2,13 +2,16 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Observable;
 /**
  * 
  * @author Dashell
  *
  */
 public class Method implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String name;
 	String returnType;
 	ArrayList<String> params;

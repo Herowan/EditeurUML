@@ -8,11 +8,16 @@ import java.util.ArrayList;
  *
  */
 public class ObjectUML implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private ArrayList<Method> methodeList;
 	private ArrayList<Attribute> attributList;
 	//Type de l'objet , 1 pour une classe , 2 pour une interface, 3 pour une classe abstraite
-	private int objectType;
+	private final int OBJECTTYPE;
+	
 	
 	private Coordinates position;
 	
@@ -24,7 +29,7 @@ public class ObjectUML implements Serializable{
 		// Done ?
 		position=new Coordinates(10+10*number,10+10*number);
 		//Cr��ation d'un objet vide
-		this.objectType=objectType;
+		this.OBJECTTYPE=objectType;
 		name="Object"+(number+1);
 	}
 	
@@ -35,6 +40,9 @@ public class ObjectUML implements Serializable{
 		return this.name;
 	}
 	
+	public int getOBJECTTYPE() {
+		return OBJECTTYPE;
+	}
 	
 	//Gestion de la liste des m��thodes:
 	public void addMethod(Method m){
