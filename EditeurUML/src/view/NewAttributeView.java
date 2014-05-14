@@ -159,5 +159,8 @@ public class NewAttributeView extends javax.swing.JFrame {
     private javax.swing.JComboBox visibilityComboBox;
     private javax.swing.JLabel visibilityLabel;
     // End of variables declaration//GEN-END:variables
+    
+    
+
 }
 
