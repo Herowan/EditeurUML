@@ -149,7 +149,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 
         drawingTable.setBackground(new java.awt.Color(254, 254, 254));
         
-        //drawingTable.addMouseMotionListener(new DrawingTableControler(model));
+        drawingTable.addMouseMotionListener(new DrawingTableControler(model));
 
         javax.swing.GroupLayout drawingTableLayout = new javax.swing.GroupLayout(drawingTable);
         drawingTable.setLayout(drawingTableLayout);
