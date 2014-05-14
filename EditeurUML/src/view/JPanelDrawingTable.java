@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-public class JPanelDraxingTable extends JPanel{
+public class JPanelDrawingTable extends JPanel{
 
 	/**
 	 * 
