@@ -13,7 +13,7 @@ import java.util.Observer;
 import javax.swing.JFileChooser;
 
 import controller.AddObjectControler;
-import controller.DrawingTableControler;
+import controller.DrawingTableController;
 import model.ProjectUML;
 
 /**
@@ -152,7 +152,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 
 		drawingTable.setBackground(new java.awt.Color(254, 254, 254));
 
-		drawingTable.addMouseMotionListener(new DrawingTableControler(model));
+		drawingTable.addMouseMotionListener(new DrawingTableController(model));
 
 		javax.swing.GroupLayout drawingTableLayout = new javax.swing.GroupLayout(drawingTable);
 		drawingTable.setLayout(drawingTableLayout);
@@ -351,7 +351,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 			try {
 				FileOutputStream fichier = new FileOutputStream(fileName);
 				ObjectOutputStream oos = new ObjectOutputStream(fichier);
-				oos.writeObject(model);
+				oos.writeObject(model.getObjectsList());
 				oos.flush();
 				oos.close();
 			}
