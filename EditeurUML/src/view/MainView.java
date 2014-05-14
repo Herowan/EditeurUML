@@ -6,13 +6,16 @@
 
 package view;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import model.ProjectUML;
 
 /**
  *
  * @author digeona
  */
-public class MainView extends javax.swing.JFrame {
+public class MainView extends javax.swing.JFrame implements Observer{
 	
 	ProjectUML model;
 
@@ -25,6 +28,7 @@ public class MainView extends javax.swing.JFrame {
     
     public MainView(ProjectUML model) {
         this.model=model;
+        model.addObserver(this);
         initComponents();
     }
 
@@ -262,6 +266,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void classButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classButtonActionPerformed
         // TODO add your handling code here:
+    	
     }//GEN-LAST:event_classButtonActionPerformed
 
     /**
@@ -325,4 +330,10 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenuItem saveItemMenu;
     private javax.swing.JMenuItem undoItemMenu;
     // End of variables declaration//GEN-END:variables
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		drawingTable.repaint();
+	}
 }

@@ -1,12 +1,13 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 /**
  * 
  * @author Dashell
  *
  */
-public class ProjectUML {
+public class ProjectUML extends Observable{
 	ArrayList<ObjectUML> objectsList;
 
 
