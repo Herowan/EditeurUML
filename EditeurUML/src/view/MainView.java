@@ -266,7 +266,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 
     private void classButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classButtonActionPerformed
         // TODO add your handling code here:
-    	model.addProjectUml(1);
+    	model.addObjectUml(1);
     }//GEN-LAST:event_classButtonActionPerformed
 
     /**
