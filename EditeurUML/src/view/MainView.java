@@ -7,6 +7,7 @@
 package view;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,6 +15,7 @@ import javax.swing.JFileChooser;
 
 import controller.AddObjectControler;
 import controller.DrawingTableController;
+import model.ObjectUML;
 import model.ProjectUML;
 
 /**
@@ -182,7 +184,11 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		openProjectItemMenu.setText("Open Project");
 		openProjectItemMenu.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				openProjectItemMenuActionPerformed(evt);
+				try {
+					showOpenFileDialog();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		fileMenu.add(openProjectItemMenu);
@@ -339,28 +345,58 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	private javax.swing.JMenuItem saveItemMenu;
 	private javax.swing.JMenuItem undoItemMenu;
 	// End of variables declaration//GEN-END:variables
+	
+	
+	//Method about Save/Open File
+	public void showOpenFileDialog() throws ClassNotFoundException{
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify a file to save");
 
+		int userSelection = fileChooser.showSaveDialog(this);
+		System.out.println("test");
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+			System.out.println("test2");
+
+			String fileName=fileChooser.getSelectedFile().getAbsolutePath();
+			System.out.println("filename: "+fileName);
+			try {
+				FileInputStream fichier = new FileInputStream(fileName);
+				ObjectInputStream in = new ObjectInputStream(fichier);
+				model.setObjectsList((ArrayList<ObjectUML>)in.readObject());
+				in.close();
+			}
+			catch (java.io.IOException e) {
+				System.out.println("FAIL in");
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	private void showSaveFileDialog() {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Specify a file to save");
 
 		int userSelection = fileChooser.showSaveDialog(this);
+		System.out.println("test");
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
-			String fileName=fileChooser.getParent()+fileChooser.getName();
-			System.out.println(fileName);
+			System.out.println("test2");
+
+			String fileName=fileChooser.getSelectedFile().getAbsolutePath()+".uml";
+			System.out.println("filename: "+fileName);
 			try {
 				FileOutputStream fichier = new FileOutputStream(fileName);
-				ObjectOutputStream oos = new ObjectOutputStream(fichier);
-				oos.writeObject(model.getObjectsList());
-				oos.flush();
-				oos.close();
+				ObjectOutputStream out = new ObjectOutputStream(fichier);
+				out.writeObject(model.getObjectsList());
+				out.flush();
+				out.close();
 			}
 			catch (java.io.IOException e) {
-				System.out.println("FAIL");
+				System.out.println("FAIL out");
 				e.printStackTrace();
 			}
 		}
 	}
+	//End Save/Open Section
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
