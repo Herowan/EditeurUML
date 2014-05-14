@@ -6,17 +6,26 @@
 
 package view;
 
+import model.ProjectUML;
+
 /**
  *
  * @author digeona
  */
 public class MainView extends javax.swing.JFrame {
+	
+	ProjectUML model;
 
     /**
      * Creates new form MainView
      */
     public MainView() {
         initComponents();
+    }
+    
+    public MainView(ProjectUML model) {
+        initComponents();
+        this.model=model;
     }
 
     /**
@@ -38,7 +47,7 @@ public class MainView extends javax.swing.JFrame {
         objectLabel = new javax.swing.JLabel();
         relationLabel = new javax.swing.JLabel();
         jScrollPaneDrawingTable = new javax.swing.JScrollPane();
-        drawingTable = new JPanelDrawingTable();
+        drawingTable = new JPanelDrawingTable(model);
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         newProjectItemMenu = new javax.swing.JMenuItem();

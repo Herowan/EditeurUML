@@ -5,12 +5,20 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import model.ProjectUML;
+
 public class JPanelDrawingTable extends JPanel{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	ProjectUML model;
+	
+	public JPanelDrawingTable(ProjectUML model){
+		this.model=model;
+	}
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
