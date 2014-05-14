@@ -19,11 +19,12 @@ public class ObjectUML {
 	public ObjectUML(int objectType,int number){
 		methodeList= new ArrayList<Method>();
 		attributList=new ArrayList<Attribute>();
-		//a changer , les coordonnées seront pas 0,0 par default
-		position=new Coordinates(0,0);
-		//Création d'un objet vide
+		//a changer , les coordonn��es seront pas 0,0 par default
+		// Done ?
+		position=new Coordinates(10+10*number,10+10*number);
+		//Cr��ation d'un objet vide
 		this.objectType=objectType;
-		name="Object"+number;
+		name="Object"+(number+1);
 	}
 	
 	public void setName(String name){
@@ -34,7 +35,7 @@ public class ObjectUML {
 	}
 	
 	
-	//Gestion de la liste des méthodes:
+	//Gestion de la liste des m��thodes:
 	public void addMethod(Method m){
 		methodeList.add(m);
 	}
@@ -51,7 +52,7 @@ public class ObjectUML {
 	int attributListSize(){
 		return attributList.size();
 	}
-	//Gestion des coordonnées
+	//Gestion des coordonn��es
 	public int getX(){
 		return position.getX();
 	}

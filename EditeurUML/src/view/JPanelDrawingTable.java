@@ -26,14 +26,14 @@ public class JPanelDrawingTable extends JPanel{
 		for (int i=0; i<model.objectsListSize(); i++){
 			
 			g.setColor(new Color(228,228,228));
-			g.fillRect(10, 10, 100, 100);
+			g.fillRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), 100, 100);
 			g.setColor(Color.BLACK);
-			g.drawRect(10, 10, 100, 100);
+			g.drawRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), 100, 100);
 
 			//Warning => The position in the method is the point in the left bottom of the text
 			// X = position + 10
 			// Y = position + 15
-			g.drawString(model.getObjectUmlAtIndex(i).getName(), 20, 25);
+			g.drawString(model.getObjectUmlAtIndex(i).getName(), model.getObjectUmlAtIndex(i).getX()+10, model.getObjectUmlAtIndex(i).getY()+15);
 		}
 		
 	}

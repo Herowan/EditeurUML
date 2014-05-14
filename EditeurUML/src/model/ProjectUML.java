@@ -18,8 +18,11 @@ public class ProjectUML {
 	// Method for Development
 	private void addProject() {
 		ObjectUML object = new ObjectUML(1, objectsList.size());
-		object.setName("Classe Test");
 		objectsList.add(object);
+		
+		ObjectUML object2 = new ObjectUML(1, objectsList.size());
+		objectsList.add(object2);
+		
 	}
 	
 	public ObjectUML getObjectUmlAtIndex(int index){
@@ -29,5 +32,7 @@ public class ProjectUML {
 	public int objectsListSize(){
 		return objectsList.size();
 	}
+	
+	
 	
 }
