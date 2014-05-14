@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  * 
  * @author Dashell
  *
  */
-public class Attribute {
+public class Attribute implements Serializable{
 	String name;
 	String type;
 	int visibilityA;

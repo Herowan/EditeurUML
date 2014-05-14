@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 /**
@@ -7,7 +8,7 @@ import java.util.Observable;
  * @author Dashell
  *
  */
-public class Method {
+public class Method implements Serializable{
 	String name;
 	String returnType;
 	ArrayList<String> params;

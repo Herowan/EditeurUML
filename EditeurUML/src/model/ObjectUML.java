@@ -1,12 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * 
  * @author Dashell
  *
  */
-public class ObjectUML {
+public class ObjectUML implements Serializable{
 	private String name;
 	private ArrayList<Method> methodeList;
 	private ArrayList<Attribute> attributList;
