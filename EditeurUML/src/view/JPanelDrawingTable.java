@@ -19,6 +19,9 @@ public class JPanelDrawingTable extends JPanel{
 		g.fillRect(10, 10, 100, 100);
 		g.setColor(Color.BLACK);
 		g.drawRect(10, 10, 100, 100);
+		
+		//Warning => The position in the method is the point in the left bottom of the text
+		g.drawString("Classe test", 20, 25);
 	}
 
 }
