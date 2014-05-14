@@ -14,7 +14,7 @@ public class JPanelDrawingTable extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	ProjectUML model;
+	private ProjectUML model;
 	
 	public JPanelDrawingTable(ProjectUML model){
 		this.model=model;
@@ -23,13 +23,19 @@ public class JPanelDrawingTable extends JPanel{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
-		g.setColor(Color.GRAY);
-		g.fillRect(10, 10, 100, 100);
-		g.setColor(Color.BLACK);
-		g.drawRect(10, 10, 100, 100);
+		for (int i=0; i<model.objectsListSize(); i++){
+			
+			g.setColor(new Color(228,228,228));
+			g.fillRect(10, 10, 100, 100);
+			g.setColor(Color.BLACK);
+			g.drawRect(10, 10, 100, 100);
+
+			//Warning => The position in the method is the point in the left bottom of the text
+			// X = position + 10
+			// Y = position + 15
+			g.drawString(model.getObjectUmlAtIndex(i).getName(), 20, 25);
+		}
 		
-		//Warning => The position in the method is the point in the left bottom of the text
-		g.drawString("Classe test", 20, 25);
 	}
 
 }

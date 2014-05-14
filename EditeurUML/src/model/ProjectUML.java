@@ -11,16 +11,23 @@ public class ProjectUML {
 
 
 	public ProjectUML(){
-		objectsList=new ArrayList<ObjectUML>();
-		
+		objectsList = new ArrayList<ObjectUML>();
 		addProject();
 	}
 
 	// Method for Development
 	private void addProject() {
 		ObjectUML object = new ObjectUML(1, objectsList.size());
-		object.setName("Classe test");
+		object.setName("Classe Test");
 		objectsList.add(object);
+	}
+	
+	public ObjectUML getObjectUmlAtIndex(int index){
+		return objectsList.get(index);
+	}
+	
+	public int objectsListSize(){
+		return objectsList.size();
 	}
 	
 }
