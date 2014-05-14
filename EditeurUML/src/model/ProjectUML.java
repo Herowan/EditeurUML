@@ -9,7 +9,7 @@ import java.util.Observable;
  */
 public class ProjectUML extends Observable{
 	ArrayList<ObjectUML> objectsList;
-
+	private int selectedObject;
 
 	public ProjectUML(){
 		objectsList = new ArrayList<ObjectUML>();
@@ -44,6 +44,14 @@ public class ProjectUML extends Observable{
 		objectsList.get(index).setPosition(x, y);
 		setChanged();
 		notifyObservers();
+	}
+
+	public int getSelectedObject() {
+		return selectedObject;
+	}
+
+	public void setSelectedObject(int selectedObject) {
+		this.selectedObject = selectedObject;
 	}
 	
 }
