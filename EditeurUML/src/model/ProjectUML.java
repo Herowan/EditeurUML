@@ -34,6 +34,10 @@ public class ProjectUML extends Observable{
 		return objectsList.size();
 	}
 	
-	
+	public void addProjectUml(int type){
+		objectsList.add(new ObjectUML(type, objectsListSize()));
+		setChanged();
+		notifyObservers();
+	}
 	
 }
