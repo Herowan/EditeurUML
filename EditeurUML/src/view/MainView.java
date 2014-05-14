@@ -350,15 +350,12 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	//Method about Save/Open File
 	public void showOpenFileDialog() throws ClassNotFoundException{
 		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Specify a file to save");
+		fileChooser.setDialogTitle("Specify a file to open");
 
 		int userSelection = fileChooser.showSaveDialog(this);
-		System.out.println("test");
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
-			System.out.println("test2");
 
 			String fileName=fileChooser.getSelectedFile().getAbsolutePath();
-			System.out.println("filename: "+fileName);
 			try {
 				FileInputStream fichier = new FileInputStream(fileName);
 				ObjectInputStream in = new ObjectInputStream(fichier);
@@ -377,12 +374,9 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		fileChooser.setDialogTitle("Specify a file to save");
 
 		int userSelection = fileChooser.showSaveDialog(this);
-		System.out.println("test");
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
-			System.out.println("test2");
 
 			String fileName=fileChooser.getSelectedFile().getAbsolutePath()+".uml";
-			System.out.println("filename: "+fileName);
 			try {
 				FileOutputStream fichier = new FileOutputStream(fileName);
 				ObjectOutputStream out = new ObjectOutputStream(fichier);
