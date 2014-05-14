@@ -38,8 +38,7 @@ public class MainView extends javax.swing.JFrame {
         objectLabel = new javax.swing.JLabel();
         relationLabel = new javax.swing.JLabel();
         jScrollPaneDrawingTable = new javax.swing.JScrollPane();
-        //Ligne modifier pour dessiner les object UML
-        drawingTable = new JP
+        drawingTable = new JPanelDrawingTable();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         newProjectItemMenu = new javax.swing.JMenuItem();

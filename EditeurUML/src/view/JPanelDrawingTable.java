@@ -15,9 +15,9 @@ public class JPanelDrawingTable extends JPanel{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
-		g.setColor(Color.BLACK);
+		g.setColor(Color.GRAY);
 		g.fillRect(10, 10, 100, 100);
-		g.setColor(Color.GREEN);
+		g.setColor(Color.BLACK);
 		g.drawRect(10, 10, 100, 100);
 	}
 
