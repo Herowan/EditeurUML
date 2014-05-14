@@ -23,7 +23,7 @@ public class ObjectUML {
 		// Done ?
 		position=new Coordinates(10+10*number,10+10*number);
 		//Cr��ation d'un objet vide
-		this.objectType=objectType;
+		this.setObjectType(objectType);
 		name="Object"+(number+1);
 	}
 	
@@ -76,6 +76,14 @@ public class ObjectUML {
 	 */
 	public int isOnTheRigth(ObjectUML obj){
 		return this.getX()-obj.getX();
+	}
+
+	public int getObjectType() {
+		return objectType;
+	}
+
+	public void setObjectType(int objectType) {
+		this.objectType = objectType;
 	}
 	
 }

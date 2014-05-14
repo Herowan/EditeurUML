@@ -9,6 +9,7 @@ package view;
 import java.util.Observable;
 import java.util.Observer;
 
+import controler.addObjectControler;
 import model.ProjectUML;
 
 /**
@@ -72,15 +73,13 @@ public class MainView extends javax.swing.JFrame implements Observer{
         buttonsMenu.setBackground(new java.awt.Color(224, 224, 224));
 
         classButton.setText("Class");
-        classButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                classButtonActionPerformed(evt);
-            }
-        });
+        classButton.addActionListener(new addObjectControler(1, model));
 
         abstractClassButton.setText("Abstract Class");
+        abstractClassButton.addActionListener(new addObjectControler(3, model));
 
         interfaceButton.setText("Interface");
+        interfaceButton.addActionListener(new addObjectControler(2, model));
 
         associationButton.setText("Association");
         associationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -263,11 +262,6 @@ public class MainView extends javax.swing.JFrame implements Observer{
     private void inheritanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inheritanceButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inheritanceButtonActionPerformed
-
-    private void classButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classButtonActionPerformed
-        // TODO add your handling code here:
-    	model.addProjectUml(1);
-    }//GEN-LAST:event_classButtonActionPerformed
 
     /**
      * @param args the command line arguments
