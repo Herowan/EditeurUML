@@ -86,4 +86,9 @@ public class ObjectUML {
 		this.objectType = objectType;
 	}
 	
+	public void setPosition(int x, int y){
+		position.setX(x);
+		position.setY(y);
+	}
+	
 }

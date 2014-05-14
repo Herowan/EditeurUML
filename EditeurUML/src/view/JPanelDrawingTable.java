@@ -9,9 +9,6 @@ import model.ProjectUML;
 
 public class JPanelDrawingTable extends JPanel{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private ProjectUML model;
@@ -22,9 +19,8 @@ public class JPanelDrawingTable extends JPanel{
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		
+
 		for (int i=0; i<model.objectsListSize(); i++){
-			
 			//Choose the color according to the type of the object
 			switch (model.getObjectUmlAtIndex(i).getObjectType()) {
 			case 1:
@@ -42,13 +38,13 @@ public class JPanelDrawingTable extends JPanel{
 			}
 
 			g.fillRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), 100, 100);
-			
+
 			//Draw square red on the left top
 			g.setColor(Color.GRAY);
 			g.fillRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getX(), 8, 8);
 			g.setColor(Color.BLACK);
 			g.drawRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), 8, 8);
-			
+
 			g.setColor(Color.BLACK);
 			g.drawRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), 100, 100);
 
@@ -56,9 +52,6 @@ public class JPanelDrawingTable extends JPanel{
 			// X = position + 10
 			// Y = position + 15
 			g.drawString(model.getObjectUmlAtIndex(i).getName(), model.getObjectUmlAtIndex(i).getX()+20, model.getObjectUmlAtIndex(i).getY()+20);
-			
-			
-		
 		}
 		
 	}

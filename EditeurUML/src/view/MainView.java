@@ -9,7 +9,8 @@ package view;
 import java.util.Observable;
 import java.util.Observer;
 
-import controler.addObjectControler;
+import controler.AddObjectControler;
+import controler.DrawingTableControler;
 import model.ProjectUML;
 
 /**
@@ -73,13 +74,13 @@ public class MainView extends javax.swing.JFrame implements Observer{
         buttonsMenu.setBackground(new java.awt.Color(224, 224, 224));
 
         classButton.setText("Class");
-        classButton.addActionListener(new addObjectControler(1, model));
+        classButton.addActionListener(new AddObjectControler(1, model));
 
         abstractClassButton.setText("Abstract Class");
-        abstractClassButton.addActionListener(new addObjectControler(3, model));
+        abstractClassButton.addActionListener(new AddObjectControler(3, model));
 
         interfaceButton.setText("Interface");
-        interfaceButton.addActionListener(new addObjectControler(2, model));
+        interfaceButton.addActionListener(new AddObjectControler(2, model));
 
         associationButton.setText("Association");
         associationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +148,8 @@ public class MainView extends javax.swing.JFrame implements Observer{
         );
 
         drawingTable.setBackground(new java.awt.Color(254, 254, 254));
+        
+        //drawingTable.addMouseMotionListener(new DrawingTableControler(model));
 
         javax.swing.GroupLayout drawingTableLayout = new javax.swing.GroupLayout(drawingTable);
         drawingTable.setLayout(drawingTableLayout);

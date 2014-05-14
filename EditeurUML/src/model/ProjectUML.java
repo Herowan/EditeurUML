@@ -40,4 +40,10 @@ public class ProjectUML extends Observable{
 		notifyObservers();
 	}
 	
+	public void setPositionObject(int x, int y, int index){
+		objectsList.get(index).setPosition(x, y);
+		setChanged();
+		notifyObservers();
+	}
+	
 }
