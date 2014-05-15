@@ -15,20 +15,14 @@ public class ProjectUML extends Observable implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ObjectUML> objectsList;
+	private ArrayList<Association> associationList;
 	private int selectedObject;
 	private String savePath=null; // save du chemin ou est enregistr�� le projet pour le controller Save
-	public ArrayList<ObjectUML> getObjectsList() {
-		return objectsList;
-	}
-
-	public void setObjectsList(ArrayList<ObjectUML> objectsList) {
-		this.objectsList = objectsList;
-		setChanged();
-		notifyObservers();
-	}
+	
 
 	public ProjectUML(){
 		objectsList = new ArrayList<ObjectUML>();
+		associationList = new ArrayList<Association>();
 		addProject();
 	}
 
@@ -67,7 +61,27 @@ public class ProjectUML extends Observable implements Serializable{
 		setChanged();
 		notifyObservers();
 	}
+	
+	public ArrayList<ObjectUML> getObjectsList() {
+		return objectsList;
+	}
 
+	public void setObjectsList(ArrayList<ObjectUML> objectsList) {
+		this.objectsList = objectsList;
+		setChanged();
+		notifyObservers();
+	}
+	
+	public ArrayList<Association> getAssociationList() {
+		return associationList;
+	}
+
+	public void setAssociationList(ArrayList<Association> associationList) {
+		this.associationList = associationList;
+		setChanged();
+		notifyObservers();
+	}
+	
 
 	//Method about Serialization , let's go !!
 

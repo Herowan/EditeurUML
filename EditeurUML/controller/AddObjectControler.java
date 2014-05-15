@@ -9,12 +9,14 @@ public class AddObjectControler implements ActionListener{
 
     private int type;
     private ProjectUML model;
-    
+
+   
     public AddObjectControler(int type, ProjectUML model){
         this.type=type;
         this.model=model;
     }
-    
+   
+
     @Override
     public void actionPerformed(ActionEvent arg0) {
         model.addObjectUml(type);
