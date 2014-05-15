@@ -28,40 +28,85 @@ public class JPanelDrawingTable extends JPanel{
 		super.paintComponent(g);
 
 		for (int i=0; i<model.objectsListSize(); i++){
+			int positionX=model.getObjectUmlAtIndex(i).getX();
+			int positionY=model.getObjectUmlAtIndex(i).getY();
+			
+			ObjectUML obj = model.getObjectUmlAtIndex(i);
+			
+
+					
 			//Choose the color according to the type of the object
+			Color color;
 			switch (model.getObjectUmlAtIndex(i).getObjectType()) {
 			case 1:
-				g.setColor(new Color(228,228,228));
+				color =new Color(228,228,228);
 				break;
 			case 2:
-				g.setColor(new Color(183,229,255));
+				color = new Color(183,229,255);
 				break;
 			case 3:
-				g.setColor(new Color(255,183,183));
+				color = new Color(255,183,183);
 				break;
 			default:
-				g.setColor(new Color(228,228,228));
+				color = new Color(228,228,228);
 				break;
 			}
 
-			g.fillRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), maxLength(i, g)+40, 100);
+			g.setColor(color);
+			
+			g.fillRect(positionX, positionY, maxLength(i, g)+40, 30);
 
 			//Draw square red on the left top
 			g.setColor(Color.GRAY);
-			g.fillRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), 10, 10);
+			g.fillRect(positionX, positionY, 10, 10);
 			g.setColor(Color.BLACK);
-			g.drawRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), 10, 10);
+			g.drawRect(positionX, positionY, 10, 10);
 
 			g.setColor(Color.BLACK);
-			g.drawRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(),maxLength(i, g)+40 , 100);
+			g.drawRect(positionX, positionY,maxLength(i, g)+40 , 30);
 
 			//Warning => The position in the method is the point in the left bottom of the text
-			g.drawString(model.getObjectUmlAtIndex(i).getName(), model.getObjectUmlAtIndex(i).getX()+20, model.getObjectUmlAtIndex(i).getY()+20);
+			g.setColor(Color.BLACK);
+			g.drawString(obj.getName(), positionX+20, positionY+20);
+			
+			//Write if the class if abstract or a interface
+			g.setColor(Color.BLACK);
+			if (obj.getObjectType()==2){
+				g.drawString("Interface", positionX+20, positionY -5);
+			} else if(obj.getObjectType()==3){
+				g.drawString("Abstract", positionX+20, positionY-5);
+			}
+			positionY=positionY+30;
+			drawAttribute(obj, i, g, color, positionX,positionY);
+			
+
+		
 		}	
 		
 		
 	}
 	
+	private void drawAttribute(ObjectUML obj,int i, Graphics g, Color color, int positionX, int positionY){
+					//draw the attribute
+			g.setColor(color);
+			g.fillRect(positionX, positionY, maxLength(i, g)+40, obj.attributListSize()*20+20);
+			g.setColor(Color.BLACK);
+			g.drawRect(positionX, positionY,maxLength(i, g)+40 ,  obj.attributListSize()*20+20);
+			
+			g.setColor(Color.BLACK);
+			for (int j=0; j<obj.attributListSize(); j++){
+				g.drawString(obj.getAttributeAt(j).toString(), positionX+20, positionY+20);
+				positionY=positionY+20;
+			}
+			positionY+=20;
+			
+			// +Button
+			g.setColor(color.RED);
+			g.fillRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);
+			g.setColor(color.BLACK);
+			g.drawRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);
+			g.drawString("+",positionX+maxLength(i, g)+31 ,positionY-1);
+	}
 	private int maxLength(int index, Graphics g){
 		ObjectUML obj = model.getObjectUmlAtIndex(index);
 		int max=lengthOf(obj.getName(), g);
@@ -81,6 +126,7 @@ public class JPanelDrawingTable extends JPanel{
 	private int lengthOf(String ms,Graphics g){
 		Font font = g.getFont();
 		FontMetrics fm = g.getFontMetrics(font);
+		
 		
 		return fm.stringWidth(ms);
 	}
