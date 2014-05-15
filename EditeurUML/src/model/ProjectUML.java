@@ -8,13 +8,14 @@ import java.util.Observable;
  * @author Dashell
  *
  */
+
 public class ProjectUML extends Observable implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ObjectUML> objectsList;
-
+	private int selectedObject;
 
 	public ArrayList<ObjectUML> getObjectsList() {
 		return objectsList;
@@ -78,6 +79,14 @@ public class ProjectUML extends Observable implements Serializable{
 		objectsList.get(index).setPosition(x, y);
 		setChanged();
 		notifyObservers();
+	}
+
+	public int getSelectedObject() {
+		return selectedObject;
+	}
+
+	public void setSelectedObject(int selectedObject) {
+		this.selectedObject = selectedObject;
 	}
 	
 }
