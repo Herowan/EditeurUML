@@ -25,4 +25,7 @@ public class Type {
 	public String getTypeAt(int index){
 		return typeList.get(index);
 	}
+	public int typesListSize(){
+		return typeList.size();
+	}
 }

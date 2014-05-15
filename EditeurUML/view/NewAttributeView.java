@@ -55,8 +55,9 @@ public class NewAttributeView extends javax.swing.JFrame {
         visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "private", "protected", "default", "public" }));
         visibilityComboBox.setSelectedIndex(2);
         
-        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        //typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        typeComboBox.setModel(new ComboBoxTypeModel(model));
+        
         visibilityLabel.setText("Visibility");
 
         typeLabel.setText("Type");

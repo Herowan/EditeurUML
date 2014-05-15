@@ -150,5 +150,10 @@ public class ProjectUML extends Observable implements Serializable{
 	public void setIsSave(boolean isSave) {
 		this.isSave=isSave;
 	}
+
+	public Type getTypes() {
+		return types;
+	}
+	
 	
 }
