@@ -47,9 +47,9 @@ public class ProjectUML extends Observable implements Serializable{
 		liste1.add("int");
 		liste1.add("int");
 		liste1.add("String");
-		object.addMethod(new Method("HelloWorld", "void", 1, liste1));
+		object.addMethod(new Method("HelloWorld", "void", Visibility.DEFAULT, liste1));
 		ArrayList<String> liste2= new ArrayList<String>();
-		object.addMethod(new Method("Banana", "int", 2, liste2));
+		object.addMethod(new Method("Banana", "int", Visibility.PRIVATE, liste2));
 		objectsList.add(object);
 
 		ObjectUML object2 = new ObjectUML(1, objectsList.size());

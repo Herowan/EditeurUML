@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import model.Method;
 import model.ProjectUML;
+import model.Visibility;
 
 /**
  *
@@ -81,7 +82,7 @@ public class NewMethodView extends javax.swing.JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				model.addMethod(index, new Method("name", "void", 1, new ArrayList<String>()));
+				model.addMethod(index, new Method("name", "void", Visibility.DEFAULT, new ArrayList<String>()));
 				dispose();
 			}
 		});

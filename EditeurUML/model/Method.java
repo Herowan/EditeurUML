@@ -15,9 +15,9 @@ public class Method implements Serializable{
 	String name;
 	String returnType;
 	ArrayList<String> params;
-	int visibilityM;
+	Visibility visibilityM;
 	
-	public Method(String name,String returnType,int visibilityM,ArrayList<String> params){
+	public Method(String name,String returnType,Visibility visibilityM,ArrayList<String> params){
 		this.name=name;
 		this.returnType=returnType;
 		this.visibilityM=visibilityM;
@@ -59,11 +59,11 @@ public class Method implements Serializable{
 		this.params = params;
 	}
 
-	public int getVisibilityM() {
+	public Visibility getVisibilityM() {
 		return visibilityM;
 	}
 
-	public void setVisibilityM(int visibilityM) {
+	public void setVisibilityM(Visibility visibilityM) {
 		this.visibilityM = visibilityM;
 	}
 	
