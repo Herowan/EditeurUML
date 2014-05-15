@@ -69,8 +69,11 @@ public class SaveProjectController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(model.getSavePath()==null){
 			showSaveFileDialog();
+			model.setIsSave(true);
 		}else{
 			save();	
+			model.setIsSave(true);
+
 		}
 	}
 }
