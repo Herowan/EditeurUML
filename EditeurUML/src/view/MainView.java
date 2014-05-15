@@ -20,7 +20,7 @@ import javax.swing.UIManager;
 import controller.AddObjectControler;
 import controller.DrawingTableController;
 import controller.OpenProjectController;
-import controller.SaveProjectController;
+import controller.SaveAsProjectController;
 import model.ObjectUML;
 import model.ProjectUML;
 
@@ -200,7 +200,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		//saveItemMenu.addActionListener(new OpenProjectController(model, this));
 		saveAsItemMenu.setText("Save As");
 		fileMenu.add(saveAsItemMenu);
-		saveAsItemMenu.addActionListener(new SaveProjectController(model, this));
+		saveAsItemMenu.addActionListener(new SaveAsProjectController(model, this));
 
 		menuBar.add(fileMenu);
 
