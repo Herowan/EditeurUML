@@ -26,6 +26,10 @@ import model.ProjectUML;
  */
 public class MainView extends javax.swing.JFrame implements Observer{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ProjectUML model;
 
 	/**
