@@ -112,13 +112,13 @@ public class JPanelDrawingTable extends JPanel{
 	private int drawMethod(ObjectUML obj,int i, Graphics g, Color color, int positionX, int positionY){
 		//draw the attribute
 		g.setColor(color);
-		g.fillRect(positionX, positionY, maxLength(i, g)+40, obj.attributListSize()*20+20);
+		g.fillRect(positionX, positionY, maxLength(i, g)+40, obj.methodeListSize()*20+20);
 		g.setColor(Color.BLACK);
-		g.drawRect(positionX, positionY,maxLength(i, g)+40 ,  obj.attributListSize()*20+20);
+		g.drawRect(positionX, positionY,maxLength(i, g)+40 ,  obj.methodeListSize()*20+20);
 		
 		g.setColor(Color.BLACK);
-		for (int j=0; j<obj.attributListSize(); j++){
-			g.drawString(obj.getAttributeAt(j).toString(), positionX+20, positionY+20);
+		for (int j=0; j<obj.methodeListSize(); j++){
+			g.drawString(obj.getMehodAt(j).toString(), positionX+20, positionY+20);
 			positionY=positionY+20;
 		}
 		positionY+=20;

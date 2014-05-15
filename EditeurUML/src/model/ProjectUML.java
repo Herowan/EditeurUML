@@ -16,7 +16,7 @@ public class ProjectUML extends Observable implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ObjectUML> objectsList;
 	private int selectedObject;
-	private String savePath=null; // save du chemin ou est enregistré le projet pour le controller Save
+	private String savePath=null; // save du chemin ou est enregistr�� le projet pour le controller Save
 	public ArrayList<ObjectUML> getObjectsList() {
 		return objectsList;
 	}
@@ -40,6 +40,13 @@ public class ProjectUML extends Observable implements Serializable{
 		object.addAttribute(new Attribute("test", "void", 0));
 		object.addAttribute(new Attribute("Blab", "String", 2));
 		object.addAttribute(new Attribute("test2", "long", 3));
+		ArrayList<String> liste1= new ArrayList<String>();
+		liste1.add("int");
+		liste1.add("int");
+		liste1.add("String");
+		object.addMethod(new Method("HelloWorld", "void", 1, liste1));
+		ArrayList<String> liste2= new ArrayList<String>();
+		object.addMethod(new Method("Banana", "int", 2, liste2));
 		objectsList.add(object);
 
 		ObjectUML object2 = new ObjectUML(1, objectsList.size());
