@@ -7,19 +7,17 @@
 package view;
 
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Locale;
+
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
-import javax.swing.UIManager;
+
 
 import controller.AddObjectControler;
 import controller.DrawingTableController;
-import model.ObjectUML;
+import controller.OpenProjectController;
+import controller.SaveAsProjectController;
+import controller.SaveProjectController;
 import model.ProjectUML;
 
 /**
@@ -28,6 +26,10 @@ import model.ProjectUML;
  */
 public class MainView extends javax.swing.JFrame implements Observer{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ProjectUML model;
 
 	/**
@@ -188,27 +190,17 @@ public class MainView extends javax.swing.JFrame implements Observer{
 
 		openProjectItemMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
 		openProjectItemMenu.setText("Open Project");
-		openProjectItemMenu.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				try {
-					showOpenFileDialog();
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		openProjectItemMenu.addActionListener(new OpenProjectController(model, this));
+
 		fileMenu.add(openProjectItemMenu);
 
 		saveItemMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
 		saveItemMenu.setText("Save");
 		fileMenu.add(saveItemMenu);
-		saveItemMenu.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				showSaveFileDialog();
-			}
-		});
+		saveItemMenu.addActionListener(new SaveProjectController(model,this));
 		saveAsItemMenu.setText("Save As");
 		fileMenu.add(saveAsItemMenu);
+		saveAsItemMenu.addActionListener(new SaveAsProjectController(model, this));
 
 		menuBar.add(fileMenu);
 
@@ -353,51 +345,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	// End of variables declaration//GEN-END:variables
 
 
-	//Method about Save/Open File
-	@SuppressWarnings("unchecked")
-	public void showOpenFileDialog() throws ClassNotFoundException{
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Specify a file to open");
-
-		int userSelection = fileChooser.showSaveDialog(this);
-		if (userSelection == JFileChooser.APPROVE_OPTION) {
-
-			String fileName=fileChooser.getSelectedFile().getAbsolutePath();
-			try {
-				FileInputStream fichier = new FileInputStream(fileName);
-				ObjectInputStream in = new ObjectInputStream(fichier);
-				model.setObjectsList((ArrayList<ObjectUML>)in.readObject());
-				in.close();
-			}
-			catch (java.io.IOException e) {
-				System.out.println("FAIL in");
-				e.printStackTrace();
-			}
-		}
-	}
-
-	private void showSaveFileDialog() {
-
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Specify a file to save");
-		UIManager.put("FileChooser.openButtonText","Save");
-		int userSelection = fileChooser.showSaveDialog(this);
-		if (userSelection == JFileChooser.APPROVE_OPTION) {
-
-			String fileName=fileChooser.getSelectedFile().getAbsolutePath()+".uml";
-			try {
-				FileOutputStream fichier = new FileOutputStream(fileName);
-				ObjectOutputStream out = new ObjectOutputStream(fichier);
-				out.writeObject(model.getObjectsList());
-				out.flush();
-				out.close();
-			}
-			catch (java.io.IOException e) {
-				System.out.println("FAIL out");
-				e.printStackTrace();
-			}
-		}
-	}
+	
 	//End Save/Open Section
 	@Override
 	public void update(Observable o, Object arg) {
