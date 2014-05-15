@@ -60,8 +60,10 @@ public class NewMethodView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("New Method");
 
-        visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        //visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "private", "protected", "default", "public" }));
 
+        
         typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         visibilityLabel.setText("Visibility");
@@ -91,6 +93,7 @@ public class NewMethodView extends javax.swing.JFrame {
 
         typeParameterComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        
         typeParameterLabel.setText("Type");
 
         nameParameterLabel.setText("Name");

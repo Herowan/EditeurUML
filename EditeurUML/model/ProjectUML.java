@@ -26,6 +26,7 @@ public class ProjectUML extends Observable implements Serializable{
 	public ProjectUML(){
 		objectsList = new ArrayList<ObjectUML>();
 		associationList = new ArrayList<Association>();
+		types=new Type();
 		addProject();
 	}
 	

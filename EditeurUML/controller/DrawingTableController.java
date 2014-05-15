@@ -43,23 +43,24 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
         int i=0;
         int buttonPositionY;
         int buttonPositionX;
-        while(i<model.objectsListSize()){
+        boolean quit=false;;
+        while(i<model.objectsListSize() && !quit){
         	buttonPositionY = model.getObjectUmlAtIndex(i).getY()+50+20*model.getObjectUmlAtIndex(i).attributListSize();
         	buttonPositionX = model.getObjectUmlAtIndex(i).getX();
         	buttonPositionY-=10;
         	buttonPositionX+=jPanelDrawingtable.maxLength(i, jPanelDrawingtable.getG())+30;
             if (e.getX()>=model.getObjectUmlAtIndex(i).getX() && e.getX()<=model.getObjectUmlAtIndex(i).getX()+10 && e.getY()>=model.getObjectUmlAtIndex(i).getY() && e.getY()<=model.getObjectUmlAtIndex(i).getY()+10){
                 model.setSelectedObject(i);
-                i=model.objectsListSize();
+                quit=true;
             }
             if (e.getX()>=buttonPositionX && e.getX()<=buttonPositionX+10 && e.getY()>=buttonPositionY && e.getY()<=buttonPositionY+10){
                 new NewAttributeView(model,i).setVisible(true);
-                i=model.objectsListSize();
+                quit=true;
             }
             buttonPositionY+=20+model.getObjectUmlAtIndex(i).methodeListSize()*20;
             if (e.getX()>=buttonPositionX && e.getX()<=buttonPositionX+10 && e.getY()>=buttonPositionY && e.getY()<=buttonPositionY+10){
                 new NewMethodView(model,i).setVisible(true);
-                i=model.objectsListSize();
+                quit=true;
             }
             i++;
         }
