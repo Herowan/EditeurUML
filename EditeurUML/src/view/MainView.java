@@ -158,6 +158,8 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		drawingTable.setBackground(new java.awt.Color(254, 254, 254));
 
 		drawingTable.addMouseMotionListener(new DrawingTableController(model));
+		drawingTable.addMouseListener(new DrawingTableController(model));
+
 
 		javax.swing.GroupLayout drawingTableLayout = new javax.swing.GroupLayout(drawingTable);
 		drawingTable.setLayout(drawingTableLayout);
@@ -351,6 +353,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 
 
 	//Method about Save/Open File
+	@SuppressWarnings("unchecked")
 	public void showOpenFileDialog() throws ClassNotFoundException{
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Specify a file to open");
