@@ -77,8 +77,8 @@ public class JPanelDrawingTable extends JPanel{
 				g.drawString("Abstract", positionX+20, positionY-5);
 			}
 			positionY=positionY+30;
-			drawAttribute(obj, i, g, color, positionX,positionY);
-			
+			positionY=drawAttribute(obj, i, g, color, positionX,positionY);
+			positionY=drawMethod(obj, i, g, color, positionX, positionY);
 
 		
 		}	
@@ -86,7 +86,7 @@ public class JPanelDrawingTable extends JPanel{
 		
 	}
 	
-	private void drawAttribute(ObjectUML obj,int i, Graphics g, Color color, int positionX, int positionY){
+	private int drawAttribute(ObjectUML obj,int i, Graphics g, Color color, int positionX, int positionY){
 					//draw the attribute
 			g.setColor(color);
 			g.fillRect(positionX, positionY, maxLength(i, g)+40, obj.attributListSize()*20+20);
@@ -106,6 +106,31 @@ public class JPanelDrawingTable extends JPanel{
 			g.setColor(color.BLACK);
 			g.drawRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);
 			g.drawString("+",positionX+maxLength(i, g)+31 ,positionY-1);
+			
+			return positionY;
+	}
+	private int drawMethod(ObjectUML obj,int i, Graphics g, Color color, int positionX, int positionY){
+		//draw the attribute
+		g.setColor(color);
+		g.fillRect(positionX, positionY, maxLength(i, g)+40, obj.attributListSize()*20+20);
+		g.setColor(Color.BLACK);
+		g.drawRect(positionX, positionY,maxLength(i, g)+40 ,  obj.attributListSize()*20+20);
+		
+		g.setColor(Color.BLACK);
+		for (int j=0; j<obj.attributListSize(); j++){
+			g.drawString(obj.getAttributeAt(j).toString(), positionX+20, positionY+20);
+			positionY=positionY+20;
+		}
+		positionY+=20;
+		
+		// +Button
+		g.setColor(color.RED);
+		g.fillRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);
+		g.setColor(color.BLACK);
+		g.drawRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);
+		g.drawString("+",positionX+maxLength(i, g)+31 ,positionY-1);
+		
+		return positionY;
 	}
 	private int maxLength(int index, Graphics g){
 		ObjectUML obj = model.getObjectUmlAtIndex(index);
