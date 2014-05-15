@@ -6,16 +6,27 @@
 
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import model.Attribute;
+import model.ProjectUML;
+
 /**
  *
  * @author digeona
  */
 public class NewAttributeView extends javax.swing.JFrame {
 
+	private ProjectUML model;
+	private int index;
+	
     /**
      * Creates new form NewAttributeView
      */
-    public NewAttributeView() {
+    public NewAttributeView(ProjectUML model,int i) {
+    	this.model=model;
+    	this.index=i;
         initComponents();
     }
 
@@ -37,7 +48,7 @@ public class NewAttributeView extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("New Attribute");
 
         visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -53,11 +64,19 @@ public class NewAttributeView extends javax.swing.JFrame {
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                dispose();
             }
         });
 
         okButton.setText("OK");
+        okButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				model.addAttribute(index, new Attribute("name","type",1));
+				dispose();
+			}
+		});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,10 +129,6 @@ public class NewAttributeView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelButtonActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -144,7 +159,7 @@ public class NewAttributeView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewAttributeView().setVisible(true);
+                new NewAttributeView(new ProjectUML(),0).setVisible(true);
             }
         });
     }

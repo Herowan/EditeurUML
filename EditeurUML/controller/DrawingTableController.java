@@ -28,25 +28,10 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     public void mouseMoved(MouseEvent e) {}
     
     @Override
-    public void mouseClicked(MouseEvent e) {
-    	/*new NewAttributeView();
-    	int i=0;
-        while(i<model.objectsListSize()){
-        	int buttonPositionX=model.getObjectUmlAtIndex(i).getX()+50+20*model.getObjectUmlAtIndex(i).attributListSize();
-        	buttonPositionX+=jPanelDrawingtable.maxLength(i, jPanelDrawingtable.getG())+30;
-        	int buttonPositionY=model.getObjectUmlAtIndex(i).getY();
-        	buttonPositionY-=10;
-            if (e.getX()>=buttonPositionX && e.getX()<=buttonPositionX+10 && e.getY()>=buttonPositionY && e.getY()<=buttonPositionY+10){
-                new NewAttributeView();
-                i=model.objectsListSize();
-                System.out.println("Check");
-            }
-            i++;
-        }*/
-    }
+    public void mouseClicked(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {new NewAttributeView();}
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
     public void mouseExited(MouseEvent e) {}
@@ -61,10 +46,10 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
         	buttonPositionX+=jPanelDrawingtable.maxLength(i, jPanelDrawingtable.getG())+30;
             if (e.getX()>=model.getObjectUmlAtIndex(i).getX() && e.getX()<=model.getObjectUmlAtIndex(i).getX()+10 && e.getY()>=model.getObjectUmlAtIndex(i).getY() && e.getY()<=model.getObjectUmlAtIndex(i).getY()+10){
                 model.setSelectedObject(i);
-
                 i=model.objectsListSize();
-            } else if (e.getX()>=buttonPositionX && e.getX()<=buttonPositionX+10 && e.getY()>=buttonPositionY && e.getY()<=buttonPositionY+10){
-                new NewAttributeView().setVisible(true);
+            }
+            if (e.getX()>=buttonPositionX && e.getX()<=buttonPositionX+10 && e.getY()>=buttonPositionY && e.getY()<=buttonPositionY+10){
+                new NewAttributeView(model,i).setVisible(true);
                 i=model.objectsListSize();
             }
             i++;

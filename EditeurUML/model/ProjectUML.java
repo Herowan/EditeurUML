@@ -99,7 +99,11 @@ public class ProjectUML extends Observable implements Serializable{
 
 	}
 
-
+	public void addAttribute(int index, Attribute attribute){
+		objectsList.get(index).addAttribute(attribute);
+		setChanged();
+		notifyObservers();
+	}
 	
 	public void setPositionObject(int x, int y, int index){
 		objectsList.get(index).setPosition(x, y);
