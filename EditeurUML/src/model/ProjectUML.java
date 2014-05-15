@@ -1,5 +1,6 @@
 package model;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Observable;
 /**
@@ -7,9 +8,22 @@ import java.util.Observable;
  * @author Dashell
  *
  */
-public class ProjectUML extends Observable{
-	ArrayList<ObjectUML> objectsList;
+
+public class ProjectUML extends Observable implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private ArrayList<ObjectUML> objectsList;
 	private int selectedObject;
+
+	public ArrayList<ObjectUML> getObjectsList() {
+		return objectsList;
+	}
+
+	public void setObjectsList(ArrayList<ObjectUML> objectsList) {
+		this.objectsList = objectsList;
+	}
 
 	public ProjectUML(){
 		objectsList = new ArrayList<ObjectUML>();
@@ -20,25 +34,44 @@ public class ProjectUML extends Observable{
 	private void addProject() {
 		ObjectUML object = new ObjectUML(1, objectsList.size());
 		objectsList.add(object);
-		
+
 		ObjectUML object2 = new ObjectUML(1, objectsList.size());
 		objectsList.add(object2);
-		
+
 	}
-	
+
 	public ObjectUML getObjectUmlAtIndex(int index){
 		return objectsList.get(index);
 	}
-	
+
 	public int objectsListSize(){
 		return objectsList.size();
 	}
-	
-	public void addProjectUml(int type){
+
+	public void addObjectUml(int type){
 		objectsList.add(new ObjectUML(type, objectsListSize()));
 		setChanged();
 		notifyObservers();
 	}
+
+
+	//Method about Serialization , let's go !!
+
+	public void saveProject(String projectName){
+		try {
+			FileOutputStream fichier = new FileOutputStream(projectName);
+			ObjectOutputStream out = new ObjectOutputStream(fichier);
+			out.writeObject(objectsList);
+			out.flush();
+			out.close();
+		}
+		catch (java.io.IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+
 	
 	public void setPositionObject(int x, int y, int index){
 		objectsList.get(index).setPosition(x, y);

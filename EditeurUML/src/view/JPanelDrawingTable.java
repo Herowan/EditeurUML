@@ -9,6 +9,10 @@ import model.ProjectUML;
 
 public class JPanelDrawingTable extends JPanel{
 
+	/**
+	 * 
+	 * @author digeona
+	 */
 	private static final long serialVersionUID = 1L;
 	
 	private ProjectUML model;

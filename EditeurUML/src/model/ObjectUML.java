@@ -1,17 +1,23 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * 
  * @author Dashell
  *
  */
-public class ObjectUML {
+public class ObjectUML implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private ArrayList<Method> methodeList;
 	private ArrayList<Attribute> attributList;
 	//Type de l'objet , 1 pour une classe , 2 pour une interface, 3 pour une classe abstraite
-	private int objectType;
+	private final int OBJECTTYPE;
+	
 	
 	private Coordinates position;
 	
@@ -23,7 +29,7 @@ public class ObjectUML {
 		// Done ?
 		position=new Coordinates(10+10*number,10+10*number);
 		//Cr��ation d'un objet vide
-		this.setObjectType(objectType);
+		this.OBJECTTYPE=objectType;
 		name="Object"+(number+1);
 	}
 	
@@ -34,6 +40,9 @@ public class ObjectUML {
 		return this.name;
 	}
 	
+	public int getOBJECTTYPE() {
+		return OBJECTTYPE;
+	}
 	
 	//Gestion de la liste des m��thodes:
 	public void addMethod(Method m){
@@ -79,12 +88,10 @@ public class ObjectUML {
 	}
 
 	public int getObjectType() {
-		return objectType;
+		return OBJECTTYPE;
 	}
 
-	public void setObjectType(int objectType) {
-		this.objectType = objectType;
-	}
+
 	
 	public void setPosition(int x, int y){
 		position.setX(x);

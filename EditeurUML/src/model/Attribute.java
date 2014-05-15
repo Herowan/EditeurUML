@@ -1,10 +1,17 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  * 
  * @author Dashell
  *
  */
-public class Attribute {
+public class Attribute implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String name;
 	String type;
 	int visibilityA;
