@@ -39,10 +39,10 @@ public class ProjectUML extends Observable implements Serializable{
 	private void addProject() {
 		ObjectUML object = new ObjectUML(1, objectsList.size());
 		object.setName("Helo");
-		object.addAttribute(new Attribute("Blablabam", "int", 1));
-		object.addAttribute(new Attribute("test", "void", 0));
-		object.addAttribute(new Attribute("Blab", "String", 2));
-		object.addAttribute(new Attribute("test2", "long", 3));
+		object.addAttribute(new Attribute("Blablabam", "int", Visibility.PRIVATE));
+		object.addAttribute(new Attribute("test", "void", Visibility.PROTECTED));
+		object.addAttribute(new Attribute("Blab", "String", Visibility.PROTECTED));
+		object.addAttribute(new Attribute("test2", "long", Visibility.PUBLIC));
 		ArrayList<String> liste1= new ArrayList<String>();
 		liste1.add("int");
 		liste1.add("int");
@@ -110,6 +110,11 @@ public class ProjectUML extends Observable implements Serializable{
 
 	public void addAttribute(int index, Attribute attribute){
 		objectsList.get(index).addAttribute(attribute);
+		setChanged();
+		notifyObservers();
+	}
+	public void addMethod(int index, Method method){
+		objectsList.get(index).addMethod(method);
 		setChanged();
 		notifyObservers();
 	}

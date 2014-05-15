@@ -15,10 +15,10 @@ public class Attribute implements Serializable{
 	String name;
 	String type;
 	// 0=> private ; 1=> protected; 2=> default ; 3=>public;
-	int visibilityA;
+	Visibility visibilityA;
 	
 	
-	public Attribute(String name,String type,int visibilityA){
+	public Attribute(String name,String type,Visibility visibilityA){
 		this.name=name;
 		this.type=type;
 		this.visibilityA=visibilityA;
@@ -45,31 +45,17 @@ public class Attribute implements Serializable{
 	}
 
 
-	public int getVisibilityA() {
+	public Visibility getVisibilityA() {
 		return visibilityA;
 	}
 	
-	public String getVisibilityString(){
-		switch (getVisibilityA()) {
-		case 0:
-			return "-";
-		case 1:
-			return "#";
-		case 2:
-			return " ";
-		case 3:
-			return "+";
-		default:
-			return " ";
-		}
-	}
 
-	public void setVisibilityA(int visibilityA) {
+	public void setVisibilityA(Visibility visibilityA) {
 		this.visibilityA = visibilityA;
 	}
 	
 	public String toString(){
-		return getVisibilityString()+" "+getName()+": "+getType();
+		return getVisibilityA().getCharac()+" "+getName()+": "+getType();
 	}
 	
 	

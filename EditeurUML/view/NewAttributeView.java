@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import model.Attribute;
 import model.ProjectUML;
+import model.Visibility;
 
 /**
  *
@@ -51,8 +52,9 @@ public class NewAttributeView extends javax.swing.JFrame {
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("New Attribute");
 
-        visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "private", "protected", "default", "public" }));
+        visibilityComboBox.setSelectedIndex(2);
+        
         typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         visibilityLabel.setText("Visibility");
@@ -73,7 +75,14 @@ public class NewAttributeView extends javax.swing.JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				model.addAttribute(index, new Attribute("name","type",1));
+				String visibility = (String) visibilityComboBox.getSelectedItem();
+				Visibility visi;
+				if (visibility.equals("private")) visi= Visibility.PRIVATE;
+				else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
+				else if (visibility.equals("default")) visi = Visibility.DEFAULT;
+				else visi = Visibility.PUBLIC;
+				
+				model.addAttribute(index, new Attribute(nameTextField.getText(),"type",visi));
 				dispose();
 			}
 		});

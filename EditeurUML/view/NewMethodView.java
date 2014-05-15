@@ -6,16 +6,30 @@
 
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import model.Method;
+import model.ProjectUML;
+
 /**
  *
  * @author digeona
  */
 public class NewMethodView extends javax.swing.JFrame {
 
+	private ProjectUML model;
+	private int index;
+	
     /**
      * Creates new form NewAttributeView
+     * @param i 
+     * @param model 
      */
-    public NewMethodView() {
+    public NewMethodView(ProjectUML model, int i) {
+    	this.model=model;
+    	this.index=i;
         initComponents();
     }
 
@@ -58,11 +72,19 @@ public class NewMethodView extends javax.swing.JFrame {
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                dispose();
             }
         });
 
         okButton.setText("OK");
+        okButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				model.addMethod(index, new Method("name", "void", 1, new ArrayList<String>()));
+				dispose();
+			}
+		});
 
         parameterButton.setText("Parameter :");
 
@@ -182,7 +204,7 @@ public class NewMethodView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewMethodView().setVisible(true);
+                new NewMethodView(new ProjectUML(),0).setVisible(true);
             }
         });
     }

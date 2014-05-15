@@ -3,8 +3,10 @@ package controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+
 import view.JPanelDrawingTable;
 import view.NewAttributeView;
+import view.NewMethodView;
 import model.ProjectUML;
 
 public class DrawingTableController implements MouseMotionListener, MouseListener{
@@ -39,9 +41,11 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     @Override
     public void mousePressed(MouseEvent e) {    
         int i=0;
+        int buttonPositionY;
+        int buttonPositionX;
         while(i<model.objectsListSize()){
-        	int buttonPositionY=model.getObjectUmlAtIndex(i).getX()+50+20*model.getObjectUmlAtIndex(i).attributListSize();
-        	int buttonPositionX=model.getObjectUmlAtIndex(i).getY();
+        	buttonPositionY = model.getObjectUmlAtIndex(i).getY()+50+20*model.getObjectUmlAtIndex(i).attributListSize();
+        	buttonPositionX = model.getObjectUmlAtIndex(i).getX();
         	buttonPositionY-=10;
         	buttonPositionX+=jPanelDrawingtable.maxLength(i, jPanelDrawingtable.getG())+30;
             if (e.getX()>=model.getObjectUmlAtIndex(i).getX() && e.getX()<=model.getObjectUmlAtIndex(i).getX()+10 && e.getY()>=model.getObjectUmlAtIndex(i).getY() && e.getY()<=model.getObjectUmlAtIndex(i).getY()+10){
@@ -50,6 +54,11 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
             }
             if (e.getX()>=buttonPositionX && e.getX()<=buttonPositionX+10 && e.getY()>=buttonPositionY && e.getY()<=buttonPositionY+10){
                 new NewAttributeView(model,i).setVisible(true);
+                i=model.objectsListSize();
+            }
+            buttonPositionY+=20+model.getObjectUmlAtIndex(i).methodeListSize()*20;
+            if (e.getX()>=buttonPositionX && e.getX()<=buttonPositionX+10 && e.getY()>=buttonPositionY && e.getY()<=buttonPositionY+10){
+                new NewMethodView(model,i).setVisible(true);
                 i=model.objectsListSize();
             }
             i++;
