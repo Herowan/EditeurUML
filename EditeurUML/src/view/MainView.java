@@ -7,21 +7,17 @@
 package view;
 
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Locale;
+
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
-import javax.swing.UIManager;
+
 
 import controller.AddObjectControler;
 import controller.DrawingTableController;
 import controller.OpenProjectController;
 import controller.SaveAsProjectController;
-import model.ObjectUML;
+import controller.SaveProjectController;
 import model.ProjectUML;
 
 /**
@@ -197,7 +193,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		saveItemMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
 		saveItemMenu.setText("Save");
 		fileMenu.add(saveItemMenu);
-		//saveItemMenu.addActionListener(new OpenProjectController(model, this));
+		saveItemMenu.addActionListener(new SaveProjectController(model,this));
 		saveAsItemMenu.setText("Save As");
 		fileMenu.add(saveAsItemMenu);
 		saveAsItemMenu.addActionListener(new SaveAsProjectController(model, this));
