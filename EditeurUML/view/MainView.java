@@ -8,8 +8,10 @@ import java.util.Observer;
 
 
 
+
 import controller.AddObjectControler;
 import controller.DrawingTableController;
+import controller.NewProjectController;
 import controller.OpenProjectController;
 import controller.SaveAsProjectController;
 import controller.SaveProjectController;
@@ -176,11 +178,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 
 		newProjectItemMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
 		newProjectItemMenu.setText("New Project");
-		newProjectItemMenu.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				newProjectItemMenuActionPerformed(evt);
-			}
-		});
+		newProjectItemMenu.addActionListener(new NewProjectController(model, this));
 		fileMenu.add(newProjectItemMenu);
 
 		openProjectItemMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
@@ -346,5 +344,6 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		drawingTable.repaint();
+		model.setIsSave(false);
 	}
 }

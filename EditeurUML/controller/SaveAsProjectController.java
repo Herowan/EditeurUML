@@ -49,6 +49,8 @@ public class SaveAsProjectController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		showSaveFileDialog();
+		model.setIsSave(true);
+
 	}
 
 }

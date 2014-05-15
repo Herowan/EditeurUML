@@ -3,6 +3,8 @@ package model;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Observable;
+
+import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 /**
  * 
  * @author Dashell
@@ -18,12 +20,19 @@ public class ProjectUML extends Observable implements Serializable{
 	private ArrayList<Association> associationList;
 	private int selectedObject;
 	private String savePath=null; // save du chemin ou est enregistr�� le projet pour le controller Save
-	
+	private boolean isSave=false;
 
 	public ProjectUML(){
 		objectsList = new ArrayList<ObjectUML>();
 		associationList = new ArrayList<Association>();
 		addProject();
+	}
+	
+	//Method for New Project
+	
+	public void resetProject(){
+		objectsList.clear();
+		associationList.clear();
 	}
 
 	// Method for Development
@@ -121,6 +130,14 @@ public class ProjectUML extends Observable implements Serializable{
 
 	public void setSavePath(String savePath) {
 		this.savePath = savePath;
+	}
+
+	public boolean isSave() {
+		return isSave;
+	}
+
+	public void setIsSave(boolean isSave) {
+		this.isSave=isSave;
 	}
 	
 }
