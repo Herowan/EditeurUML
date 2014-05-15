@@ -21,6 +21,7 @@ public class ProjectUML extends Observable implements Serializable{
 	private int selectedObject;
 	private String savePath=null; // save du chemin ou est enregistr�� le projet pour le controller Save
 	private boolean isSave=false;
+	private Type types;
 
 	public ProjectUML(){
 		objectsList = new ArrayList<ObjectUML>();
@@ -67,6 +68,7 @@ public class ProjectUML extends Observable implements Serializable{
 
 	public void addObjectUml(int type){
 		objectsList.add(new ObjectUML(type, objectsListSize()));
+		types.addType(objectsList.get(objectsListSize()-1).getName());
 		setChanged();
 		notifyObservers();
 	}
