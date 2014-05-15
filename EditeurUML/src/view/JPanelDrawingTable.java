@@ -7,6 +7,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import model.ObjectUML;
 import model.ProjectUML;
 
 public class JPanelDrawingTable extends JPanel{
@@ -43,7 +44,7 @@ public class JPanelDrawingTable extends JPanel{
 				break;
 			}
 
-			g.fillRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), 100, 100);
+			g.fillRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), maxLength(i, g)+40, 100);
 
 			//Draw square red on the left top
 			g.setColor(Color.GRAY);
@@ -52,18 +53,30 @@ public class JPanelDrawingTable extends JPanel{
 			g.drawRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), 10, 10);
 
 			g.setColor(Color.BLACK);
-			g.drawRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(), 100, 100);
+			g.drawRect(model.getObjectUmlAtIndex(i).getX(), model.getObjectUmlAtIndex(i).getY(),maxLength(i, g)+40 , 100);
 
 			//Warning => The position in the method is the point in the left bottom of the text
-			// X = position + 10
-			// Y = position + 15
 			g.drawString(model.getObjectUmlAtIndex(i).getName(), model.getObjectUmlAtIndex(i).getX()+20, model.getObjectUmlAtIndex(i).getY()+20);
 		}	
 		
 		
 	}
 	
-	
+	private int maxLength(int index, Graphics g){
+		ObjectUML obj = model.getObjectUmlAtIndex(index);
+		int max=lengthOf(obj.getName(), g);
+		for (int i=0; i<obj.methodeListSize();i++){
+			if (lengthOf(obj.getMehodAt(i).toString(), g)>max){
+				max=lengthOf(obj.getMehodAt(i).toString(),g);
+			}
+		}
+		for (int i=0; i<obj.attributListSize();i++){
+			if (lengthOf(obj.getAttributeAt(i).toString(), g)>max){
+				max=lengthOf(obj.getAttributeAt(i).toString(),g);
+			}
+		}
+		return max;
+	}
 	
 	private int lengthOf(String ms,Graphics g){
 		Font font = g.getFont();

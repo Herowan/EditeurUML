@@ -48,18 +48,24 @@ public class ObjectUML implements Serializable{
 	public void addMethod(Method m){
 		methodeList.add(m);
 	}
-	int methodeListSize(){
+	public int methodeListSize(){
 		return methodeList.size();
 	}
+	public Method getMehodAt(int index){
+		return methodeList.get(index);
+	}
 	
-	//lol
+	
 	
 	//Gestion de la liste des attributs:
 	public void addAttribute(Attribute a){
 		attributList.add(a);
 	}
-	int attributListSize(){
+	public int attributListSize(){
 		return attributList.size();
+	}
+	public Attribute getAttributeAt(int index){
+		return attributList.get(index);
 	}
 	//Gestion des coordonn��es
 	public int getX(){
@@ -97,5 +103,6 @@ public class ObjectUML implements Serializable{
 		position.setX(x);
 		position.setY(y);
 	}
+	
 	
 }

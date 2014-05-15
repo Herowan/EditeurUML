@@ -29,12 +29,13 @@ public class ProjectUML extends Observable implements Serializable{
 
 	public ProjectUML(){
 		objectsList = new ArrayList<ObjectUML>();
-		//addProject();
+		addProject();
 	}
 
 	// Method for Development
 	private void addProject() {
 		ObjectUML object = new ObjectUML(1, objectsList.size());
+		object.setName("Heloooooooooooooooooooooo");
 		objectsList.add(object);
 
 		ObjectUML object2 = new ObjectUML(1, objectsList.size());
