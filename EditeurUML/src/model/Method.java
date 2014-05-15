@@ -25,7 +25,7 @@ public class Method implements Serializable{
 	}
 	
 	public String toString(){
-		String aff= getName()+"(";
+		String aff= getName()+" (";
 		for(int i=0; i<getParams().size(); i++){
 			aff=aff+getParams().get(i);
 			if (i!=getParams().size()-1) aff=aff+", ";

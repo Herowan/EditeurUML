@@ -160,8 +160,8 @@ public class MainView extends javax.swing.JFrame implements Observer{
 
 		drawingTable.setBackground(new java.awt.Color(254, 254, 254));
 
-		drawingTable.addMouseMotionListener(new DrawingTableController(model));
-		drawingTable.addMouseListener(new DrawingTableController(model));
+		drawingTable.addMouseMotionListener(new DrawingTableController(model,drawingTable));
+		drawingTable.addMouseListener(new DrawingTableController(model,drawingTable));
 
 
 		javax.swing.GroupLayout drawingTableLayout = new javax.swing.GroupLayout(drawingTable);
@@ -325,7 +325,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	private javax.swing.JMenuItem copyItemMenu;
 	private javax.swing.JMenuItem cutItemMenu;
 	private javax.swing.JMenuItem deleteItemMenu;
-	private javax.swing.JPanel drawingTable;
+	private JPanelDrawingTable drawingTable;
 	private javax.swing.JMenu editMenu;
 	private javax.swing.JMenu fileMenu;
 	private javax.swing.JButton inheritanceButton;
