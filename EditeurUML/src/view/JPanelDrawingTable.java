@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -56,8 +58,18 @@ public class JPanelDrawingTable extends JPanel{
 			// X = position + 10
 			// Y = position + 15
 			g.drawString(model.getObjectUmlAtIndex(i).getName(), model.getObjectUmlAtIndex(i).getX()+20, model.getObjectUmlAtIndex(i).getY()+20);
-		}
+		}	
 		
+		
+	}
+	
+	
+	
+	private int lengthOf(String ms,Graphics g){
+		Font font = g.getFont();
+		FontMetrics fm = g.getFontMetrics(font);
+		
+		return fm.stringWidth(ms);
 	}
 
 }

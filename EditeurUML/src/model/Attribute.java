@@ -53,6 +53,9 @@ public class Attribute implements Serializable{
 		this.visibilityA = visibilityA;
 	}
 	
+	public String toString(){
+		return getName()+": "+getType();
+	}
 	
 	
 }

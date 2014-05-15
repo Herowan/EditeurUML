@@ -24,6 +24,48 @@ public class Method implements Serializable{
 		this.params=params;
 	}
 	
+	public String toString(){
+		String aff= getName()+"(";
+		for(int i=0; i<getParams().size(); i++){
+			aff=aff+getParams().get(i);
+			if (i!=getParams().size()-1) aff=aff+", ";
+		}
+		aff=aff+") : "+getReturnType();
+		return aff;
+		
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getReturnType() {
+		return returnType;
+	}
+
+	public void setReturnType(String returnType) {
+		this.returnType = returnType;
+	}
+
+	public ArrayList<String> getParams() {
+		return params;
+	}
+
+	public void setParams(ArrayList<String> params) {
+		this.params = params;
+	}
+
+	public int getVisibilityM() {
+		return visibilityM;
+	}
+
+	public void setVisibilityM(int visibilityM) {
+		this.visibilityM = visibilityM;
+	}
 	
 	
 }
