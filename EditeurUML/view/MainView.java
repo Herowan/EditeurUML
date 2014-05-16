@@ -3,8 +3,12 @@ package view;
 
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+
+
 
 
 
@@ -70,6 +74,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		openProjectItemMenu = new javax.swing.JMenuItem();
 		saveItemMenu = new javax.swing.JMenuItem();
 		saveAsItemMenu = new javax.swing.JMenuItem();
+		exitItemMenu = new javax.swing.JMenuItem();
 		editMenu = new javax.swing.JMenu();
 		undoItemMenu = new javax.swing.JMenuItem();
 		redoItemMenu = new javax.swing.JMenuItem();
@@ -196,7 +201,16 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		saveAsItemMenu.setText("Save As");
 		fileMenu.add(saveAsItemMenu);
 		saveAsItemMenu.addActionListener(new SaveAsProjectController(model, this));
+		exitItemMenu.setText("Exit");
+		fileMenu.add(exitItemMenu);
+		exitItemMenu.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}});
+		
 		menuBar.add(fileMenu);
 
 		editMenu.setText("Edit");
@@ -323,6 +337,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	private javax.swing.JLabel relationLabel;
 	private javax.swing.JMenuItem saveAsItemMenu;
 	private javax.swing.JMenuItem saveItemMenu;
+	private javax.swing.JMenuItem exitItemMenu;
 	private javax.swing.JMenuItem undoItemMenu;
 	// End of variables declaration//GEN-END:variables
 
