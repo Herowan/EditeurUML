@@ -11,20 +11,10 @@ import java.util.Observable;
 import java.util.Observer;
 
 
-
-
-
-
-
-
-
-
-
-
-import sun.awt.WindowClosingListener;
 import controller.AddObjectControler;
 import controller.DrawingTableController;
 import controller.ExitProjectController;
+import controller.IOController;
 import controller.NewProjectController;
 import controller.OpenProjectController;
 import controller.SaveAsProjectController;
@@ -42,6 +32,8 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	 */
 	private static final long serialVersionUID = 1L;
 	ProjectUML model;
+	IOController superController=new IOController();
+
 
 	/**
 	 * Creates new form MainView
@@ -199,17 +191,17 @@ public class MainView extends javax.swing.JFrame implements Observer{
 			@Override
 			public void windowDeiconified(WindowEvent e) {}
 			@Override
-			public void windowDeactivated(WindowEvent e) {
-				new ExitProjectController(model, this)				
-			}
+			public void windowDeactivated(WindowEvent e) {}
 			@Override
-			public void windowClosing(WindowEvent e) {}
+			public void windowClosing(WindowEvent e) {
+				exitSoftware();}
 			@Override
 			public void windowClosed(WindowEvent e) {}
 			@Override
 			public void windowActivated(WindowEvent e) {}
 		});
 		
+	
 		newProjectItemMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
 		newProjectItemMenu.setText("New Project");
 		newProjectItemMenu.addActionListener(new NewProjectController(model, this));
@@ -230,7 +222,14 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		saveAsItemMenu.addActionListener(new SaveAsProjectController(model, this));
 		exitItemMenu.setText("Exit");
 		fileMenu.add(exitItemMenu);
-		exitItemMenu.addActionListener(new ExitProjectController(model, this));
+		exitItemMenu.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				exitSoftware();
+			}
+			
+		});
 		
 		menuBar.add(fileMenu);
 
@@ -299,6 +298,23 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		// TODO add your handling code here:
 	}//GEN-LAST:event_inheritanceButtonActionPerformed
 
+	
+	public void exitSoftware(){
+		if(model.isSave()){
+			dispose();
+		}else if(!(model.getSavePath()==null)){
+			try {
+				superController.save(model,this);
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}	
+			dispose();
+		}else{
+			superController.showSaveFileDialog(model,this);
+			dispose();
+		}
+	}
+	
 	/**
 	 * @param args the command line arguments
 	 */
@@ -361,10 +377,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	private javax.swing.JMenuItem exitItemMenu;
 	private javax.swing.JMenuItem undoItemMenu;
 	// End of variables declaration//GEN-END:variables
-
-
 	
-	//End Save/Open Section
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub

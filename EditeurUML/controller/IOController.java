@@ -16,7 +16,7 @@ import model.ProjectUML;
 public class IOController {
 
 	
-	protected void showSaveFileDialog(ProjectUML model,JFrame view) {
+	public void showSaveFileDialog(ProjectUML model,JFrame view) {
 
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Specify a file to save");
