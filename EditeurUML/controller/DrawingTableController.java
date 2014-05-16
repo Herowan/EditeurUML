@@ -13,6 +13,7 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     
     private ProjectUML model;
     private JPanelDrawingTable jPanelDrawingtable;
+
     
     public DrawingTableController(ProjectUML model, JPanelDrawingTable jPanelDrawingtable){
         this.model=model;
@@ -27,7 +28,18 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {}
+    public void mouseMoved(MouseEvent e) {
+    	int i=0;
+    	boolean quit=false;
+    	while(i<model.objectsListSize()){
+    		if (nameOfTheObject(e, i)){
+    			model.setNameSelected(i);
+    			quit=true;
+    		} 
+    		i++;
+    	}
+    	if (!quit) model.setNameSelected(-1);
+    }
     
     @Override
     public void mouseClicked(MouseEvent e) {}
@@ -54,6 +66,7 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
             buttonPositionY+=20+model.getObjectUmlAtIndex(i).methodeListSize()*20;
             quit =crossMethodZone(e, i, buttonPositionX, buttonPositionY);
             quit =crossQuitZone(e,i);
+            quit =nameOfTheObject(e, i);
             i++;
         }
     }
@@ -87,7 +100,13 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
         }
     	return false;
     }
-
+    private boolean nameOfTheObject(MouseEvent e, int i){
+    	if (e.getX()>=model.getObjectUmlAtIndex(i).getX()+20 && e.getX()<=model.getObjectUmlAtIndex(i).getX()+20+jPanelDrawingtable.lengthOf(model.getObjectUmlAtIndex(i).getName(), jPanelDrawingtable.getGraphics())
+    		&& e.getY()>=model.getObjectUmlAtIndex(i).getY()+9 && e.getY()<=model.getObjectUmlAtIndex(i).getY()+21){
+    		return true;
+    	}
+    	return false;
+    }
 
     @Override
     public void mouseReleased(MouseEvent e) {

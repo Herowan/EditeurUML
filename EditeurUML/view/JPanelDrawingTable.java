@@ -22,6 +22,7 @@ public class JPanelDrawingTable extends JPanel{
 	private ProjectUML model;
 	private Graphics g;
 	
+	
 	public JPanelDrawingTable(ProjectUML model){
 		this.model=model;
 	}
@@ -66,7 +67,8 @@ public class JPanelDrawingTable extends JPanel{
 			g.drawRect(positionX, positionY,maxLength(i, g)+40 , 30);
 
 			//Warning => The position in the method is the point in the left bottom of the text
-			g.setColor(Color.BLACK);
+			if (model.getNameSelected()==i) g.setColor(Color.RED);
+			else g.setColor(Color.BLACK);
 			g.drawString(obj.getName(), positionX+20, positionY+20);
 			
 			//Write if the class if abstract or a interface
@@ -148,7 +150,7 @@ public class JPanelDrawingTable extends JPanel{
 		return max;
 	}
 	
-	private int lengthOf(String ms,Graphics g){
+	public int lengthOf(String ms,Graphics g){
 		Font font = g.getFont();
 		FontMetrics fm = g.getFontMetrics(font);
 		

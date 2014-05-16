@@ -20,6 +20,9 @@ public class ProjectUML extends Observable implements Serializable{
 	private String savePath=null; // save du chemin ou est enregistr�� le projet pour le controller Save
 	private boolean isSave=false;
 	private Type types;
+	
+	// Attributes selected for the view
+	private int ObjectMoved=-1;
 
 	public ProjectUML(){
 		objectsList = new ArrayList<ObjectUML>();
@@ -171,6 +174,17 @@ public class ProjectUML extends Observable implements Serializable{
 
 	public Type getTypes() {
 		return types;
+	}
+
+	public int getNameSelected() {
+		return ObjectMoved;
+	}
+
+	public void setNameSelected(int nameSelected) {
+		this.ObjectMoved = nameSelected;
+		
+		setChanged();
+		notifyObservers();
 	}
 	
 	
