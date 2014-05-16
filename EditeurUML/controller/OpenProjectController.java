@@ -2,14 +2,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.util.ArrayList;
-
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
-import model.ObjectUML;
 import model.ProjectUML;
 
 public class OpenProjectController extends IOController implements ActionListener{
