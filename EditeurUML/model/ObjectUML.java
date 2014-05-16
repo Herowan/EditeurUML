@@ -16,13 +16,13 @@ public class ObjectUML implements Serializable{
 	private ArrayList<Method> methodeList;
 	private ArrayList<Attribute> attributList;
 	//Type de l'objet , 1 pour une classe , 2 pour une interface, 3 pour une classe abstraite
-	private final int OBJECTTYPE;
+	private final TypeObject OBJECTTYPE;
 	
 	
 	private Coordinates position;
 	
 	
-	public ObjectUML(int objectType,int number){
+	public ObjectUML(TypeObject objectType,int number, int count){
 		methodeList= new ArrayList<Method>();
 		attributList=new ArrayList<Attribute>();
 		//a changer , les coordonn��es seront pas 0,0 par default
@@ -30,9 +30,9 @@ public class ObjectUML implements Serializable{
 		position=new Coordinates(10+10*number,10+10*number);
 		//Cr��ation d'un objet vide
 		this.OBJECTTYPE=objectType;
-		name="Object"+(number+1);
+		name=objectType.getName()+(count+1);
 	}
-	
+
 	public void setName(String name){
 		this.name=name;
 	}
@@ -40,7 +40,7 @@ public class ObjectUML implements Serializable{
 		return this.name;
 	}
 	
-	public int getOBJECTTYPE() {
+	public TypeObject getOBJECTTYPE() {
 		return OBJECTTYPE;
 	}
 	
@@ -93,7 +93,7 @@ public class ObjectUML implements Serializable{
 		return this.getX()-obj.getX();
 	}
 
-	public int getObjectType() {
+	public TypeObject getObjectType() {
 		return OBJECTTYPE;
 	}
 

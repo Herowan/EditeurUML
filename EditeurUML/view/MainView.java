@@ -9,6 +9,7 @@ import java.util.Observer;
 
 
 
+
 import controller.AddObjectControler;
 import controller.DrawingTableController;
 import controller.NewProjectController;
@@ -16,6 +17,7 @@ import controller.OpenProjectController;
 import controller.SaveAsProjectController;
 import controller.SaveProjectController;
 import model.ProjectUML;
+import model.TypeObject;
 
 /**
  *
@@ -82,13 +84,13 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		buttonsMenu.setBackground(new java.awt.Color(224, 224, 224));
 
 		classButton.setText("Class");
-		classButton.addActionListener(new AddObjectControler(1, model));
+		classButton.addActionListener(new AddObjectControler(TypeObject.CLASS, model));
 
 		abstractClassButton.setText("Abstract Class");
-		abstractClassButton.addActionListener(new AddObjectControler(3, model));
+		abstractClassButton.addActionListener(new AddObjectControler(TypeObject.ABSTRACT_CLASS, model));
 
 		interfaceButton.setText("Interface");
-		interfaceButton.addActionListener(new AddObjectControler(2, model));
+		interfaceButton.addActionListener(new AddObjectControler(TypeObject.INTERFACE, model));
 
 		associationButton.setText("Association");
 		associationButton.addActionListener(new java.awt.event.ActionListener() {
