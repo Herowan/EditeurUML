@@ -73,8 +73,9 @@ public class JPanelDrawingTable extends JPanel{
 			//Write if the class if abstract or a interface
 			g.setColor(Color.BLACK);
 			if (obj.getObjectType()==2){
-				g.drawString("Interface", positionX+20, positionY -5);
+				g.drawString("<<Interface>>", positionX+20, positionY -5);
 			} else if(obj.getObjectType()==3){
+				
 				g.drawString("Abstract", positionX+20, positionY-5);
 			}
 			positionY=positionY+30;
@@ -102,9 +103,9 @@ public class JPanelDrawingTable extends JPanel{
 			positionY+=20;
 			
 			// +Button
-			g.setColor(color.RED);
+			g.setColor(Color.RED);
 			g.fillRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);
-			g.setColor(color.BLACK);
+			g.setColor(Color.BLACK);
 			g.drawRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);
 			g.drawString("+",positionX+maxLength(i, g)+31 ,positionY-1);
 			
@@ -125,9 +126,9 @@ public class JPanelDrawingTable extends JPanel{
 		positionY+=20;
 		
 		// +Button
-		g.setColor(color.RED);
+		g.setColor(Color.RED);
 		g.fillRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);
-		g.setColor(color.BLACK);
+		g.setColor(Color.BLACK);
 		g.drawRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);
 		g.drawString("+",positionX+maxLength(i, g)+31 ,positionY-1);
 		
