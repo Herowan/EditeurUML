@@ -18,7 +18,6 @@ import java.util.Observer;
 
 import controller.AddObjectControler;
 import controller.DrawingTableController;
-import controller.ExitProjectController;
 import controller.IOController;
 import controller.NewProjectController;
 import controller.OpenProjectController;

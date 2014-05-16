@@ -69,7 +69,7 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
             quit =crossQuitZone(e,i);
             quit =nameOfTheObject(e, i);
             if(nameOfTheObject(e, i)){
-            	new ModifyNameObjectView();
+            	new ModifyNameObjectView(model,i).setVisible(true);;
             }
             i++;
         }
