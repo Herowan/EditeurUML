@@ -3,8 +3,6 @@ package model;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Observable;
-
-import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 /**
  * 
  * @author Dashell
@@ -40,7 +38,7 @@ public class ProjectUML extends Observable implements Serializable{
 	// Method for Development
 	private void addProject() {
 		ObjectUML object = new ObjectUML(1, objectsList.size());
-		object.setName("Helo");
+		object.setName("Hello");
 		object.addAttribute(new Attribute("Blablabam", "int", Visibility.PRIVATE));
 		object.addAttribute(new Attribute("test", "void", Visibility.PROTECTED));
 		object.addAttribute(new Attribute("Blab", "String", Visibility.PROTECTED));
