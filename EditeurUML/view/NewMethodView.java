@@ -90,8 +90,12 @@ public class NewMethodView extends javax.swing.JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				model.addMethod(index, new Method("name", "void", Visibility.DEFAULT, new ArrayList<String>()));
-				dispose();
+				if (!nameTextField.getText().equals("")){
+					model.addMethod(index, new Method(nameTextField.getText(), "void", Visibility.DEFAULT, new ArrayList<String>()));
+					dispose();
+				} else {
+					//Message d'erreur
+				}
 			}
 		});
 

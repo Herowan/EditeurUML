@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import view.JPanelDrawingTable;
+import view.ModifyNameObjectView;
 import view.NewAttributeView;
 import view.NewMethodView;
 import model.ProjectUML;
@@ -67,6 +68,9 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
             quit =crossMethodZone(e, i, buttonPositionX, buttonPositionY);
             quit =crossQuitZone(e,i);
             quit =nameOfTheObject(e, i);
+            if(nameOfTheObject(e, i)){
+            	new ModifyNameObjectView();
+            }
             i++;
         }
     }

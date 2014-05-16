@@ -89,7 +89,7 @@ public class JPanelDrawingTable extends JPanel{
 	}
 	
 	private int drawAttribute(ObjectUML obj,int i, Graphics g, Color color, int positionX, int positionY){
-					//draw the attribute
+			//draw the attribute
 			g.setColor(color);
 			g.fillRect(positionX, positionY, maxLength(i, g)+40, obj.attributListSize()*20+20);
 			g.setColor(Color.BLACK);
