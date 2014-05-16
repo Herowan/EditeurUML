@@ -14,7 +14,6 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     
     private ProjectUML model;
     private JPanelDrawingTable jPanelDrawingtable;
-
     
     public DrawingTableController(ProjectUML model, JPanelDrawingTable jPanelDrawingtable){
         this.model=model;
@@ -23,6 +22,7 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
 
     @Override
     public void mouseDragged(MouseEvent e) {
+    	
         if (model.getSelectedObject()!=-1){
             model.setPositionObject(e.getX(), e.getY(), model.getSelectedObject());
         }
