@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import model.ObjectUML;
 import model.ProjectUML;
+import model.TypeObject;
 
 public class JPanelDrawingTable extends JPanel{
 
@@ -20,6 +21,7 @@ public class JPanelDrawingTable extends JPanel{
 	
 	private ProjectUML model;
 	private Graphics g;
+	
 	
 	public JPanelDrawingTable(ProjectUML model){
 		this.model=model;
@@ -37,21 +39,12 @@ public class JPanelDrawingTable extends JPanel{
 
 					
 			//Choose the color according to the type of the object
-			Color color;
-			switch (model.getObjectUmlAtIndex(i).getObjectType()) {
-			case 1:
-				color =new Color(228,228,228);
-				break;
-			case 2:
-				color = new Color(183,229,255);
-				break;
-			case 3:
-				color = new Color(255,183,183);
-				break;
-			default:
-				color = new Color(228,228,228);
-				break;
-			}
+			Color color=new Color(228,228,228);
+			TypeObject typeObj = model.getObjectUmlAtIndex(i).getObjectType();
+			
+			if (typeObj==TypeObject.CLASS) color =new Color(228,228,228);
+			else if (typeObj==TypeObject.INTERFACE)  color = new Color(183,229,255);
+			else if (typeObj==TypeObject.ABSTRACT_CLASS) color = new Color(255,183,183);
 
 			g.setColor(color);
 			
@@ -74,15 +67,15 @@ public class JPanelDrawingTable extends JPanel{
 			g.drawRect(positionX, positionY,maxLength(i, g)+40 , 30);
 
 			//Warning => The position in the method is the point in the left bottom of the text
-			g.setColor(Color.BLACK);
+			if (model.getNameSelected()==i) g.setColor(Color.RED);
+			else g.setColor(Color.BLACK);
 			g.drawString(obj.getName(), positionX+20, positionY+20);
 			
 			//Write if the class if abstract or a interface
 			g.setColor(Color.BLACK);
-			if (obj.getObjectType()==2){
-				g.drawString("<<Interface>>", positionX+20, positionY -5);
-			} else if(obj.getObjectType()==3){
-				
+			if (obj.getObjectType()==TypeObject.INTERFACE){
+				g.drawString("<<Interface>>", positionX+10, positionY -5);
+			} else if(obj.getObjectType()==TypeObject.ABSTRACT_CLASS){
 				g.drawString("Abstract", positionX+20, positionY-5);
 			}
 			positionY=positionY+30;
@@ -157,7 +150,7 @@ public class JPanelDrawingTable extends JPanel{
 		return max;
 	}
 	
-	private int lengthOf(String ms,Graphics g){
+	public int lengthOf(String ms,Graphics g){
 		Font font = g.getFont();
 		FontMetrics fm = g.getFontMetrics(font);
 		

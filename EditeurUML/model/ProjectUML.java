@@ -20,6 +20,9 @@ public class ProjectUML extends Observable implements Serializable{
 	private String savePath=null; // save du chemin ou est enregistr�� le projet pour le controller Save
 	private boolean isSave=false;
 	private Type types;
+	
+	// Attributes selected for the view
+	private int ObjectMoved=-1;
 
 	public ProjectUML(){
 		objectsList = new ArrayList<ObjectUML>();
@@ -40,7 +43,7 @@ public class ProjectUML extends Observable implements Serializable{
 
 	// Method for Development
 	private void addProject() {
-		ObjectUML object = new ObjectUML(1, objectsList.size());
+		ObjectUML object = new ObjectUML(TypeObject.CLASS,  objectsList.size(), objectWhoHaveType(TypeObject.CLASS));
 		object.setName("Hello");
 		object.addAttribute(new Attribute("Blablabam", "int", Visibility.PRIVATE));
 		object.addAttribute(new Attribute("test", "void", Visibility.PROTECTED));
@@ -55,7 +58,7 @@ public class ProjectUML extends Observable implements Serializable{
 		object.addMethod(new Method("Banana", "int", Visibility.PRIVATE, liste2));
 		objectsList.add(object);
 
-		ObjectUML object2 = new ObjectUML(1, objectsList.size());
+		ObjectUML object2 = new ObjectUML(TypeObject.CLASS, objectsList.size(), objectWhoHaveType(TypeObject.CLASS));
 		objectsList.add(object2);
 
 	}
@@ -67,9 +70,20 @@ public class ProjectUML extends Observable implements Serializable{
 	public int objectsListSize(){
 		return objectsList.size();
 	}
+	
+	private int objectWhoHaveType(TypeObject type){
+		int count=0;
+		for (int i=0; i<objectsListSize(); i++){
+			if (getObjectUmlAtIndex(i).getObjectType()==type){
+				count++;
+			}
+		}
+		return count;
+	}
 
-	public void addObjectUml(int type){
-		objectsList.add(new ObjectUML(type, objectsListSize()));
+	public void addObjectUml(TypeObject type){
+		objectsList.add(new ObjectUML(type,  objectsListSize(),objectWhoHaveType(type)));
+		
 		types.addType(objectsList.get(objectsListSize()-1).getName());
 		setChanged();
 		notifyObservers();
@@ -160,6 +174,17 @@ public class ProjectUML extends Observable implements Serializable{
 
 	public Type getTypes() {
 		return types;
+	}
+
+	public int getNameSelected() {
+		return ObjectMoved;
+	}
+
+	public void setNameSelected(int nameSelected) {
+		this.ObjectMoved = nameSelected;
+		
+		setChanged();
+		notifyObservers();
 	}
 	
 	
