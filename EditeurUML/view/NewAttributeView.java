@@ -84,7 +84,7 @@ public class NewAttributeView extends javax.swing.JFrame {
 				else if (visibility.equals("default")) visi = Visibility.DEFAULT;
 				else visi = Visibility.PUBLIC;
 				
-				model.addAttribute(index, new Attribute(nameTextField.getText(), (String) typeComboBox.getSelectedItem(),visi));
+				model.addAttribute(index, new Attribute(nameTextField.getText(),(String) typeComboBox.getSelectedItem(),visi));
 				dispose();
 			}
 		});

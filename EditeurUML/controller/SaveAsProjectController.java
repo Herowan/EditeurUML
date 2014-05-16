@@ -11,7 +11,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-public class SaveAsProjectController implements ActionListener{
+public class SaveAsProjectController extends IOController implements ActionListener{
 	ProjectUML model;
 	JFrame view;
 
@@ -20,35 +20,9 @@ public class SaveAsProjectController implements ActionListener{
 		this.view=view;
 	}
 
-
-	private void showSaveFileDialog() {
-
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Specify a file to save");
-		UIManager.put("FileChooser.openButtonText","Save");
-		int userSelection = fileChooser.showSaveDialog(view);
-		if (userSelection == JFileChooser.APPROVE_OPTION) {
-
-			String fileName=fileChooser.getSelectedFile().getAbsolutePath()+".uml";
-			model.setSavePath(fileName);
-			try {
-				FileOutputStream fichier = new FileOutputStream(fileName);
-				ObjectOutputStream out = new ObjectOutputStream(fichier);
-				out.writeObject(model.getObjectsList());
-				out.flush();
-				out.close();
-			}
-			catch (java.io.IOException e) {
-				System.out.println("FAIL out");
-				e.printStackTrace();
-			}
-		}
-	}
-
-
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		showSaveFileDialog();
+		showSaveFileDialog(model,view);
 		model.setIsSave(true);
 
 	}
