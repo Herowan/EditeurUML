@@ -5,6 +5,8 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -13,8 +15,16 @@ import java.util.Observer;
 
 
 
+
+
+
+
+
+
+import sun.awt.WindowClosingListener;
 import controller.AddObjectControler;
 import controller.DrawingTableController;
+import controller.ExitProjectController;
 import controller.NewProjectController;
 import controller.OpenProjectController;
 import controller.SaveAsProjectController;
@@ -81,7 +91,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		pasteItemMenu = new javax.swing.JMenuItem();
 		deleteItemMenu = new javax.swing.JMenuItem();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 		setTitle("SogniDoro");
 
 		buttonsMenu.setBackground(new java.awt.Color(224, 224, 224));
@@ -181,6 +191,25 @@ public class MainView extends javax.swing.JFrame implements Observer{
 
 		fileMenu.setText("File");
 
+		this.addWindowListener( new WindowListener() {
+			@Override
+			public void windowOpened(WindowEvent e) {}
+			@Override
+			public void windowIconified(WindowEvent e) {}
+			@Override
+			public void windowDeiconified(WindowEvent e) {}
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				new ExitProjectController(model, this)				
+			}
+			@Override
+			public void windowClosing(WindowEvent e) {}
+			@Override
+			public void windowClosed(WindowEvent e) {}
+			@Override
+			public void windowActivated(WindowEvent e) {}
+		});
+		
 		newProjectItemMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
 		newProjectItemMenu.setText("New Project");
 		newProjectItemMenu.addActionListener(new NewProjectController(model, this));
@@ -201,13 +230,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		saveAsItemMenu.addActionListener(new SaveAsProjectController(model, this));
 		exitItemMenu.setText("Exit");
 		fileMenu.add(exitItemMenu);
-		exitItemMenu.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}});
+		exitItemMenu.addActionListener(new ExitProjectController(model, this));
 		
 		menuBar.add(fileMenu);
 
