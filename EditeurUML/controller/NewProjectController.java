@@ -2,16 +2,11 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
 
 import model.ProjectUML;
 
-public class NewProjectController implements ActionListener {
+public class NewProjectController extends IOController implements ActionListener {
 	ProjectUML model;
 	JFrame view;
 	public NewProjectController(ProjectUML model,JFrame view){
@@ -23,11 +18,16 @@ public class NewProjectController implements ActionListener {
 		if(model.isSave()){
 			model.resetProject();
 		}else if(!(model.getSavePath()==null)){
-			save();
+			try {
+				save(model,view);
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			model.setIsSave(true);
 
 		}else{
-			showSaveFileDialog();
+			showSaveFileDialog(model,view);
 			model.setIsSave(true);
 
 		}
@@ -36,48 +36,7 @@ public class NewProjectController implements ActionListener {
 	
 	
 	
-	public void save(){
-		if(model.getSavePath()==null){
-			new SaveAsProjectController(model, this.view);
-		}else{
-			try {
-				FileOutputStream fichier = new FileOutputStream(model.getSavePath());
-				ObjectOutputStream out = new ObjectOutputStream(fichier);
-				out.writeObject(model.getObjectsList());
-				out.flush();
-				out.close();
-			}
-			catch (java.io.IOException e) {
-				System.out.println("FAIL out");
-				e.printStackTrace();
-			}
-		}
-	}
-	private void showSaveFileDialog() {
 
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Specify a file to save");
-		UIManager.put("FileChooser.openButtonText","Save");
-		int userSelection = fileChooser.showSaveDialog(view);
-		if (userSelection == JFileChooser.APPROVE_OPTION) {
 
-			String fileName=fileChooser.getSelectedFile().getAbsolutePath();
-			if(!fileName.substring(fileName.length()-4).equals(".uml")){
-				fileName+=".uml";
-			}
-			model.setSavePath(fileName);
-			try {
-				FileOutputStream fichier = new FileOutputStream(fileName);
-				ObjectOutputStream out = new ObjectOutputStream(fichier);
-				out.writeObject(model.getObjectsList());
-				out.flush();
-				out.close();
-			}
-			catch (java.io.IOException e) {
-				System.out.println("FAIL out");
-				e.printStackTrace();
-			}
-		}
-	}
 
 }
