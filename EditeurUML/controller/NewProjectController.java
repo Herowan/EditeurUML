@@ -24,11 +24,11 @@ public class NewProjectController extends IOController implements ActionListener
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			model.setIsSave(true);
+			model.resetProject();
 
 		}else{
 			showSaveFileDialog(model,view);
-			model.setIsSave(true);
+			model.resetProject();
 
 		}
 	}

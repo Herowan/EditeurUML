@@ -33,6 +33,9 @@ public class ProjectUML extends Observable implements Serializable{
 	public void resetProject(){
 		objectsList.clear();
 		associationList.clear();
+		savePath=null;
+		setChanged();
+		notifyObservers();
 	}
 
 	// Method for Development
