@@ -22,6 +22,7 @@ public class OpenProjectController extends IOController implements ActionListene
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		try {
 			showOpenFileDialog(model,view);
 		} catch (ClassNotFoundException e1) {

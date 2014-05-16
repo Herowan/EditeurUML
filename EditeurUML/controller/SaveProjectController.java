@@ -27,7 +27,12 @@ public class SaveProjectController extends IOController implements ActionListene
 			showSaveFileDialog(model,view);
 			model.setIsSave(true);
 		}else{
-			save(model,view);	
+			try {
+				save(model,view);
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}	
 			model.setIsSave(true);
 
 		}
