@@ -49,22 +49,45 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
         	buttonPositionX = model.getObjectUmlAtIndex(i).getX();
         	buttonPositionY-=10;
         	buttonPositionX+=jPanelDrawingtable.maxLength(i, jPanelDrawingtable.getG())+30;
-            if (e.getX()>=model.getObjectUmlAtIndex(i).getX() && e.getX()<=model.getObjectUmlAtIndex(i).getX()+10 && e.getY()>=model.getObjectUmlAtIndex(i).getY() && e.getY()<=model.getObjectUmlAtIndex(i).getY()+10){
-                model.setSelectedObject(i);
-                quit=true;
-            }
-            if (e.getX()>=buttonPositionX && e.getX()<=buttonPositionX+10 && e.getY()>=buttonPositionY && e.getY()<=buttonPositionY+10){
-                new NewAttributeView(model,i).setVisible(true);
-                quit=true;
-            }
+            quit =moveZone(e, i);
+            quit =crossAttributeZone(e, i, buttonPositionX, buttonPositionY);
             buttonPositionY+=20+model.getObjectUmlAtIndex(i).methodeListSize()*20;
-            if (e.getX()>=buttonPositionX && e.getX()<=buttonPositionX+10 && e.getY()>=buttonPositionY && e.getY()<=buttonPositionY+10){
-                new NewMethodView(model,i).setVisible(true);
-                quit=true;
-            }
+            quit =crossMethodZone(e, i, buttonPositionX, buttonPositionY);
+            quit =crossQuitZone(e,i);
             i++;
         }
     }
+    
+    private boolean crossQuitZone(MouseEvent e, int i) {
+    	if (e.getX()>=model.getObjectUmlAtIndex(i).getX()+jPanelDrawingtable.maxLength(i, jPanelDrawingtable.getGraphics())+30 && e.getX()<=model.getObjectUmlAtIndex(i).getX()+jPanelDrawingtable.maxLength(i, jPanelDrawingtable.getGraphics())+40 && e.getY()>=model.getObjectUmlAtIndex(i).getY() && e.getY()<=model.getObjectUmlAtIndex(i).getY()+10){
+            model.deleteObjectUml(i);
+            return true;
+        }
+		return false;
+	}
+
+	private boolean moveZone(MouseEvent e, int i){
+        if (e.getX()>=model.getObjectUmlAtIndex(i).getX() && e.getX()<=model.getObjectUmlAtIndex(i).getX()+10 && e.getY()>=model.getObjectUmlAtIndex(i).getY() && e.getY()<=model.getObjectUmlAtIndex(i).getY()+10){
+            model.setSelectedObject(i);
+            return true;
+        }
+        return false;
+    }
+    private boolean crossAttributeZone(MouseEvent e, int i, int buttonPositionX, int buttonPositionY){
+    	if (e.getX()>=buttonPositionX && e.getX()<=buttonPositionX+10 && e.getY()>=buttonPositionY && e.getY()<=buttonPositionY+10){
+            new NewAttributeView(model,i).setVisible(true);
+            return true;
+        }
+    	return false;
+    }
+    private boolean crossMethodZone(MouseEvent e, int i, int buttonPositionX, int buttonPositionY){
+    	if (e.getX()>=buttonPositionX && e.getX()<=buttonPositionX+10 && e.getY()>=buttonPositionY && e.getY()<=buttonPositionY+10){
+            new NewMethodView(model,i).setVisible(true);
+            return true;
+        }
+    	return false;
+    }
+
 
     @Override
     public void mouseReleased(MouseEvent e) {
