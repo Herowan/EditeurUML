@@ -112,6 +112,11 @@ public class ProjectUML extends Observable implements Serializable{
 
 	}
 
+	public void deleteObjectUml(int index){
+		objectsList.remove(index);
+		setChanged();
+		notifyObservers();
+	}
 	public void addAttribute(int index, Attribute attribute){
 		objectsList.get(index).addAttribute(attribute);
 		setChanged();

@@ -57,11 +57,18 @@ public class JPanelDrawingTable extends JPanel{
 			
 			g.fillRect(positionX, positionY, maxLength(i, g)+40, 30);
 
-			//Draw square red on the left top
+			//Draw square grey on the left top
 			g.setColor(Color.GRAY);
 			g.fillRect(positionX, positionY, 10, 10);
 			g.setColor(Color.BLACK);
 			g.drawRect(positionX, positionY, 10, 10);
+			
+			//Draw square grey on the right top (quit zone)
+			g.setColor(Color.RED);
+			g.fillRect(positionX+maxLength(i, g)+30, positionY, 10, 10);
+			g.setColor(Color.BLACK);
+			g.drawRect(positionX+maxLength(i, g)+30, positionY, 10, 10);
+			g.drawString("x", positionX+maxLength(i, g)+32, positionY+9);
 
 			g.setColor(Color.BLACK);
 			g.drawRect(positionX, positionY,maxLength(i, g)+40 , 30);
@@ -103,7 +110,7 @@ public class JPanelDrawingTable extends JPanel{
 			positionY+=20;
 			
 			// +Button
-			g.setColor(Color.RED);
+			g.setColor(new Color(51,200,51));
 			g.fillRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);
 			g.setColor(Color.BLACK);
 			g.drawRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);
@@ -126,7 +133,7 @@ public class JPanelDrawingTable extends JPanel{
 		positionY+=20;
 		
 		// +Button
-		g.setColor(Color.RED);
+		g.setColor(new Color(51,200,51));
 		g.fillRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);
 		g.setColor(Color.BLACK);
 		g.drawRect(positionX+maxLength(i, g)+30, positionY-10, 10, 10);

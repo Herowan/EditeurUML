@@ -70,6 +70,7 @@ public class NewMethodView extends javax.swing.JFrame {
         
         //typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         typeComboBox.setModel(new ComboBoxTypeModel(model));
+        typeComboBox.setSelectedIndex(0);
         
         visibilityLabel.setText("Visibility");
 
