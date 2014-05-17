@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import view.SaveMessageView;
 import model.ProjectUML;
 
 public class OpenProjectController extends IOController implements ActionListener{
@@ -19,19 +20,9 @@ public class OpenProjectController extends IOController implements ActionListene
 	public void actionPerformed(ActionEvent e) {
 		if(model.isSave()){
 			openFile();
-		}else if(!(model.getSavePath()==null)){
-			try {
-				save(model,view);
-			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			openFile();
-
 		}else{
-			showSaveFileDialog(model,view);
+			new SaveMessageView();
 			openFile();
-
 		}
 	}
 	
