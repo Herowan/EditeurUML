@@ -3,15 +3,16 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 
+import view.MainView;
 import view.SaveMessageView;
 import model.ProjectUML;
 
 public class OpenProjectController extends IOController implements ActionListener{
 	ProjectUML model;
-	JFrame view;
-	public OpenProjectController(ProjectUML model,JFrame view){
+	MainView view;
+	
+	public OpenProjectController(ProjectUML model,MainView view){
 		this.model=model;
 		this.view=view;
 	}
@@ -21,7 +22,7 @@ public class OpenProjectController extends IOController implements ActionListene
 		if(model.isSave()){
 			openFile();
 		}else{
-			new SaveMessageView();
+			new SaveMessageView(model,view).setVisible(true);;
 			openFile();
 		}
 	}
