@@ -93,6 +93,7 @@ public class ProjectUML extends Observable implements Serializable{
 		notifyObservers();
 	}
 	
+	
 	public ArrayList<ObjectUML> getObjectsList() {
 		return objectsList;
 	}

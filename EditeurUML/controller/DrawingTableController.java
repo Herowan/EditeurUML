@@ -5,6 +5,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import view.JPanelDrawingTable;
+import view.ModifyAttributeObjectView;
+import view.ModifyMethodObjectView;
 import view.ModifyNameObjectView;
 import view.NewAttributeView;
 import view.NewMethodView;
@@ -100,6 +102,16 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
             quit =nameOfTheObject(e, i);
             if(nameOfTheObject(e, i)){
             	new ModifyNameObjectView(model,i).setVisible(true);;
+            }
+            for (int j=0; j<model.getObjectUmlAtIndex(i).attributListSize(); j++){
+            	if(attributeOfTheObject(e, i, j)){
+            		new ModifyAttributeObjectView(model,i,j);
+            	}
+            }
+            for (int j=0; j<model.getObjectUmlAtIndex(i).methodeListSize();j++){
+            	if(methodOfTheObject(e, i, j)){
+            		new ModifyMethodObjectView(model,i,j);
+            	}
             }
             i++;
         }

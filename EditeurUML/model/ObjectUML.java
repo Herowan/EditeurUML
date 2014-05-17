@@ -67,6 +67,9 @@ public class ObjectUML implements Serializable{
 	public Attribute getAttributeAt(int index){
 		return attributList.get(index);
 	}
+	public void deleteAttribute(int index){
+		attributList.remove(index);
+	}
 	//Gestion des coordonn��es
 	public int getX(){
 		return position.getX();
