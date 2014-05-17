@@ -31,15 +31,45 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     @Override
     public void mouseMoved(MouseEvent e) {
     	int i=0;
-    	boolean quit=false;
-    	while(i<model.objectsListSize()){
+    	boolean quitName=false;
+    	boolean quitAttribute=false;
+    	boolean quitMethod=false;
+    	while(!quitName && !quitAttribute && i<model.objectsListSize()){
     		if (nameOfTheObject(e, i)){
     			model.setNameSelected(i);
-    			quit=true;
-    		} 
+    			quitName=true;
+    		}
+    		int j=0;
+    		while (!quitAttribute && j<model.getObjectUmlAtIndex(i).attributListSize()){
+    			if(attributeOfTheObject(e, i, j)){
+    				model.setAttributeSelected(j);
+    				model.setObjectOfAttributeSelected(i);
+    				quitAttribute=true;
+    			}
+    			j++;
+    		}
+    		int k=0;
+    		while(!quitMethod && k<model.getObjectUmlAtIndex(i).methodeListSize()){
+    			if(methodOfTheObject(e, i, k)){
+    				model.setMethodSelected(k);
+    				model.setObjectOfMethodSelected(i);
+    				quitMethod=true;
+    			}
+    			k++;
+    		}
     		i++;
     	}
-    	if (!quit) model.setNameSelected(-1);
+    	if (!quitName){
+    		model.setNameSelected(-1); 
+    	}
+    	if(!quitAttribute){
+    		model.setAttributeSelected(-1);
+    		model.setObjectOfAttributeSelected(-1);
+    	}
+    	if(!quitMethod){
+    		model.setMethodSelected(-1);
+    		model.setObjectOfMethodSelected(-1);
+    	}
     }
     
     @Override
@@ -107,6 +137,21 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     private boolean nameOfTheObject(MouseEvent e, int i){
     	if (e.getX()>=model.getObjectUmlAtIndex(i).getX()+20 && e.getX()<=model.getObjectUmlAtIndex(i).getX()+20+jPanelDrawingtable.lengthOf(model.getObjectUmlAtIndex(i).getName(), jPanelDrawingtable.getGraphics())
     		&& e.getY()>=model.getObjectUmlAtIndex(i).getY()+9 && e.getY()<=model.getObjectUmlAtIndex(i).getY()+21){
+    		return true;
+    	}
+    	return false;
+    
+    }
+    private boolean attributeOfTheObject(MouseEvent e, int i, int j){
+    	if(e.getX()>=model.getObjectUmlAtIndex(i).getX()+20 && e.getX()<=model.getObjectUmlAtIndex(i).getX()+20+jPanelDrawingtable.lengthOf(model.getObjectUmlAtIndex(i).getAttributeAt(j).toString(), jPanelDrawingtable.getGraphics())
+    			&& e.getY()>=model.getObjectUmlAtIndex(i).getY()+39+j*20 && e.getY()<=model.getObjectUmlAtIndex(i).getY()+51+j*20){
+    		return true;
+    	}
+    	return false;
+    }
+    private boolean methodOfTheObject(MouseEvent e, int i, int j){
+    	if(e.getX()>=model.getObjectUmlAtIndex(i).getX()+20 && e.getX()<=model.getObjectUmlAtIndex(i).getX()+20+jPanelDrawingtable.lengthOf(model.getObjectUmlAtIndex(i).getMehodAt(j).toString(), jPanelDrawingtable.getGraphics())
+    		&& e.getY()>=model.getObjectUmlAtIndex(i).getY()+59+20*model.getObjectUmlAtIndex(i).attributListSize()+20*j && e.getY()<=model.getObjectUmlAtIndex(i).getY()+71+20*model.getObjectUmlAtIndex(i).attributListSize()+20*j){
     		return true;
     	}
     	return false;

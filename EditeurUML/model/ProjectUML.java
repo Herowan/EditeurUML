@@ -22,7 +22,11 @@ public class ProjectUML extends Observable implements Serializable{
 	private Type types;
 	
 	// Attributes selected for the view
-	private int ObjectMoved=-1;
+	private int nameSelected=-1;
+	private int attributeSelected=-1;
+	private int objectOfAttributeSelected=-1;
+	private int methodSelected=-1;
+	private int objectOfMethodSelected =-1;
 
 	public ProjectUML(){
 		objectsList = new ArrayList<ObjectUML>();
@@ -177,14 +181,46 @@ public class ProjectUML extends Observable implements Serializable{
 	}
 
 	public int getNameSelected() {
-		return ObjectMoved;
+		return nameSelected;
 	}
 
 	public void setNameSelected(int nameSelected) {
-		this.ObjectMoved = nameSelected;
+		this.nameSelected = nameSelected;
 		
 		setChanged();
 		notifyObservers();
+	}
+
+	public int getAttributeSelected() {
+		return attributeSelected;
+	}
+
+	public void setAttributeSelected(int attributeSelected) {
+		this.attributeSelected = attributeSelected;
+	}
+
+	public int getObjectOfAttributeSelected() {
+		return objectOfAttributeSelected;
+	}
+
+	public void setObjectOfAttributeSelected(int objectOfAttributeSelected) {
+		this.objectOfAttributeSelected = objectOfAttributeSelected;
+	}
+
+	public int getMethodSelected() {
+		return methodSelected;
+	}
+
+	public void setMethodSelected(int methodSelected) {
+		this.methodSelected = methodSelected;
+	}
+
+	public int getObjectOfMethodSelected() {
+		return objectOfMethodSelected;
+	}
+
+	public void setObjectOfMethodSelected(int objectOfMethodSelected) {
+		this.objectOfMethodSelected = objectOfMethodSelected;
 	}
 	
 	

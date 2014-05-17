@@ -97,6 +97,11 @@ public class JPanelDrawingTable extends JPanel{
 			
 			g.setColor(Color.BLACK);
 			for (int j=0; j<obj.attributListSize(); j++){
+				if (model.getObjectOfAttributeSelected()==i && model.getAttributeSelected()==j){
+					g.setColor(Color.RED);
+				} else {
+					g.setColor(Color.BLACK);
+				}
 				g.drawString(obj.getAttributeAt(j).toString(), positionX+20, positionY+20);
 				positionY=positionY+20;
 			}
@@ -120,6 +125,11 @@ public class JPanelDrawingTable extends JPanel{
 		
 		g.setColor(Color.BLACK);
 		for (int j=0; j<obj.methodeListSize(); j++){
+			if (model.getObjectOfMethodSelected()==i && model.getMethodSelected()==j){
+				g.setColor(Color.RED);
+			} else {
+				g.setColor(Color.BLACK);
+			}
 			g.drawString(obj.getMehodAt(j).toString(), positionX+20, positionY+20);
 			positionY=positionY+20;
 		}
