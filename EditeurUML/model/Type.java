@@ -28,4 +28,7 @@ public class Type {
 	public int typesListSize(){
 		return typeList.size();
 	}
+	public void remove(String type){
+		typeList.remove(type);
+	}
 }

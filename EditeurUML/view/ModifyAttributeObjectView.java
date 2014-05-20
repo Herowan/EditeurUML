@@ -70,7 +70,7 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
         typeLabel.setText("Type");
 
         //typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        typeComboBox.setModel(new ComboBoxTypeModel(model));
+        typeComboBox.setModel(new ComboBoxTypeModel(model,0));
         typeComboBox.setSelectedIndex(0);
         nameLabel.setText("Name");
 
