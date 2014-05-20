@@ -113,7 +113,8 @@ public class NewMethodView extends javax.swing.JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!nameTextField.getText().equals("")){
-					model.addMethod(index, new Method(nameTextField.getText(), model.getTypes().getTypeAt(0), Visibility.DEFAULT, new ArrayList<String>()));
+					
+					model.addMethod(index, new Method(nameTextField.getText(), (String) returnTypeComboBox.getSelectedItem(), Visibility.DEFAULT, parameterValid()));
 					dispose();
 				} else {
 					//Message d'erreur
@@ -243,6 +244,29 @@ public class NewMethodView extends javax.swing.JFrame {
                 new NewMethodView(new ProjectUML(),0).setVisible(true);
             }
         });
+    }
+    
+    private ArrayList<String> parameterValid(){
+    	ArrayList<String> parameters = new ArrayList<String>();
+    	if (!paramterComboBox1.getSelectedItem().equals("---")){
+    		parameters.add((String) paramterComboBox1.getSelectedItem());
+    	}
+    	if (!parameterComboBox2.getSelectedItem().equals("---")){
+    		parameters.add((String) parameterComboBox2.getSelectedItem());
+    	}
+    	if (!parameterComboBox3.getSelectedItem().equals("---")){
+    		parameters.add((String) parameterComboBox3.getSelectedItem());
+    	}
+    	if (!parameterComboBox4.getSelectedItem().equals("---")){
+    		parameters.add((String) parameterComboBox4.getSelectedItem());
+    	}
+    	if (!parameterComboBox5.getSelectedItem().equals("---")){
+    		parameters.add((String) parameterComboBox5.getSelectedItem());
+    	}
+    	if (!parameterComboBox6.getSelectedItem().equals("---")){
+    		parameters.add((String) parameterComboBox6.getSelectedItem());
+    	}
+    	return parameters;
     }
 
     // Variables declaration - do not modify                     

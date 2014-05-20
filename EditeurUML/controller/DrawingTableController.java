@@ -9,7 +9,7 @@ import view.ModifyAttributeObjectView;
 import view.ModifyMethodObjectView;
 import view.ModifyNameObjectView;
 import view.NewAttributeView;
-import view.NewMethodViewold;
+import view.NewMethodView;
 import model.ProjectUML;
 
 public class DrawingTableController implements MouseMotionListener, MouseListener{
@@ -110,7 +110,7 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
             }
             for (int j=0; j<model.getObjectUmlAtIndex(i).methodeListSize();j++){
             	if(methodOfTheObject(e, i, j)){
-            		new ModifyMethodObjectView(model,i,j);
+            		new ModifyMethodObjectView(model,i,j).setVisible(true);;
             	}
             }
             i++;
@@ -141,7 +141,7 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     }
     private boolean crossMethodZone(MouseEvent e, int i, int buttonPositionX, int buttonPositionY){
     	if (e.getX()>=buttonPositionX && e.getX()<=buttonPositionX+10 && e.getY()>=buttonPositionY && e.getY()<=buttonPositionY+10){
-            new NewMethodViewold(model,i).setVisible(true);
+            new NewMethodView(model,i).setVisible(true);
             return true;
         }
     	return false;
