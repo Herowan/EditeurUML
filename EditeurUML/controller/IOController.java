@@ -22,7 +22,7 @@ public class IOController {
 		fileChooser.setDialogTitle("Specify a file to save");
 		UIManager.put("FileChooser.openButtonText","Save");
 		int userSelection = fileChooser.showSaveDialog(view);
-		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		if (userSelection == JFileChooser.SAVE_DIALOG) {
 
 			String fileName=fileChooser.getSelectedFile().getAbsolutePath()+".uml";
 			model.setSavePath(fileName);
@@ -42,16 +42,16 @@ public class IOController {
 	}
 	
 	public void save(ProjectUML model,JFrame view) throws ClassNotFoundException{
-		if(model.getSavePath()==null){
-			showOpenFileDialog(model, view);
+		if(model.getSavePath().equals(null)){
+			showSaveFileDialog(model, view);
 		}else{
 			try {
+				model.setIsSave(true);
 				FileOutputStream fichier = new FileOutputStream(model.getSavePath());
 				ObjectOutputStream out = new ObjectOutputStream(fichier);
 				out.writeObject(model.getObjectsList());
 				out.flush();
 				out.close();
-				model.setIsSave(true);
 			}
 			catch (java.io.IOException e) {
 				System.out.println("FAIL out");
@@ -65,8 +65,8 @@ public class IOController {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Specify a file to open");
 
-		int userSelection = fileChooser.showSaveDialog(view);
-		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		int userSelection = fileChooser.showOpenDialog(view);
+		if (userSelection == JFileChooser.OPEN_DIALOG) {
 
 			String fileName=fileChooser.getSelectedFile().getAbsolutePath();
 			try {
