@@ -2,14 +2,17 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
+
+import model.EditeurUML;
 import model.ProjectUML;
 
 public class SaveProjectController extends IOController implements ActionListener{
 
-	ProjectUML model;
+	EditeurUML model;
 	JFrame view;
-	public SaveProjectController(ProjectUML model,JFrame view){
+	public SaveProjectController(EditeurUML model,JFrame view){
 		this.model=model;
 		this.view=view;
 	}
@@ -17,18 +20,10 @@ public class SaveProjectController extends IOController implements ActionListene
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(model.getSavePath()==null){
-			showSaveFileDialog(model,view);
-			model.setIsSave(true);
-		}else{
-			try {
-				save(model,view);
-			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}	
-			model.setIsSave(true);
-
+		try {
+			save(model,view);
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
 		}
 	}
 }

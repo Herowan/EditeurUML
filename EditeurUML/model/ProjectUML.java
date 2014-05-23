@@ -116,21 +116,6 @@ public class ProjectUML extends Observable implements Serializable{
 	}
 	
 
-	//Method about Serialization , let's go !!
-
-	public void saveProject(String projectName){
-		try {
-			FileOutputStream fichier = new FileOutputStream(projectName);
-			ObjectOutputStream out = new ObjectOutputStream(fichier);
-			out.writeObject(objectsList);
-			out.flush();
-			out.close();
-		}
-		catch (java.io.IOException e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	public void deleteObjectUml(int index){
 		objectsList.remove(index);
@@ -225,5 +210,88 @@ public class ProjectUML extends Observable implements Serializable{
 		this.objectOfMethodSelected = objectOfMethodSelected;
 	}
 	
+	public void saveProject(){
+		System.out.println("2");
+		try {
+			this.setIsSave(true);
+			System.out.println("2");
+			FileOutputStream fichier = new FileOutputStream(this.getSavePath());
+			System.out.println("2");
+			ObjectOutputStream out = new ObjectOutputStream(fichier);
+			System.out.println("2");
+			out.writeObject(this);
+			System.out.println("2");
+			out.flush();
+			System.out.println("2");
+			out.close();
+		}
+		catch (java.io.IOException e) {
+			System.out.println("FAIL out");
+			e.printStackTrace();
+		}
+	}
+	
+	public void saveProjectAs(String path){
+		try {
+			System.out.println("3");
+			this.setIsSave(true);
+			System.out.println("3");
+			FileOutputStream fichier = new FileOutputStream(path);
+			System.out.println("3");
+			ObjectOutputStream out = new ObjectOutputStream(fichier);
+			System.out.println("3");
+			ProjectUML tmp=new ProjectUML();
+			tmp.copyProject(this);
+			out.writeObject(tmp);
+			System.out.println("3");
+			out.flush();
+			System.out.println("3");
+			out.close();
+		}
+		catch (java.io.IOException e) {
+			System.out.println("FAIL out");
+			e.printStackTrace();
+		}
+	}
+	
+	public void openProject(String path) throws ClassNotFoundException{
+		System.out.println(path);
+		try {
+			System.out.println("1");
+			FileInputStream fichier = new FileInputStream(path);
+			System.out.println("1");
+
+			ObjectInputStream in = new ObjectInputStream(fichier);
+			System.out.println("1");
+
+			ProjectUML tmp=(ProjectUML)in.readObject();
+			System.out.println("1");
+
+			copyProject(tmp);
+			System.out.println("1");
+
+			in.close();
+		}
+		catch (java.io.IOException e) {
+			System.out.println("FAIL in");
+			e.printStackTrace();
+		}
+		setChanged();
+		notifyObservers();
+	}
+
+	public void copyProject(ProjectUML tmp) {
+		this.associationList=tmp.getAssociationList();
+		this.attributeSelected=tmp.getAttributeSelected();
+		this.isSave=tmp.isSave;
+		this.methodSelected=tmp.methodSelected;
+		this.nameSelected=tmp.nameSelected;
+		this.objectOfAttributeSelected=tmp.objectOfAttributeSelected;
+		this.objectOfMethodSelected=tmp.objectOfMethodSelected;
+		this.objectsList=tmp.objectsList;
+		this.savePath=tmp.savePath;
+		this.selectedObject=tmp.selectedObject;
+		this.types=tmp.types;
+	}
 	
 }
