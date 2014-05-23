@@ -100,20 +100,24 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
             buttonPositionY+=20+model.getObjectUmlAtIndex(i).methodeListSize()*20;
             if(!quit) quit =crossMethodZone(e, i, buttonPositionX, buttonPositionY);
             if(!quit) quit =crossQuitZone(e,i);
-            if(nameOfTheObject(e, i)){
+            if(!quit && nameOfTheObject(e, i)){
             	new ModifyNameObjectView(model,i).setVisible(true);
             	quit=true;
             }
-            for (int j=0; j<model.getObjectUmlAtIndex(i).attributListSize(); j++){
-            	if(attributeOfTheObject(e, i, j) && !quit){
-            		quit=true;
-            		new ModifyAttributeObjectView(model,i,j).setVisible(true);;
+            if (!quit){
+            	for (int j=0; j<model.getObjectUmlAtIndex(i).attributListSize(); j++){
+            		if(attributeOfTheObject(e, i, j) && !quit){
+            			quit=true;
+            			new ModifyAttributeObjectView(model,i,j).setVisible(true);;
+            		}
             	}
             }
-            for (int j=0; j<model.getObjectUmlAtIndex(i).methodeListSize();j++){
-            	if(methodOfTheObject(e, i, j) && !quit){
-            		quit = true;
-            		new ModifyMethodObjectView(model,i,j).setVisible(true);;
+            if (!quit){
+            	for (int j=0; j<model.getObjectUmlAtIndex(i).methodeListSize();j++){
+            		if(methodOfTheObject(e, i, j) && !quit){
+            			quit = true;
+            			new ModifyMethodObjectView(model,i,j).setVisible(true);;
+            		}
             	}
             }
             i--;
