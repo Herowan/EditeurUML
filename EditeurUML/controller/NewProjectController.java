@@ -2,11 +2,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
-
 import model.EditeurUML;
-import model.ProjectUML;
 
 public class NewProjectController extends IOController implements ActionListener {
 	EditeurUML model;
