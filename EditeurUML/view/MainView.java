@@ -3,18 +3,17 @@ package view;
 
 
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 import java.util.Observable;
 import java.util.Observer;
-
-
-
-
-
-
 
 
 import controller.AddObjectControler;
@@ -53,6 +52,8 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		this.model=model;
 		model.addObserver(this);
 		initComponents();
+		//Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("logo.jpg"));
+		//setIconImage(icon);
 	}
 
 	/**

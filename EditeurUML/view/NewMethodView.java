@@ -36,6 +36,8 @@ public class NewMethodView extends javax.swing.JFrame {
     	this.model=model;
     	this.index=i;
         initComponents();
+    	this.setLocation(100, 100);
+
     }
 
     /**
@@ -68,7 +70,6 @@ public class NewMethodView extends javax.swing.JFrame {
 
         visibilityLabel.setText("Visibility");
 
-        //visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "private", "protected", "default", "public" }));
 
         
@@ -113,8 +114,13 @@ public class NewMethodView extends javax.swing.JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!nameTextField.getText().equals("")){
-					
-					model.addMethod(index, new Method(nameTextField.getText(), (String) returnTypeComboBox.getSelectedItem(), Visibility.DEFAULT, parameterValid()));
+					String visibility = (String) visibilityComboBox.getSelectedItem();
+					Visibility visi;
+					if (visibility.equals("private")) visi= Visibility.PRIVATE;
+					else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
+					else if (visibility.equals("default")) visi = Visibility.DEFAULT;
+					else visi = Visibility.PUBLIC;
+					model.addMethod(index, new Method(nameTextField.getText(), (String) returnTypeComboBox.getSelectedItem(), visi, parameterValid()));
 					dispose();
 				} else {
 					//Message d'erreur

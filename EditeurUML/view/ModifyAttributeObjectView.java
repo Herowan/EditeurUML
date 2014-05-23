@@ -8,9 +8,8 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import controller.okButtonModifyAttributeController;
 import model.ProjectUML;
-import model.Visibility;
 
 /**
  *
@@ -38,6 +37,7 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
         this.index=i;
         this.attribute=j;
     	initComponents();
+    	this.setLocation(100, 100);
     }
 
     /**
@@ -66,32 +66,19 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
         visibilityLabel.setText("Visibility");
 
         visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "private", "protected", "default", "public" }));
+        visibilityComboBox.setSelectedItem(model.getObjectUmlAtIndex(index).getAttributeAt(attribute).getVisibilityA().getName());
+
         
         typeLabel.setText("Type");
 
-        //typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         typeComboBox.setModel(new ComboBoxTypeModel(model,0));
-        typeComboBox.setSelectedIndex(0);
+        typeComboBox.setSelectedItem(model.getObjectUmlAtIndex(index).getAttributeAt(attribute).getType());
         nameLabel.setText("Name");
 
         nameTextField.setText(model.getObjectUmlAtIndex(index).getAttributeAt(attribute).getName());
 
         okButton.setText("OK");
-        okButton.addActionListener(new ActionListener() {		
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				model.getObjectUmlAtIndex(index).getAttributeAt(attribute).setName(nameTextField.getText());
-				String visibility = (String) visibilityComboBox.getSelectedItem();
-				Visibility visi;
-				if (visibility.equals("private")) visi= Visibility.PRIVATE;
-				else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
-				else if (visibility.equals("default")) visi = Visibility.DEFAULT;
-				else visi = Visibility.PUBLIC;
-				model.getObjectUmlAtIndex(index).getAttributeAt(attribute).setVisibilityA(visi);
-				model.getObjectUmlAtIndex(index).getAttributeAt(attribute).setType(model.getTypes().getTypeAt(typeComboBox.getSelectedIndex()));
-				dispose();
-			}
-		});
+        okButton.addActionListener(new okButtonModifyAttributeController(this));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -206,6 +193,30 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
     private javax.swing.JLabel typeLabel;
     private javax.swing.JComboBox<String> visibilityComboBox;
     private javax.swing.JLabel visibilityLabel;
-    // End of variables declaration                   
+    // End of variables declaration          
+	public ProjectUML getModel() {
+		return model;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public int getAttribute() {
+		return attribute;
+	}
+
+	public javax.swing.JTextField getNameTextField() {
+		return nameTextField;
+	}
+
+	public javax.swing.JComboBox<String> getTypeComboBox() {
+		return typeComboBox;
+	}
+
+	public javax.swing.JComboBox<String> getVisibilityComboBox() {
+		return visibilityComboBox;
+	}
+    
 }
 

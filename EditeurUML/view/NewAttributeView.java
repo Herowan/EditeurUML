@@ -6,11 +6,8 @@
 
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import model.Attribute;
+import controller.okButtonNewAttributeController;
 import model.ProjectUML;
-import model.Visibility;
 
 /**
  *
@@ -32,6 +29,8 @@ public class NewAttributeView extends javax.swing.JFrame {
     	this.model=model;
     	this.index=i;
         initComponents();
+    	this.setLocation(100, 100);
+
     }
 
     /**
@@ -77,21 +76,7 @@ public class NewAttributeView extends javax.swing.JFrame {
         });
 
         okButton.setText("OK");
-        okButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String visibility = (String) visibilityComboBox.getSelectedItem();
-				Visibility visi;
-				if (visibility.equals("private")) visi= Visibility.PRIVATE;
-				else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
-				else if (visibility.equals("default")) visi = Visibility.DEFAULT;
-				else visi = Visibility.PUBLIC;
-				
-				model.addAttribute(index, new Attribute(nameTextField.getText(),(String) typeComboBox.getSelectedItem(),visi));
-				dispose();
-			}
-		});
+        okButton.addActionListener(new okButtonNewAttributeController(this));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,6 +174,26 @@ public class NewAttributeView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> visibilityComboBox;
     private javax.swing.JLabel visibilityLabel;
     // End of variables declaration//GEN-END:variables
+
+	public javax.swing.JTextField getNameTextField() {
+		return nameTextField;
+	}
+
+	public javax.swing.JComboBox<String> getTypeComboBox() {
+		return typeComboBox;
+	}
+
+	public javax.swing.JComboBox<String> getVisibilityComboBox() {
+		return visibilityComboBox;
+	}
+
+	public ProjectUML getModel() {
+		return model;
+	}
+
+	public int getIndex() {
+		return index;
+	}
     
     
 
