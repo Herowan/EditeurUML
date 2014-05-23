@@ -116,21 +116,6 @@ public class ProjectUML extends Observable implements Serializable{
 	}
 	
 
-	//Method about Serialization , let's go !!
-
-	public void saveProject(String projectName){
-		try {
-			FileOutputStream fichier = new FileOutputStream(projectName);
-			ObjectOutputStream out = new ObjectOutputStream(fichier);
-			out.writeObject(objectsList);
-			out.flush();
-			out.close();
-		}
-		catch (java.io.IOException e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	public void deleteObjectUml(int index){
 		objectsList.remove(index);
@@ -225,5 +210,63 @@ public class ProjectUML extends Observable implements Serializable{
 		this.objectOfMethodSelected = objectOfMethodSelected;
 	}
 	
+	public void saveProject(){
+		try {
+			this.setIsSave(true);
+			FileOutputStream fichier = new FileOutputStream(this.getSavePath());
+			ObjectOutputStream out = new ObjectOutputStream(fichier);
+			out.writeObject(this);
+			out.flush();
+			out.close();
+		}
+		catch (java.io.IOException e) {
+			System.out.println("FAIL out");
+			e.printStackTrace();
+		}
+	}
+	
+	public void saveProjectAs(String path){
+		try {
+			this.setIsSave(true);
+			FileOutputStream fichier = new FileOutputStream(path);
+			ObjectOutputStream out = new ObjectOutputStream(fichier);
+			out.writeObject(this);
+			out.flush();
+			out.close();
+		}
+		catch (java.io.IOException e) {
+			System.out.println("FAIL out");
+			e.printStackTrace();
+		}
+	}
+	
+	public void openProject(String path) throws ClassNotFoundException{
+		try {
+			FileInputStream fichier = new FileInputStream(path);
+			ObjectInputStream in = new ObjectInputStream(fichier);
+			ProjectUML tmp=(ProjectUML)in.readObject();
+			copyProject(tmp);
+			in.close();
+		}
+		catch (java.io.IOException e) {
+			System.out.println("FAIL in");
+			e.printStackTrace();
+		}
+		
+	}
+
+	public void copyProject(ProjectUML tmp) {
+		this.associationList=tmp.getAssociationList();
+		this.attributeSelected=tmp.getAttributeSelected();
+		this.isSave=tmp.isSave;
+		this.methodSelected=tmp.methodSelected;
+		this.nameSelected=tmp.nameSelected;
+		this.objectOfAttributeSelected=tmp.objectOfAttributeSelected;
+		this.objectOfMethodSelected=tmp.objectOfMethodSelected;
+		this.objectsList=tmp.objectsList;
+		this.savePath=tmp.savePath;
+		this.selectedObject=tmp.selectedObject;
+		this.types=tmp.types;
+	}
 	
 }
