@@ -6,12 +6,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import model.ProjectUML;
+import model.EditeurUML;
 
 public class IOController {
 
 	
-	public void showSaveFileDialog(ProjectUML model,JFrame view) {
+	public void showSaveFileDialog(EditeurUML model,JFrame view) {
 
 		JFileChooser fileChooserSave = new JFileChooser();
 		fileChooserSave.setDialogTitle("Specify a file to save");
@@ -25,23 +25,23 @@ public class IOController {
 				fileName+=".uml";
 			}
 			System.out.println(fileName);
-			model.setSavePath(fileName);
-			model.setIsSave(true);
+			model.getProject().setSavePath(fileName);
+			model.getProject().setIsSave(true);
 			model.saveProjectAs(fileName);
 			
 		}
 	}
 	
-	public void save(ProjectUML model,JFrame view) throws ClassNotFoundException{
-		System.out.println(model.getSavePath());
-		if(model.getSavePath()==null){
+	public void save(EditeurUML model,JFrame view) throws ClassNotFoundException{
+		System.out.println(model.getProject().getSavePath());
+		if(model.getProject().getSavePath()==null){
 			showSaveFileDialog(model, view);
 		}else{
 			model.saveProject();
 		}
 	}
 	
-	public void showOpenFileDialog(ProjectUML model,JFrame view) throws ClassNotFoundException{
+	public void showOpenFileDialog(EditeurUML model,JFrame view) throws ClassNotFoundException{
 		JFileChooser fileChooserOpen = new JFileChooser();
 		fileChooserOpen.setDialogTitle("Specify a file to open");
 		UIManager.put("FileChooserOpen.openButtonText","Save");

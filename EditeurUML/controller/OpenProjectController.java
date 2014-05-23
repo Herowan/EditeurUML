@@ -6,20 +6,20 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import view.MainView;
-import model.ProjectUML;
+import model.EditeurUML;
 
 public class OpenProjectController extends IOController implements ActionListener{
-	ProjectUML model;
+	EditeurUML model;
 	MainView view;
 	
-	public OpenProjectController(ProjectUML model,MainView view){
+	public OpenProjectController(EditeurUML model,MainView view){
 		this.model=model;
 		this.view=view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(model.isSave()){
+		if(model.getProject().isSave()){
 			openFile();
 		}else{
 			if(JOptionPane.showConfirmDialog(view, "This Project is not save, Want you save it ?", "Etiquettes Java", JOptionPane.YES_NO_OPTION)==0){

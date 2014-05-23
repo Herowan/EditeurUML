@@ -7,10 +7,10 @@ import model.*;
 import javax.swing.JFrame;
 
 public class SaveAsProjectController extends IOController implements ActionListener{
-	ProjectUML model;
+	EditeurUML model;
 	JFrame view;
 
-	public SaveAsProjectController(ProjectUML model,JFrame view){
+	public SaveAsProjectController(EditeurUML model,JFrame view){
 		this.model=model;
 		this.view=view;
 	}
@@ -18,7 +18,7 @@ public class SaveAsProjectController extends IOController implements ActionListe
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		showSaveFileDialog(model,view);
-		model.setIsSave(true);
+		model.getProject().setIsSave(true);
 
 	}
 

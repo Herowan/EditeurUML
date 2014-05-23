@@ -5,13 +5,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import model.EditeurUML;
 import model.ProjectUML;
 
 public class SaveProjectController extends IOController implements ActionListener{
 
-	ProjectUML model;
+	EditeurUML model;
 	JFrame view;
-	public SaveProjectController(ProjectUML model,JFrame view){
+	public SaveProjectController(EditeurUML model,JFrame view){
 		this.model=model;
 		this.view=view;
 	}
