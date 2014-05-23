@@ -32,7 +32,11 @@ public class ObjectUML implements Serializable{
 		this.OBJECTTYPE=objectType;
 		name=objectType.getName()+(count+1);
 	}
-
+	
+	boolean equals(ObjectUML o){
+		return this.getName().equals(o.getName());
+	}
+	
 	public void setName(String name){
 		this.name=name;
 	}

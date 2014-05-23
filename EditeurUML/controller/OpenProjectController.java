@@ -19,6 +19,7 @@ public class OpenProjectController extends IOController implements ActionListene
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(model.isSave()){
+			
 			openFile();
 		}else{
 			openFile();
