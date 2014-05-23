@@ -8,9 +8,8 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import controller.okButtonModifyAttributeController;
 import model.ProjectUML;
-import model.Visibility;
 
 /**
  *
@@ -79,21 +78,7 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
         nameTextField.setText(model.getObjectUmlAtIndex(index).getAttributeAt(attribute).getName());
 
         okButton.setText("OK");
-        okButton.addActionListener(new ActionListener() {		
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				model.getObjectUmlAtIndex(index).getAttributeAt(attribute).setName(nameTextField.getText());
-				String visibility = (String) visibilityComboBox.getSelectedItem();
-				Visibility visi;
-				if (visibility.equals("private")) visi= Visibility.PRIVATE;
-				else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
-				else if (visibility.equals("default")) visi = Visibility.DEFAULT;
-				else visi = Visibility.PUBLIC;
-				model.getObjectUmlAtIndex(index).getAttributeAt(attribute).setVisibilityA(visi);
-				model.getObjectUmlAtIndex(index).getAttributeAt(attribute).setType(model.getTypes().getTypeAt(typeComboBox.getSelectedIndex()));
-				dispose();
-			}
-		});
+        okButton.addActionListener(new okButtonModifyAttributeController(this));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +193,30 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
     private javax.swing.JLabel typeLabel;
     private javax.swing.JComboBox<String> visibilityComboBox;
     private javax.swing.JLabel visibilityLabel;
-    // End of variables declaration                   
+    // End of variables declaration          
+	public ProjectUML getModel() {
+		return model;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public int getAttribute() {
+		return attribute;
+	}
+
+	public javax.swing.JTextField getNameTextField() {
+		return nameTextField;
+	}
+
+	public javax.swing.JComboBox<String> getTypeComboBox() {
+		return typeComboBox;
+	}
+
+	public javax.swing.JComboBox<String> getVisibilityComboBox() {
+		return visibilityComboBox;
+	}
+    
 }
 
