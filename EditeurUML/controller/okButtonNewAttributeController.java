@@ -19,26 +19,30 @@ public class okButtonNewAttributeController implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		boolean unique=true;
-		String visibility = (String) newAttributeView.getVisibilityComboBox().getSelectedItem();
-		Visibility visi;
-		if (visibility.equals("private")) visi= Visibility.PRIVATE;
-		else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
-		else if (visibility.equals("default")) visi = Visibility.DEFAULT;
-		else visi = Visibility.PUBLIC;
-		Attribute newAttribute = new Attribute(newAttributeView.getNameTextField().getText(),(String) newAttributeView.getTypeComboBox().getSelectedItem(),visi);
-		
-		for (int i=0; i<newAttributeView.getModel().getObjectUmlAtIndex(newAttributeView.getIndex()).attributListSize(); i++){
-			if (newAttributeView.getModel().getObjectUmlAtIndex(newAttributeView.getIndex()).getAttributeAt(i).getName().equals(newAttribute.getName())){
-				unique=false;
+		if (newAttributeView.getNameTextField().getText().equals("")){
+			JOptionPane.showMessageDialog(newAttributeView, "Take a name for your attribute please.");
+		} else {
+			boolean unique=true;
+			String visibility = (String) newAttributeView.getVisibilityComboBox().getSelectedItem();
+			Visibility visi;
+			if (visibility.equals("private")) visi= Visibility.PRIVATE;
+			else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
+			else if (visibility.equals("default")) visi = Visibility.DEFAULT;
+			else visi = Visibility.PUBLIC;
+			Attribute newAttribute = new Attribute(newAttributeView.getNameTextField().getText(),(String) newAttributeView.getTypeComboBox().getSelectedItem(),visi);
+
+			for (int i=0; i<newAttributeView.getModel().getObjectUmlAtIndex(newAttributeView.getIndex()).attributListSize(); i++){
+				if (newAttributeView.getModel().getObjectUmlAtIndex(newAttributeView.getIndex()).getAttributeAt(i).equals(newAttribute)){
+					unique=false;
+				}
 			}
-		}
-		
-		if (unique){
-			newAttributeView.getModel().addAttribute(newAttributeView.getIndex(),newAttribute);
-			newAttributeView.dispose();
-		} else{
-			JOptionPane.showMessageDialog(newAttributeView, "This attribute already exist.");
+
+			if (unique){
+				newAttributeView.getModel().addAttribute(newAttributeView.getIndex(),newAttribute);
+				newAttributeView.dispose();
+			} else{
+				JOptionPane.showMessageDialog(newAttributeView, "This attribute already exist.");
+			}
 		}
 	}
 
