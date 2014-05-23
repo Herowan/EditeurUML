@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 
 import view.MainView;
-import view.SaveMessageView;
 import model.ProjectUML;
 
 public class OpenProjectController extends IOController implements ActionListener{
@@ -22,7 +21,6 @@ public class OpenProjectController extends IOController implements ActionListene
 		if(model.isSave()){
 			openFile();
 		}else{
-			new SaveMessageView(model,view).setVisible(true);;
 			openFile();
 		}
 	}
