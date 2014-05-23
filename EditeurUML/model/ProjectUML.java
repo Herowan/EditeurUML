@@ -16,6 +16,7 @@ public class ProjectUML extends Observable implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ObjectUML> objectsList;
 	private ArrayList<Association> associationList;
+	// For the JpanelDrawingTable view
 	private int selectedObject;
 	private String savePath=null; // save du chemin ou est enregistr�� le projet pour le controller Save
 	private boolean isSave=false;

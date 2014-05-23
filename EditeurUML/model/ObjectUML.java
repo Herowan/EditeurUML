@@ -54,6 +54,9 @@ public class ObjectUML implements Serializable{
 	public Method getMehodAt(int index){
 		return methodeList.get(index);
 	}
+	public void deleteMethod(int index){
+		methodeList.remove(index);
+	}
 	
 	
 	

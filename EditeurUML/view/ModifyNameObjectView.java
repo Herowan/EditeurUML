@@ -52,6 +52,8 @@ public class ModifyNameObjectView extends javax.swing.JFrame {
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	model.getTypes().remove(model.getObjectUmlAtIndex(index).getName());
+            	model.getTypes().addType(nameJTextField.getText());
                 model.getObjectUmlAtIndex(index).setName(nameJTextField.getText());
                 dispose();
             }

@@ -8,7 +8,9 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import model.Attribute;
+import java.util.ArrayList;
+
+import model.Method;
 import model.ProjectUML;
 import model.Visibility;
 
@@ -16,7 +18,7 @@ import model.Visibility;
  *
  * @author digeona
  */
-public class NewAttributeView extends javax.swing.JFrame {
+public class NewMethodViewold extends javax.swing.JFrame {
 
 	/**
 	 * 
@@ -27,8 +29,10 @@ public class NewAttributeView extends javax.swing.JFrame {
 	
     /**
      * Creates new form NewAttributeView
+     * @param i 
+     * @param model 
      */
-    public NewAttributeView(ProjectUML model,int i) {
+    public NewMethodViewold(ProjectUML model, int i) {
     	this.model=model;
     	this.index=i;
         initComponents();
@@ -51,13 +55,18 @@ public class NewAttributeView extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         cancelButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
-        
+        parameterButton = new javax.swing.JLabel();
+        typeParameterComboBox = new javax.swing.JComboBox<String>();
+        typeParameterLabel = new javax.swing.JLabel();
+        nameParameterTextField = new javax.swing.JTextField();
+        nameParameterLabel = new javax.swing.JLabel();
 
-        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("New Attribute");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("New Method");
 
+        //visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "private", "protected", "default", "public" }));
-        visibilityComboBox.setSelectedIndex(2);
+
         
         //typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         typeComboBox.setModel(new ComboBoxTypeModel(model,0));
@@ -65,7 +74,7 @@ public class NewAttributeView extends javax.swing.JFrame {
         
         visibilityLabel.setText("Visibility");
 
-        typeLabel.setText("Type");
+        typeLabel.setText("Return Type");
 
         nameLabel.setText("Name");
 
@@ -81,24 +90,30 @@ public class NewAttributeView extends javax.swing.JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String visibility = (String) visibilityComboBox.getSelectedItem();
-				Visibility visi;
-				if (visibility.equals("private")) visi= Visibility.PRIVATE;
-				else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
-				else if (visibility.equals("default")) visi = Visibility.DEFAULT;
-				else visi = Visibility.PUBLIC;
-				
-				model.addAttribute(index, new Attribute(nameTextField.getText(),(String) typeComboBox.getSelectedItem(),visi));
-				dispose();
+				if (!nameTextField.getText().equals("")){
+					model.addMethod(index, new Method(nameTextField.getText(), model.getTypes().getTypeAt(0), Visibility.DEFAULT, new ArrayList<String>()));
+					dispose();
+				} else {
+					//Message d'erreur
+				}
 			}
 		});
+
+        parameterButton.setText("Parameter :");
+
+        typeParameterComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        
+        typeParameterLabel.setText("Type");
+
+        nameParameterLabel.setText("Name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(visibilityLabel)
@@ -114,11 +129,26 @@ public class NewAttributeView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(okButton))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(visibilityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(visibilityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(parameterButton))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
-                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(typeParameterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nameParameterTextField))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(typeParameterLabel)
+                                .addGap(172, 172, 172)
+                                .addComponent(nameParameterLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -134,7 +164,17 @@ public class NewAttributeView extends javax.swing.JFrame {
                     .addComponent(visibilityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(parameterButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(typeParameterLabel)
+                    .addComponent(nameParameterLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(typeParameterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameParameterTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(okButton))
@@ -161,20 +201,20 @@ public class NewAttributeView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewAttributeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewMethodViewold.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewAttributeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewMethodViewold.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewAttributeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewMethodViewold.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewAttributeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewMethodViewold.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewAttributeView(new ProjectUML(),0).setVisible(true);
+                new NewMethodViewold(new ProjectUML(),0).setVisible(true);
             }
         });
     }
@@ -182,15 +222,16 @@ public class NewAttributeView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel nameParameterLabel;
+    private javax.swing.JTextField nameParameterTextField;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton okButton;
+    private javax.swing.JLabel parameterButton;
     private javax.swing.JComboBox<String> typeComboBox;
     private javax.swing.JLabel typeLabel;
+    private javax.swing.JComboBox<String> typeParameterComboBox;
+    private javax.swing.JLabel typeParameterLabel;
     private javax.swing.JComboBox<String> visibilityComboBox;
     private javax.swing.JLabel visibilityLabel;
     // End of variables declaration//GEN-END:variables
-    
-    
-
 }
-
