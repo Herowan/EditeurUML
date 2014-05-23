@@ -9,12 +9,9 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JComboBox;
-
 import controller.okButtonModifyMethodController;
 import model.ProjectUML;
-import model.Visibility;
 
 /**
  *
