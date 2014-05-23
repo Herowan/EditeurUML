@@ -38,6 +38,7 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
         this.index=i;
         this.attribute=j;
     	initComponents();
+    	this.setLocation(100, 100);
     }
 
     /**
@@ -66,12 +67,13 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
         visibilityLabel.setText("Visibility");
 
         visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "private", "protected", "default", "public" }));
+        visibilityComboBox.setSelectedItem(model.getObjectUmlAtIndex(index).getAttributeAt(attribute).getVisibilityA().getName());
+
         
         typeLabel.setText("Type");
 
-        //typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         typeComboBox.setModel(new ComboBoxTypeModel(model,0));
-        typeComboBox.setSelectedIndex(0);
+        typeComboBox.setSelectedItem(model.getObjectUmlAtIndex(index).getAttributeAt(attribute).getType());
         nameLabel.setText("Name");
 
         nameTextField.setText(model.getObjectUmlAtIndex(index).getAttributeAt(attribute).getName());

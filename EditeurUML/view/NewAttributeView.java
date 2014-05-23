@@ -32,6 +32,8 @@ public class NewAttributeView extends javax.swing.JFrame {
     	this.model=model;
     	this.index=i;
         initComponents();
+    	this.setLocation(100, 100);
+
     }
 
     /**

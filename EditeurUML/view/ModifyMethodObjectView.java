@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
+
 import model.ProjectUML;
 import model.Visibility;
 
@@ -43,6 +45,9 @@ public class ModifyMethodObjectView extends javax.swing.JFrame {
     	this.model=model;
     	this.index=index;
     	this.method=method;
+    	initComponents();
+    	this.setLocation(100, 100);
+
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
@@ -55,45 +60,41 @@ public class ModifyMethodObjectView extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         parameterLabel = new javax.swing.JLabel();
-        parameterComboBox4 = new javax.swing.JComboBox<String>();
-        paramterComboBox1 = new javax.swing.JComboBox<String>();
-        parameterComboBox2 = new javax.swing.JComboBox<String>();
-        parameterComboBox3 = new javax.swing.JComboBox<String>();
-        parameterComboBox5 = new javax.swing.JComboBox<String>();
-        parameterComboBox6 = new javax.swing.JComboBox<String>();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Modify Method");
 
         visibilityLabel.setText("Visibility");
 
-        visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "private", "protected", "default", "public" }));
+        visibilityComboBox.setSelectedItem(model.getObjectUmlAtIndex(index).getMehodAt(method).getVisibilityM().getName());
+        
         returnTypeLabel.setText("Return Type");
 
-        returnTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        returnTypeComboBox.setModel(new ComboBoxTypeModel(model,0));
+        returnTypeComboBox.setSelectedItem(model.getObjectUmlAtIndex(index).getMehodAt(method).getReturnType());
+        
         nameLabel.setText("Name");
 
-        nameTextField.setText("jTextField1");
+        nameTextField.setText(model.getObjectUmlAtIndex(index).getMehodAt(method).getName());
 
         parameterLabel.setText("Parameter :");
 
-        parameterComboBox4.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        paramterComboBox1.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        parameterComboBox2.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        parameterComboBox3.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        parameterComboBox5.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        parameterComboBox6.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        parameterList = new ArrayList<JComboBox<String>>();
+        for (int i=0; i<6; i++){
+        	JComboBox<String> cb = new JComboBox<String>();
+        	cb.setModel(new ComboBoxTypeModel(model, 1));
+        	if (model.getObjectUmlAtIndex(index).getMehodAt(method).getParams().size()>i){
+        		cb.setSelectedItem(model.getObjectUmlAtIndex(index).getMehodAt(method).getParams().get(i));
+        	} else {
+        		cb.setSelectedIndex(0);
+        	}
+        	parameterList.add(cb);
+        }
+        
         okButton.setText("OK");
         okButton.addActionListener(new ActionListener() {
 			
@@ -101,7 +102,13 @@ public class ModifyMethodObjectView extends javax.swing.JFrame {
 			public void actionPerformed(ActionEvent e) {
 				model.getObjectUmlAtIndex(index).getMehodAt(method).setName(nameTextField.getText());
 				model.getObjectUmlAtIndex(index).getMehodAt(method).setReturnType((String) returnTypeComboBox.getSelectedItem());
-				model.getObjectUmlAtIndex(index).getMehodAt(method).setVisibilityM((Visibility) visibilityComboBox.getSelectedItem());
+				String visibility = (String) visibilityComboBox.getSelectedItem();
+				Visibility visi;
+				if (visibility.equals("private")) visi= Visibility.PRIVATE;
+				else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
+				else if (visibility.equals("default")) visi = Visibility.DEFAULT;
+				else visi = Visibility.PUBLIC;
+				model.getObjectUmlAtIndex(index).getMehodAt(method).setVisibilityM(visi);
 				model.getObjectUmlAtIndex(index).getMehodAt(method).setParams(parameterValid());
 				dispose();
 			}
@@ -115,8 +122,8 @@ public class ModifyMethodObjectView extends javax.swing.JFrame {
 			}
 		});
 
-        jButton1.setText("Delete");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 model.getObjectUmlAtIndex(index).deleteMethod(method);
                 dispose();
@@ -151,21 +158,21 @@ public class ModifyMethodObjectView extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(parameterComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(parameterList.get(3), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(parameterComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(parameterList.get(4), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(parameterComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(parameterList.get(5), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(paramterComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(parameterList.get(0), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(parameterComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(parameterList.get(1), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(parameterComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(parameterList.get(2), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(52, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(deleteButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -189,19 +196,19 @@ public class ModifyMethodObjectView extends javax.swing.JFrame {
                 .addComponent(parameterLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(paramterComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(parameterComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(parameterComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(parameterList.get(0), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(parameterList.get(1), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(parameterList.get(2), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(parameterComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(parameterComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(parameterComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(parameterList.get(3), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(parameterList.get(4), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(parameterList.get(5), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(cancelButton)
-                    .addComponent(jButton1))
+                    .addComponent(deleteButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -246,43 +253,25 @@ public class ModifyMethodObjectView extends javax.swing.JFrame {
     
     private ArrayList<String> parameterValid(){
     	ArrayList<String> parameters = new ArrayList<String>();
-    	if (!paramterComboBox1.getSelectedItem().equals("---")){
-    		parameters.add((String) paramterComboBox1.getSelectedItem());
-    	}
-    	if (!parameterComboBox2.getSelectedItem().equals("---")){
-    		parameters.add((String) parameterComboBox2.getSelectedItem());
-    	}
-    	if (!parameterComboBox3.getSelectedItem().equals("---")){
-    		parameters.add((String) parameterComboBox3.getSelectedItem());
-    	}
-    	if (!parameterComboBox4.getSelectedItem().equals("---")){
-    		parameters.add((String) parameterComboBox4.getSelectedItem());
-    	}
-    	if (!parameterComboBox5.getSelectedItem().equals("---")){
-    		parameters.add((String) parameterComboBox5.getSelectedItem());
-    	}
-    	if (!parameterComboBox6.getSelectedItem().equals("---")){
-    		parameters.add((String) parameterComboBox6.getSelectedItem());
-    	}
+	    	for (int i=0; i<6; i++){
+	    		if (!parameterList.get(i).getSelectedItem().equals("---")){
+	    		parameters.add((String) parameterList.get(i).getSelectedItem());
+	    		}
+	    	}
     	return parameters;
     }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton cancelButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton okButton;
-    private javax.swing.JComboBox<String> parameterComboBox2;
-    private javax.swing.JComboBox<String> parameterComboBox3;
-    private javax.swing.JComboBox<String> parameterComboBox4;
-    private javax.swing.JComboBox<String> parameterComboBox5;
-    private javax.swing.JComboBox<String> parameterComboBox6;
     private javax.swing.JLabel parameterLabel;
-    private javax.swing.JComboBox<String> paramterComboBox1;
     private javax.swing.JComboBox<String> returnTypeComboBox;
     private javax.swing.JLabel returnTypeLabel;
     private javax.swing.JComboBox<String> visibilityComboBox;
     private javax.swing.JLabel visibilityLabel;
-    // End of variables declaration                   
+    // End of variables declaration     
+    private ArrayList<JComboBox<String>> parameterList;
 }
