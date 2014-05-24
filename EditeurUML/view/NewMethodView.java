@@ -6,13 +6,10 @@
 
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import model.Method;
+import javax.swing.JComboBox;
+import controller.okButtonNewMethodController;
 import model.ProjectUML;
-import model.Visibility;
 
 /**
  *
@@ -56,12 +53,6 @@ public class NewMethodView extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         parameterLabel = new javax.swing.JLabel();
-        parameterComboBox4 = new javax.swing.JComboBox<String>();
-        paramterComboBox1 = new javax.swing.JComboBox<String>();
-        parameterComboBox2 = new javax.swing.JComboBox<String>();
-        parameterComboBox3 = new javax.swing.JComboBox<String>();
-        parameterComboBox5 = new javax.swing.JComboBox<String>();
-        parameterComboBox6 = new javax.swing.JComboBox<String>();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
@@ -83,50 +74,17 @@ public class NewMethodView extends javax.swing.JFrame {
 
         parameterLabel.setText("Parameter :");
 
-        //parameterComboBox4.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        parameterComboBox4.setModel(new ComboBoxTypeModel(model,1));
-        parameterComboBox4.setSelectedIndex(0);
-        
-        //paramterComboBox1.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        paramterComboBox1.setModel(new ComboBoxTypeModel(model,1));
-        paramterComboBox1.setSelectedIndex(0);
-        
-        //parameterComboBox2.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        parameterComboBox2.setModel(new ComboBoxTypeModel(model,1));
-        parameterComboBox2.setSelectedIndex(0);
-        
-        //parameterComboBox3.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        parameterComboBox3.setModel(new ComboBoxTypeModel(model,1));
-        parameterComboBox3.setSelectedIndex(0);       
-        
-        //parameterComboBox5.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        parameterComboBox5.setModel(new ComboBoxTypeModel(model,1));
-        parameterComboBox5.setSelectedIndex(0);
-        
-        //parameterComboBox6.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        parameterComboBox6.setModel(new ComboBoxTypeModel(model,1));
-        parameterComboBox6.setSelectedIndex(0);
+        parameterList = new ArrayList<JComboBox<String>>();
+        for (int i=0; i<6; i++){
+        	JComboBox<String> cb = new JComboBox<String>();
+        	cb.setModel(new ComboBoxTypeModel(model, 1));
+        	cb.setSelectedIndex(0);
+        	parameterList.add(cb);
+        }
         
         
         okButton.setText("OK");
-        okButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (!nameTextField.getText().equals("")){
-					String visibility = (String) visibilityComboBox.getSelectedItem();
-					Visibility visi;
-					if (visibility.equals("private")) visi= Visibility.PRIVATE;
-					else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
-					else if (visibility.equals("default")) visi = Visibility.DEFAULT;
-					else visi = Visibility.PUBLIC;
-					model.addMethod(index, new Method(nameTextField.getText(), (String) returnTypeComboBox.getSelectedItem(), visi, parameterValid()));
-					dispose();
-				} else {
-					//Message d'erreur
-				}
-			}
-		});
+        okButton.addActionListener(new okButtonNewMethodController(this));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -163,17 +121,17 @@ public class NewMethodView extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(parameterComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(parameterList.get(3), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(parameterComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(parameterList.get(4), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(parameterComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(parameterList.get(5), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(paramterComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(parameterList.get(0), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(parameterComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(parameterList.get(1), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(parameterComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(parameterList.get(2), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(52, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -199,14 +157,14 @@ public class NewMethodView extends javax.swing.JFrame {
                 .addComponent(parameterLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(paramterComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(parameterComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(parameterComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(parameterList.get(0), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(parameterList.get(1), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(parameterList.get(2), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(parameterComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(parameterComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(parameterComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(parameterList.get(3), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(parameterList.get(4), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(parameterList.get(5), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
@@ -251,26 +209,13 @@ public class NewMethodView extends javax.swing.JFrame {
             }
         });
     }
-    
-    private ArrayList<String> parameterValid(){
+
+    public ArrayList<String> parameterValid(){
     	ArrayList<String> parameters = new ArrayList<String>();
-    	if (!paramterComboBox1.getSelectedItem().equals("---")){
-    		parameters.add((String) paramterComboBox1.getSelectedItem());
-    	}
-    	if (!parameterComboBox2.getSelectedItem().equals("---")){
-    		parameters.add((String) parameterComboBox2.getSelectedItem());
-    	}
-    	if (!parameterComboBox3.getSelectedItem().equals("---")){
-    		parameters.add((String) parameterComboBox3.getSelectedItem());
-    	}
-    	if (!parameterComboBox4.getSelectedItem().equals("---")){
-    		parameters.add((String) parameterComboBox4.getSelectedItem());
-    	}
-    	if (!parameterComboBox5.getSelectedItem().equals("---")){
-    		parameters.add((String) parameterComboBox5.getSelectedItem());
-    	}
-    	if (!parameterComboBox6.getSelectedItem().equals("---")){
-    		parameters.add((String) parameterComboBox6.getSelectedItem());
+    	for (int i=0; i<6; i++){
+    		if (!parameterList.get(i).getSelectedItem().equals("---")){
+    			parameters.add((String) parameterList.get(i).getSelectedItem());
+    		}
     	}
     	return parameters;
     }
@@ -280,17 +225,39 @@ public class NewMethodView extends javax.swing.JFrame {
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton okButton;
-    private javax.swing.JComboBox<String> parameterComboBox2;
-    private javax.swing.JComboBox<String> parameterComboBox3;
-    private javax.swing.JComboBox<String> parameterComboBox4;
-    private javax.swing.JComboBox<String> parameterComboBox5;
-    private javax.swing.JComboBox<String> parameterComboBox6;
     private javax.swing.JLabel parameterLabel;
-    private javax.swing.JComboBox<String> paramterComboBox1;
     private javax.swing.JComboBox<String> returnTypeComboBox;
     private javax.swing.JLabel returnTypeLabel;
     private javax.swing.JComboBox<String> visibilityComboBox;
     private javax.swing.JLabel visibilityLabel;
-    // End of variables declaration                   
+    // End of variables declaration    
+    private ArrayList<JComboBox<String>> parameterList;
+
+
+	public ProjectUML getModel() {
+		return model;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public javax.swing.JTextField getNameTextField() {
+		return nameTextField;
+	}
+
+	public javax.swing.JComboBox<String> getReturnTypeComboBox() {
+		return returnTypeComboBox;
+	}
+
+	public javax.swing.JComboBox<String> getVisibilityComboBox() {
+		return visibilityComboBox;
+	}
+
+	public ArrayList<JComboBox<String>> getParameterList() {
+		return parameterList;
+	}
+    
+    
 }
 

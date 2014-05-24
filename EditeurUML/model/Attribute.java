@@ -24,7 +24,7 @@ public class Attribute implements Serializable{
 		this.visibilityA=visibilityA;
 	}
 
-	boolean equals(Attribute a){
+	public boolean equals(Attribute a){
 			return this.getName().equals(a.getName());
 	}
 	

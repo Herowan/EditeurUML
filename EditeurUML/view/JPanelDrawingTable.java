@@ -163,8 +163,6 @@ public class JPanelDrawingTable extends JPanel{
 	public int lengthOf(String ms,Graphics g){
 		Font font = g.getFont();
 		FontMetrics fm = g.getFontMetrics(font);
-		
-		
 		return fm.stringWidth(ms);
 	}
 

@@ -9,11 +9,9 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JComboBox;
-
+import controller.okButtonModifyMethodController;
 import model.ProjectUML;
-import model.Visibility;
 
 /**
  *
@@ -96,23 +94,7 @@ public class ModifyMethodObjectView extends javax.swing.JFrame {
         }
         
         okButton.setText("OK");
-        okButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				model.getObjectUmlAtIndex(index).getMehodAt(method).setName(nameTextField.getText());
-				model.getObjectUmlAtIndex(index).getMehodAt(method).setReturnType((String) returnTypeComboBox.getSelectedItem());
-				String visibility = (String) visibilityComboBox.getSelectedItem();
-				Visibility visi;
-				if (visibility.equals("private")) visi= Visibility.PRIVATE;
-				else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
-				else if (visibility.equals("default")) visi = Visibility.DEFAULT;
-				else visi = Visibility.PUBLIC;
-				model.getObjectUmlAtIndex(index).getMehodAt(method).setVisibilityM(visi);
-				model.getObjectUmlAtIndex(index).getMehodAt(method).setParams(parameterValid());
-				dispose();
-			}
-		});
+        okButton.addActionListener(new okButtonModifyMethodController(this));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new ActionListener() {	
@@ -251,7 +233,7 @@ public class ModifyMethodObjectView extends javax.swing.JFrame {
         });
     }
     
-    private ArrayList<String> parameterValid(){
+    public ArrayList<String> parameterValid(){
     	ArrayList<String> parameters = new ArrayList<String>();
 	    	for (int i=0; i<6; i++){
 	    		if (!parameterList.get(i).getSelectedItem().equals("---")){
@@ -274,4 +256,33 @@ public class ModifyMethodObjectView extends javax.swing.JFrame {
     private javax.swing.JLabel visibilityLabel;
     // End of variables declaration     
     private ArrayList<JComboBox<String>> parameterList;
+	public ProjectUML getModel() {
+		return model;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public int getMethod() {
+		return method;
+	}
+
+	public javax.swing.JTextField getNameTextField() {
+		return nameTextField;
+	}
+
+	public javax.swing.JComboBox<String> getReturnTypeComboBox() {
+		return returnTypeComboBox;
+	}
+
+	public javax.swing.JComboBox<String> getVisibilityComboBox() {
+		return visibilityComboBox;
+	}
+
+	public ArrayList<JComboBox<String>> getParameterList() {
+		return parameterList;
+	}
+    
+    
 }
