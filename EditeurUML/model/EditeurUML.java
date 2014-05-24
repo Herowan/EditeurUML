@@ -37,26 +37,23 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 
 	public void setProject(ProjectUML project) {
 		this.project = project;
+		setChanged();
+		notifyObservers();
 	}
 
 	
-	public void addProject(){
-		projectList.add(new ProjectUML());
+	public void addProject(ProjectUML p){
+		projectList.add(p);
 	}
 	
 	public void saveProject(){
 		System.out.println("2");
 		try {
 			project.setIsSave(true);
-			System.out.println("2");
 			FileOutputStream fichier = new FileOutputStream(project.getSavePath());
-			System.out.println("2");
 			ObjectOutputStream out = new ObjectOutputStream(fichier);
-			System.out.println("2");
-			out.writeObject(this);
-			System.out.println("2");
+			out.writeObject(project);
 			out.flush();
-			System.out.println("2");
 			out.close();
 		}
 		catch (java.io.IOException e) {
@@ -82,11 +79,12 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 	}
 	
 	public void openProject(String path) throws ClassNotFoundException{
-		System.out.println(path);
 		try {
 			FileInputStream fichier = new FileInputStream(path);
 			ObjectInputStream in = new ObjectInputStream(fichier);
-			project=(ProjectUML)in.readObject();
+			
+			
+			setProject((ProjectUML)in.readObject());
 			in.close();
 		}
 		catch (java.io.IOException e) {

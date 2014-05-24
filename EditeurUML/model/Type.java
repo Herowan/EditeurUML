@@ -1,8 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Type {
+public class Type implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ArrayList<String> typeList;
 	
 	public Type(){
