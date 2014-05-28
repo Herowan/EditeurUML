@@ -7,3 +7,4 @@ public class Main {
 		new MainView(new ProjectUML()).setVisible(true);
 	}
 }
+
