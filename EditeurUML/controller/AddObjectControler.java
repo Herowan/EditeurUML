@@ -11,7 +11,7 @@ public class AddObjectControler implements ActionListener{
     private TypeObject type;
     private ProjectUML model;
 
-   
+  
     public AddObjectControler(TypeObject type, ProjectUML model){
         this.type=type;
         this.model=model;
