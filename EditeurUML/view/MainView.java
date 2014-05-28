@@ -3,18 +3,14 @@ package view;
 
 
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
-
-
-
-
-
-
 
 import controller.AddObjectControler;
 import controller.DrawingTableController;
@@ -23,7 +19,7 @@ import controller.NewProjectController;
 import controller.OpenProjectController;
 import controller.SaveAsProjectController;
 import controller.SaveProjectController;
-import model.ProjectUML;
+import model.EditeurUML;
 import model.TypeObject;
 
 /**
@@ -36,7 +32,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	ProjectUML model;
+	EditeurUML model;
 	IOController superController=new IOController();
 
 
@@ -47,10 +43,12 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		initComponents();
 	}
 
-	public MainView(ProjectUML model) {
+	public MainView(EditeurUML model) {
 		this.model=model;
 		model.addObserver(this);
 		initComponents();
+		//Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("logo.jpg"));
+		//setIconImage(icon);
 	}
 
 	/**
@@ -72,7 +70,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		objectLabel = new javax.swing.JLabel();
 		relationLabel = new javax.swing.JLabel();
 		jScrollPaneDrawingTable = new javax.swing.JScrollPane();
-		drawingTable = new JPanelDrawingTable(model);
+		drawingTable = new JPanelDrawingTable(model.getProject());
 		menuBar = new javax.swing.JMenuBar();
 		fileMenu = new javax.swing.JMenu();
 		newProjectItemMenu = new javax.swing.JMenuItem();
@@ -94,13 +92,13 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		buttonsMenu.setBackground(new java.awt.Color(224, 224, 224));
 
 		classButton.setText("Class");
-		classButton.addActionListener(new AddObjectControler(TypeObject.CLASS, model));
+		classButton.addActionListener(new AddObjectControler(TypeObject.CLASS, model.getProject()));
 
 		abstractClassButton.setText("Abstract Class");
-		abstractClassButton.addActionListener(new AddObjectControler(TypeObject.ABSTRACT_CLASS, model));
+		abstractClassButton.addActionListener(new AddObjectControler(TypeObject.ABSTRACT_CLASS, model.getProject()));
 
 		interfaceButton.setText("Interface");
-		interfaceButton.addActionListener(new AddObjectControler(TypeObject.INTERFACE, model));
+		interfaceButton.addActionListener(new AddObjectControler(TypeObject.INTERFACE, model.getProject()));
 
 		associationButton.setText("Association");
 		associationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -169,8 +167,8 @@ public class MainView extends javax.swing.JFrame implements Observer{
 
 		drawingTable.setBackground(new java.awt.Color(254, 254, 254));
 
-		drawingTable.addMouseMotionListener(new DrawingTableController(model,drawingTable));
-		drawingTable.addMouseListener(new DrawingTableController(model,drawingTable));
+		drawingTable.addMouseMotionListener(new DrawingTableController(model.getProject(),drawingTable));
+		drawingTable.addMouseListener(new DrawingTableController(model.getProject(),drawingTable));
 
 
 		javax.swing.GroupLayout drawingTableLayout = new javax.swing.GroupLayout(drawingTable);
@@ -305,9 +303,9 @@ public class MainView extends javax.swing.JFrame implements Observer{
 
 	
 	public void exitSoftware(){
-		if(model.isSave()){
+		if(model.getProject().isSave()){
 			dispose();
-		}else if(!(model.getSavePath()==null)){
+		}else if(!(model.getProject().getSavePath()==null)){
 			try {
 				superController.save(model,this);
 			} catch (ClassNotFoundException e1) {
@@ -387,6 +385,6 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		drawingTable.repaint();
-		model.setIsSave(false);
+		model.getProject().setIsSave(false);
 	}
 }

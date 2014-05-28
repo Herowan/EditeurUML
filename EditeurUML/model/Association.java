@@ -1,7 +1,13 @@
 package model;
 
-public class Association {
+import java.io.Serializable;
 
+public class Association implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ObjectUML firstObject;
 	ObjectUML lastObject;
 	int typeOfAssociation;

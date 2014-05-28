@@ -1,8 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Type {
+public class Type implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ArrayList<String> typeList;
 	
 	public Type(){
@@ -27,5 +32,8 @@ public class Type {
 	}
 	public int typesListSize(){
 		return typeList.size();
+	}
+	public void remove(String type){
+		typeList.remove(type);
 	}
 }

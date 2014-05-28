@@ -85,35 +85,42 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
 
     @Override
     public void mousePressed(MouseEvent e) {    
-        int i=0;
+        int i=model.objectsListSize()-1;
         int buttonPositionY;
         int buttonPositionX;
-        boolean quit=false;;
-        while(i<model.objectsListSize() && !quit){
+        boolean quit=false;
+        
+        while(i>=0 && !quit){
         	buttonPositionY = model.getObjectUmlAtIndex(i).getY()+50+20*model.getObjectUmlAtIndex(i).attributListSize();
         	buttonPositionX = model.getObjectUmlAtIndex(i).getX();
         	buttonPositionY-=10;
         	buttonPositionX+=jPanelDrawingtable.maxLength(i, jPanelDrawingtable.getG())+30;
             quit =moveZone(e, i);
-            quit =crossAttributeZone(e, i, buttonPositionX, buttonPositionY);
+            if(!quit) quit =crossAttributeZone(e, i, buttonPositionX, buttonPositionY);
             buttonPositionY+=20+model.getObjectUmlAtIndex(i).methodeListSize()*20;
-            quit =crossMethodZone(e, i, buttonPositionX, buttonPositionY);
-            quit =crossQuitZone(e,i);
-            quit =nameOfTheObject(e, i);
-            if(nameOfTheObject(e, i)){
-            	new ModifyNameObjectView(model,i).setVisible(true);;
+            if(!quit) quit =crossMethodZone(e, i, buttonPositionX, buttonPositionY);
+            if(!quit) quit =crossQuitZone(e,i);
+            if(!quit && nameOfTheObject(e, i)){
+            	new ModifyNameObjectView(model,i).setVisible(true);
+            	quit=true;
             }
-            for (int j=0; j<model.getObjectUmlAtIndex(i).attributListSize(); j++){
-            	if(attributeOfTheObject(e, i, j)){
-            		new ModifyAttributeObjectView(model,i,j).setVisible(true);;
+            if (!quit){
+            	for (int j=0; j<model.getObjectUmlAtIndex(i).attributListSize(); j++){
+            		if(attributeOfTheObject(e, i, j) && !quit){
+            			quit=true;
+            			new ModifyAttributeObjectView(model,i,j).setVisible(true);;
+            		}
             	}
             }
-            for (int j=0; j<model.getObjectUmlAtIndex(i).methodeListSize();j++){
-            	if(methodOfTheObject(e, i, j)){
-            		new ModifyMethodObjectView(model,i,j);
+            if (!quit){
+            	for (int j=0; j<model.getObjectUmlAtIndex(i).methodeListSize();j++){
+            		if(methodOfTheObject(e, i, j) && !quit){
+            			quit = true;
+            			new ModifyMethodObjectView(model,i,j).setVisible(true);;
+            		}
             	}
             }
-            i++;
+            i--;
         }
     }
     

@@ -35,6 +35,19 @@ public class Method implements Serializable{
 		
 	}
 
+	public boolean equals(Method m){
+		if(!this.getName().equals(m.getName())){
+			return false;
+		}
+		
+		if(this.getParams().size()!=m.getParams().size()) return false;
+		for(int i=0;i<m.getParams().size();i++){
+			if(!this.params.get(i).equals(m.getParams().get(i))) return false;
+		}
+		
+		return true;
+	}
+	
 	public String getName() {
 		return name;
 	}

@@ -3,32 +3,31 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-
-import model.ProjectUML;
+import model.EditeurUML;
 
 public class NewProjectController extends IOController implements ActionListener {
-	ProjectUML model;
+	EditeurUML model;
 	JFrame view;
-	public NewProjectController(ProjectUML model,JFrame view){
+	public NewProjectController(EditeurUML model,JFrame view){
 		this.model=model;
 		this.view=view;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(model.isSave()){
-			model.resetProject();
-		}else if(!(model.getSavePath()==null)){
+		if(model.getProject().isSave()){
+			model.getProject().resetProject();
+		}else if(!(model.getProject().getSavePath()==null)){
 			try {
 				save(model,view);
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			model.resetProject();
+			model.getProject().resetProject();
 
 		}else{
 			showSaveFileDialog(model,view);
-			model.resetProject();
+			model.getProject().resetProject();
 
 		}
 	}

@@ -16,6 +16,7 @@ public class ProjectUML extends Observable implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ObjectUML> objectsList;
 	private ArrayList<Association> associationList;
+	// For the JpanelDrawingTable view
 	private int selectedObject;
 	private String savePath=null; // save du chemin ou est enregistr�� le projet pour le controller Save
 	private boolean isSave=false;
@@ -32,7 +33,7 @@ public class ProjectUML extends Observable implements Serializable{
 		objectsList = new ArrayList<ObjectUML>();
 		associationList = new ArrayList<Association>();
 		types=new Type();
-		addProject();
+	//	addProject();
 	}
 	
 	//Method for New Project
@@ -46,6 +47,7 @@ public class ProjectUML extends Observable implements Serializable{
 	}
 
 	// Method for Development
+	@SuppressWarnings("unused")
 	private void addProject() {
 		ObjectUML object = new ObjectUML(TypeObject.CLASS,  objectsList.size(), objectWhoHaveType(TypeObject.CLASS));
 		object.setName("Hello");
@@ -115,21 +117,6 @@ public class ProjectUML extends Observable implements Serializable{
 	}
 	
 
-	//Method about Serialization , let's go !!
-
-	public void saveProject(String projectName){
-		try {
-			FileOutputStream fichier = new FileOutputStream(projectName);
-			ObjectOutputStream out = new ObjectOutputStream(fichier);
-			out.writeObject(objectsList);
-			out.flush();
-			out.close();
-		}
-		catch (java.io.IOException e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	public void deleteObjectUml(int index){
 		objectsList.remove(index);
@@ -223,6 +210,10 @@ public class ProjectUML extends Observable implements Serializable{
 	public void setObjectOfMethodSelected(int objectOfMethodSelected) {
 		this.objectOfMethodSelected = objectOfMethodSelected;
 	}
+	
+	
+	
+	
 	
 	
 }
