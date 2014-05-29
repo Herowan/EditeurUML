@@ -33,7 +33,7 @@ public class ObjectUML implements Serializable{
 		name=objectType.getName()+(count+1);
 	}
 	
-	boolean equals(ObjectUML o){
+	public boolean equals(ObjectUML o){
 		return this.getName().equals(o.getName());
 	}
 	

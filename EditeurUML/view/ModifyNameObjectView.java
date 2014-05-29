@@ -6,6 +6,7 @@
 
 package view;
 
+import controller.okButtonModifyNameController;
 import model.ProjectUML;
 
 /**
@@ -50,14 +51,7 @@ public class ModifyNameObjectView extends javax.swing.JFrame {
         setTitle("Modify Name");
 
         okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	model.getTypes().remove(model.getObjectUmlAtIndex(index).getName());
-            	model.getTypes().addType(nameJTextField.getText());
-                model.getObjectUmlAtIndex(index).setName(nameJTextField.getText());
-                dispose();
-            }
-        });
+        okButton.addActionListener(new okButtonModifyNameController(this));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +139,20 @@ public class ModifyNameObjectView extends javax.swing.JFrame {
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JButton okButton;
-    // End of variables declaration                   
+    // End of variables declaration   
+
+	public ProjectUML getModel() {
+		return model;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public javax.swing.JTextField getNameJTextField() {
+		return nameJTextField;
+	}
+    
+    
 }
 
