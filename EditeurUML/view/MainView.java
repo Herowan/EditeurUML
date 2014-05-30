@@ -14,6 +14,8 @@ import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JOptionPane;
+
 import controller.AddObjectControler;
 import controller.DrawingTableController;
 import controller.IOController;
@@ -308,7 +310,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		// TODO add your handling code here:
 	}//GEN-LAST:event_inheritanceButtonActionPerformed
 
-	
+	/*
 	public void exitSoftware(){
 		if(model.getProject().isSave()){
 			dispose();
@@ -321,6 +323,22 @@ public class MainView extends javax.swing.JFrame implements Observer{
 			dispose();
 		}else{
 			superController.showSaveFileDialog(model,this);
+			dispose();
+		}
+	}
+	*/
+	
+	public void exitSoftware(){
+		if(model.getProject().isSave()){
+			dispose();
+		}else{
+			if(JOptionPane.showConfirmDialog(this, "This Project is not save, Want you save it ?", "Etiquettes Java", JOptionPane.YES_NO_OPTION)==0){
+				try {
+					superController.save(model,this);
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				}
+			}
 			dispose();
 		}
 	}

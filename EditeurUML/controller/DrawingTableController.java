@@ -91,7 +91,8 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     public void mouseExited(MouseEvent e) {}
 
     @Override
-    public void mousePressed(MouseEvent e) {    
+    public void mousePressed(MouseEvent e) {
+		model.setIsSave(false);
         int i=model.objectsListSize()-1;
         int buttonPositionY;
         int buttonPositionX;
