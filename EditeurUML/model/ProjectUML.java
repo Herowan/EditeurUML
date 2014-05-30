@@ -19,7 +19,7 @@ public class ProjectUML extends Observable implements Serializable{
 	// For the JpanelDrawingTable view
 	private int selectedObject;
 	private String savePath=null; // save du chemin ou est enregistr�� le projet pour le controller Save
-	private boolean isSave=false;
+	private boolean isSave=true;
 	private Type types;
 	
 	// Attributes selected for the view
@@ -103,7 +103,6 @@ public class ProjectUML extends Observable implements Serializable{
 	}
 	public void addObjectUml(TypeObject type){
 		objectsList.add(new ObjectUML(type,  objectsListSize(),objectWhoHaveType(type)));
-		
 		types.addType(objectsList.get(objectsListSize()-1).getName());
 		setChanged();
 		notifyObservers();

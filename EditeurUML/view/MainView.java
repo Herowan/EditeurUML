@@ -5,10 +5,14 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.JOptionPane;
 
 import controller.AddObjectControler;
 import controller.DrawingTableController;
@@ -32,7 +36,8 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	private static final long serialVersionUID = 1L;
 	EditeurUML model;
 	IOController superController=new IOController();
-
+	DrawingTableController dtc;
+	AddObjectControler aoc1,aoc2,aoc3;
 
 	/**
 	 * Creates new form MainView
@@ -87,16 +92,20 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 		setTitle("SogniDoro");
 
+		
 		buttonsMenu.setBackground(new java.awt.Color(224, 224, 224));
 
 		classButton.setText("Class");
-		classButton.addActionListener(new AddObjectControler(TypeObject.CLASS, model.getProject()));
+		aoc1=new AddObjectControler(TypeObject.CLASS, model);
+		classButton.addActionListener(aoc1);
 
 		abstractClassButton.setText("Abstract Class");
-		abstractClassButton.addActionListener(new AddObjectControler(TypeObject.ABSTRACT_CLASS, model.getProject()));
+		aoc2=new AddObjectControler(TypeObject.ABSTRACT_CLASS, model);
+		abstractClassButton.addActionListener(aoc2);
 
 		interfaceButton.setText("Interface");
-		interfaceButton.addActionListener(new AddObjectControler(TypeObject.INTERFACE, model.getProject()));
+		aoc3=new AddObjectControler(TypeObject.INTERFACE, model);
+		interfaceButton.addActionListener(aoc3);
 
 		associationButton.setText("Association");
 		associationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -162,11 +171,11 @@ public class MainView extends javax.swing.JFrame implements Observer{
 						.addComponent(inheritanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
-
+		
 		drawingTable.setBackground(new java.awt.Color(254, 254, 254));
-
-		drawingTable.addMouseMotionListener(new DrawingTableController(model.getProject(),drawingTable));
-		drawingTable.addMouseListener(new DrawingTableController(model.getProject(),drawingTable));
+		dtc=new DrawingTableController(model,drawingTable);
+		drawingTable.addMouseMotionListener(dtc);
+		drawingTable.addMouseListener(dtc);
 
 
 		javax.swing.GroupLayout drawingTableLayout = new javax.swing.GroupLayout(drawingTable);
@@ -295,19 +304,19 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		// TODO add your handling code here:
 	}//GEN-LAST:event_inheritanceButtonActionPerformed
 
+
 	
 	public void exitSoftware(){
 		if(model.getProject().isSave()){
 			dispose();
-		}else if(!(model.getProject().getSavePath()==null)){
-			try {
-				superController.save(model,this);
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
-			}	
-			dispose();
 		}else{
-			superController.showSaveFileDialog(model,this);
+			if(JOptionPane.showConfirmDialog(this, "This Project is not save, Want you save it ?", "Etiquettes Java", JOptionPane.YES_NO_OPTION)==0){
+				try {
+					superController.save(model,this);
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				}
+			}
 			dispose();
 		}
 	}
@@ -375,10 +384,16 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	private javax.swing.JMenuItem undoItemMenu;
 	// End of variables declaration//GEN-END:variables
 	
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		dtc.setModel(model.getProject());
+		drawingTable.setModel(model.getProject());
+		aoc1.setModel(model.getProject());
+		aoc2.setModel(model.getProject());
+		aoc3.setModel(model.getProject());
+		System.out.println(model.getProject().getSavePath());
 		drawingTable.repaint();
-		model.getProject().setIsSave(false);
 	}
 }

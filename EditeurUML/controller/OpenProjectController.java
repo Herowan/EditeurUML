@@ -29,8 +29,8 @@ public class OpenProjectController extends IOController implements ActionListene
 					e1.printStackTrace();
 				}
 			}
+			openFile();
 		}
-		openFile();
 	}
 	
 

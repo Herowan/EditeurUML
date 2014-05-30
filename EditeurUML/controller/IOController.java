@@ -33,7 +33,6 @@ public class IOController {
 	}
 	
 	public void save(EditeurUML model,JFrame view) throws ClassNotFoundException{
-		System.out.println(model.getProject().getSavePath());
 		if(model.getProject().getSavePath()==null){
 			showSaveFileDialog(model, view);
 		}else{
