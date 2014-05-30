@@ -10,6 +10,7 @@ import view.ModifyMethodObjectView;
 import view.ModifyNameObjectView;
 import view.NewAttributeView;
 import view.NewMethodView;
+import model.EditeurUML;
 import model.ProjectUML;
 
 public class DrawingTableController implements MouseMotionListener, MouseListener{
@@ -17,12 +18,16 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     private ProjectUML model;
     private JPanelDrawingTable jPanelDrawingtable;
     
-    public DrawingTableController(ProjectUML model, JPanelDrawingTable jPanelDrawingtable){
-        this.model=model;
+    public DrawingTableController(EditeurUML model, JPanelDrawingTable jPanelDrawingtable){
+        this.model=model.getProject();
         this.jPanelDrawingtable=jPanelDrawingtable;
     }
 
-    @Override
+    public void setModel(ProjectUML model) {
+		this.model = model;
+	}
+
+	@Override
     public void mouseDragged(MouseEvent e) {
     	
         if (model.getSelectedObject()!=-1){

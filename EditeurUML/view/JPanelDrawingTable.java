@@ -27,6 +27,10 @@ public class JPanelDrawingTable extends JPanel{
 		this.model=model;
 	}
 	
+	public void setModel(ProjectUML model) {
+		this.model = model;
+	}
+
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		this.g=g;

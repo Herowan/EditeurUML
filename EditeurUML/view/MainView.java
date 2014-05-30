@@ -34,6 +34,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	private static final long serialVersionUID = 1L;
 	EditeurUML model;
 	IOController superController=new IOController();
+	DrawingTableController dtc;
 
 
 	/**
@@ -92,13 +93,13 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		buttonsMenu.setBackground(new java.awt.Color(224, 224, 224));
 
 		classButton.setText("Class");
-		classButton.addActionListener(new AddObjectControler(TypeObject.CLASS, model.getProject()));
+		classButton.addActionListener(new AddObjectControler(TypeObject.CLASS, model));
 
 		abstractClassButton.setText("Abstract Class");
-		abstractClassButton.addActionListener(new AddObjectControler(TypeObject.ABSTRACT_CLASS, model.getProject()));
+		abstractClassButton.addActionListener(new AddObjectControler(TypeObject.ABSTRACT_CLASS, model));
 
 		interfaceButton.setText("Interface");
-		interfaceButton.addActionListener(new AddObjectControler(TypeObject.INTERFACE, model.getProject()));
+		interfaceButton.addActionListener(new AddObjectControler(TypeObject.INTERFACE, model));
 
 		associationButton.setText("Association");
 		associationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -166,9 +167,9 @@ public class MainView extends javax.swing.JFrame implements Observer{
 				);
 
 		drawingTable.setBackground(new java.awt.Color(254, 254, 254));
-
-		drawingTable.addMouseMotionListener(new DrawingTableController(model.getProject(),drawingTable));
-		drawingTable.addMouseListener(new DrawingTableController(model.getProject(),drawingTable));
+		dtc=new DrawingTableController(model,drawingTable);
+		drawingTable.addMouseMotionListener(dtc);
+		drawingTable.addMouseListener(dtc);
 
 
 		javax.swing.GroupLayout drawingTableLayout = new javax.swing.GroupLayout(drawingTable);
@@ -384,6 +385,9 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		dtc.setModel(model.getProject());
+		drawingTable.setModel(model.getProject());
+		
 		drawingTable.repaint();
 		model.getProject().setIsSave(false);
 	}

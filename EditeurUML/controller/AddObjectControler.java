@@ -3,16 +3,17 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.EditeurUML;
 import model.ProjectUML;
 import model.TypeObject;
 
 public class AddObjectControler implements ActionListener{
 
     private TypeObject type;
-    private ProjectUML model;
+    private EditeurUML model;
 
   
-    public AddObjectControler(TypeObject type, ProjectUML model){
+    public AddObjectControler(TypeObject type, EditeurUML model){
         this.type=type;
         this.model=model;
     }
@@ -20,7 +21,7 @@ public class AddObjectControler implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        model.addObjectUml(type);
+        model.getProject().addObjectUml(type);
     }
 
 }
