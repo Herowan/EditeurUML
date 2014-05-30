@@ -310,23 +310,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		// TODO add your handling code here:
 	}//GEN-LAST:event_inheritanceButtonActionPerformed
 
-	/*
-	public void exitSoftware(){
-		if(model.getProject().isSave()){
-			dispose();
-		}else if(!(model.getProject().getSavePath()==null)){
-			try {
-				superController.save(model,this);
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
-			}	
-			dispose();
-		}else{
-			superController.showSaveFileDialog(model,this);
-			dispose();
-		}
-	}
-	*/
+
 	
 	public void exitSoftware(){
 		if(model.getProject().isSave()){
