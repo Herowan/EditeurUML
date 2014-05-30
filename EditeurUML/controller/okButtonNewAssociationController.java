@@ -17,7 +17,7 @@ public class okButtonNewAssociationController implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Association a = new Association(model.getObjectUmlAtIndex(view.getClass1ComboBox().getSelectedIndex()), model.getObjectUmlAtIndex(view.getClass2ComboBox().getSelectedIndex()), 2);
+		Association a = new Association(model.getObjectUmlAtIndex(view.getClass1ComboBox().getSelectedIndex()), model.getObjectUmlAtIndex(view.getClass2ComboBox().getSelectedIndex()), 3);
 		model.getAssociationList().add(a);
 		view.dispose();
 	}

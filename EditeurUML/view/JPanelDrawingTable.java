@@ -173,21 +173,43 @@ public class JPanelDrawingTable extends JPanel{
 					g.drawPolygon(xPoints, yPoints, 3);
 					lastObjectY=lastObjectY+10;
 				}
-
-				if (a.getTypeOfAssociation()==2){
-					float epaisseur=1; /** taille de la ligne */
-					float[] style = {10,5}; /** les pointillés seront 2 fois plus long que les blancs */
-					g2d.setStroke( new BasicStroke( 
-							epaisseur,
-							BasicStroke.CAP_BUTT,
-							BasicStroke.JOIN_MITER,
-							10.0f,
-							style,
-							0
-							));
-				}
 			} else if (a.getTypeOfAssociation()==3){
-				// TO DO : faire fleche simple
+				int right= a.getFirstObject().isOnTheRigth(a.getLastObject());
+				int above= a.getFirstObject().isAbove(a.getLastObject());
+				
+				if (right>0 && ((right>above && above>0) || (right>above*(-1) && above<0))){
+					// arrow right
+					lastObjectX=a.getLastObject().getX()+maxLength(model.getIndexOfObject(a.getLastObject()), g)+40;
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX+10, lastObjectY+5);
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX+10, lastObjectY-5);
+				} else if (right<0 && ((right*(-1)>above && above>0) || (right*(-1)>above*(-1) && above<0))){
+					// arrow left
+					lastObjectX=a.getLastObject().getX();					
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX-10, lastObjectY+5);
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX-10, lastObjectY-5);
+				} else if (above>0 && above>right){
+					// arrow top
+					lastObjectY=a.getLastObject().getY();
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX+5, lastObjectY-10);
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX-5, lastObjectY-10);
+				} else{
+					// arrow botom
+					lastObjectY=a.getLastObject().getY()+70+20*a.getLastObject().attributListSize()+20*a.getLastObject().methodeListSize();				
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX+5, lastObjectY+10);
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX-5, lastObjectY+10);
+				}
+			}
+			if (a.getTypeOfAssociation()==2 || a.getTypeOfAssociation()==3){
+				float epaisseur=1; /** taille de la ligne */
+				float[] style = {10,5}; /** les pointillés seront 2 fois plus long que les blancs */
+				g2d.setStroke( new BasicStroke( 
+						epaisseur,
+						BasicStroke.CAP_BUTT,
+						BasicStroke.JOIN_MITER,
+						10.0f,
+						style,
+						0
+						));
 			}
 			
 			g.drawLine(firstObjectX,
