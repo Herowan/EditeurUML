@@ -19,7 +19,6 @@ public class OpenProjectController extends IOController implements ActionListene
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(model.getProject().isSave());
 		if(model.getProject().isSave()){
 			openFile();
 		}else{
@@ -30,8 +29,8 @@ public class OpenProjectController extends IOController implements ActionListene
 					e1.printStackTrace();
 				}
 			}
+			openFile();
 		}
-		openFile();
 	}
 	
 
