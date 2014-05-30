@@ -1,12 +1,16 @@
 package view;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Stroke;
 
 import javax.swing.JPanel;
 
+import model.Association;
 import model.ObjectUML;
 import model.ProjectUML;
 import model.TypeObject;
@@ -30,6 +34,13 @@ public class JPanelDrawingTable extends JPanel{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		this.g=g;
+		
+		
+		for (int i=0; i<model.getAssociationList().size(); i++){
+			drawAssociation(i,g);
+		}
+		
+		
 		for (int i=0; i<model.objectsListSize(); i++){
 			int positionX=model.getObjectUmlAtIndex(i).getX();
 			int positionY=model.getObjectUmlAtIndex(i).getY();
@@ -81,13 +92,44 @@ public class JPanelDrawingTable extends JPanel{
 			positionY=positionY+30;
 			positionY=drawAttribute(obj, i, g, color, positionX,positionY);
 			positionY=drawMethod(obj, i, g, color, positionX, positionY);
-
-		
-		}	
-		
+		}
 		
 	}
-	
+
+	private void drawAssociation(int i, Graphics g) {
+
+		Association a=model.getAssociationList().get(i);
+		if (model.projectContains(a.getFirstObject()) && model.projectContains(a.getLastObject())){
+			if (a.getTypeOfAssociation()==0){
+				g.drawLine(a.getFirstObject().getX()+ (maxLength(model.getIndexOfObject(a.getFirstObject()), g)+40)/2,
+						a.getFirstObject().getY()+(70+20*a.getFirstObject().attributListSize()+20*a.getFirstObject().methodeListSize())/2, 
+						a.getLastObject().getX()+(maxLength(model.getIndexOfObject(a.getLastObject()), g)+40)/2, 
+						a.getLastObject().getY()+(70+20*a.getLastObject().attributListSize()+20*a.getLastObject().methodeListSize())/2);
+			}
+			if (a.getTypeOfAssociation()==2){
+				Graphics2D g2d = (Graphics2D) g;
+				float epaisseur=1; /** taille de la ligne */
+				float[] style = {10,5}; /** les pointillés seront 2 fois plus long que les blancs */
+				g2d.setStroke( new BasicStroke( 
+						epaisseur,
+						BasicStroke.CAP_BUTT,
+						BasicStroke.JOIN_MITER,
+						10.0f,
+						style,
+						0
+						));
+				g.drawLine(a.getFirstObject().getX()+ (maxLength(model.getIndexOfObject(a.getFirstObject()), g)+40)/2,
+						a.getFirstObject().getY()+(70+20*a.getFirstObject().attributListSize()+20*a.getFirstObject().methodeListSize())/2, 
+						a.getLastObject().getX()+(maxLength(model.getIndexOfObject(a.getLastObject()), g)+40)/2, 
+						a.getLastObject().getY()+(70+20*a.getLastObject().attributListSize()+20*a.getLastObject().methodeListSize())/2);
+				
+				g2d.setStroke(new BasicStroke());
+			}
+		} else {
+			model.getAssociationList().remove(a);
+		}
+	}
+
 	private int drawAttribute(ObjectUML obj,int i, Graphics g, Color color, int positionX, int positionY){
 			//draw the attribute
 			g.setColor(color);

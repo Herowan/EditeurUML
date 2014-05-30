@@ -3,8 +3,6 @@ package view;
 
 
 
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -103,14 +101,14 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		associationButton.setText("Association");
 		associationButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				associationButtonActionPerformed(evt);
+				new NewAssociationView(model.getProject()).setVisible(true);;
 			}
 		});
 
 		inheritanceButton.setText("Inheritance");
 		inheritanceButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				inheritanceButtonActionPerformed(evt);
+				
 			}
 		});
 
@@ -292,10 +290,6 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	private void cutItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutItemMenuActionPerformed
 		// TODO add your handling code here:
 	}//GEN-LAST:event_cutItemMenuActionPerformed
-
-	private void associationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_associationButtonActionPerformed
-		// TODO add your handling code here:
-	}//GEN-LAST:event_associationButtonActionPerformed
 
 	private void inheritanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inheritanceButtonActionPerformed
 		// TODO add your handling code here:
