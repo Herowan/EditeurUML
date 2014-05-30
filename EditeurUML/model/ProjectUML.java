@@ -89,7 +89,6 @@ public class ProjectUML extends Observable implements Serializable{
 
 	public void addObjectUml(TypeObject type){
 		objectsList.add(new ObjectUML(type,  objectsListSize(),objectWhoHaveType(type)));
-		
 		types.addType(objectsList.get(objectsListSize()-1).getName());
 		setChanged();
 		notifyObservers();

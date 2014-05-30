@@ -10,18 +10,21 @@ import model.TypeObject;
 public class AddObjectControler implements ActionListener{
 
     private TypeObject type;
-    private EditeurUML model;
+    private ProjectUML model;
 
   
     public AddObjectControler(TypeObject type, EditeurUML model){
         this.type=type;
-        this.model=model;
+        this.model=model.getProject();
     }
    
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        model.getProject().addObjectUml(type);
+        model.addObjectUml(type);
     }
 
+    public void setModel(ProjectUML model){
+    	this.model=model;
+    }
 }

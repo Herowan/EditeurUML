@@ -32,6 +32,7 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 	}
 
 	public ProjectUML getProject() {
+
 		return project;
 	}
 
@@ -91,12 +92,15 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 			System.out.println("FAIL in");
 			e.printStackTrace();
 		}
+		project.addObserver(this);
+
 		setChanged();
 		notifyObservers();
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
+
 		setChanged();
 		notifyObservers();
 	}

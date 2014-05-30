@@ -35,7 +35,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	EditeurUML model;
 	IOController superController=new IOController();
 	DrawingTableController dtc;
-
+	AddObjectControler aoc1,aoc2,aoc3;
 
 	/**
 	 * Creates new form MainView
@@ -93,13 +93,16 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		buttonsMenu.setBackground(new java.awt.Color(224, 224, 224));
 
 		classButton.setText("Class");
-		classButton.addActionListener(new AddObjectControler(TypeObject.CLASS, model));
+		aoc1=new AddObjectControler(TypeObject.CLASS, model);
+		classButton.addActionListener(aoc1);
 
 		abstractClassButton.setText("Abstract Class");
-		abstractClassButton.addActionListener(new AddObjectControler(TypeObject.ABSTRACT_CLASS, model));
+		aoc2=new AddObjectControler(TypeObject.ABSTRACT_CLASS, model);
+		abstractClassButton.addActionListener(aoc2);
 
 		interfaceButton.setText("Interface");
-		interfaceButton.addActionListener(new AddObjectControler(TypeObject.INTERFACE, model));
+		aoc3=new AddObjectControler(TypeObject.INTERFACE, model);
+		interfaceButton.addActionListener(aoc3);
 
 		associationButton.setText("Association");
 		associationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -382,12 +385,16 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	private javax.swing.JMenuItem undoItemMenu;
 	// End of variables declaration//GEN-END:variables
 	
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		dtc.setModel(model.getProject());
 		drawingTable.setModel(model.getProject());
-		
+		aoc1.setModel(model.getProject());
+		aoc2.setModel(model.getProject());
+		aoc3.setModel(model.getProject());
+		System.out.println(model.getProject().getSavePath());
 		drawingTable.repaint();
 		model.getProject().setIsSave(false);
 	}
