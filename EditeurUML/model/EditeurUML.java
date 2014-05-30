@@ -1,13 +1,16 @@
 package model;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Stack;
 
 
 public class EditeurUML extends Observable implements Serializable,Observer{
@@ -17,6 +20,8 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ProjectUML> projectList;
 	private ProjectUML project;
+	private ProjectUML projectRedo;
+	private Stack<ProjectUML> undoRedoPile=new Stack<ProjectUML>();
 
 	public EditeurUML(){
 		projectList=new ArrayList<ProjectUML>();
@@ -96,10 +101,19 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 		setChanged();
 		notifyObservers();
 	}
+	
+	public void Undo(){
+		projectRedo=undoRedoPile.pop();
+		setProject(undoRedoPile.pop());
+	}
+	
+	public void Redo(){
+		setProject(projectRedo);
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-
+		undoRedoPile.push(project);
 		setChanged();
 		notifyObservers();
 	}

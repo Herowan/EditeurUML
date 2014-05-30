@@ -23,6 +23,7 @@ import controller.NewProjectController;
 import controller.OpenProjectController;
 import controller.SaveAsProjectController;
 import controller.SaveProjectController;
+import controller.UndoController;
 import model.EditeurUML;
 import model.TypeObject;
 
@@ -250,10 +251,12 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		undoItemMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
 		undoItemMenu.setText("Undo");
 		editMenu.add(undoItemMenu);
+		undoItemMenu.addActionListener(new UndoController(model));
 
 		redoItemMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
 		redoItemMenu.setText("Redo");
 		editMenu.add(redoItemMenu);
+		redoItemMenu.addActionListener(new UndoController(model));
 
 		cutItemMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
 		cutItemMenu.setText("Cut");
