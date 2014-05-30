@@ -7,6 +7,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Observable;
@@ -90,6 +92,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 		setTitle("SogniDoro");
 
+		
 		buttonsMenu.setBackground(new java.awt.Color(224, 224, 224));
 
 		classButton.setText("Class");
@@ -168,7 +171,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 						.addComponent(inheritanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
-
+		
 		drawingTable.setBackground(new java.awt.Color(254, 254, 254));
 		dtc=new DrawingTableController(model,drawingTable);
 		drawingTable.addMouseMotionListener(dtc);
@@ -396,6 +399,5 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		aoc3.setModel(model.getProject());
 		System.out.println(model.getProject().getSavePath());
 		drawingTable.repaint();
-		model.getProject().setIsSave(false);
 	}
 }

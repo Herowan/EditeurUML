@@ -48,7 +48,6 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 	}
 	
 	public void saveProject(){
-		System.out.println("2");
 		try {
 			project.setIsSave(true);
 			FileOutputStream fichier = new FileOutputStream(project.getSavePath());

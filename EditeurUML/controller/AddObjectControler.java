@@ -22,6 +22,7 @@ public class AddObjectControler implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent arg0) {
         model.addObjectUml(type);
+		model.setIsSave(false);
     }
 
     public void setModel(ProjectUML model){

@@ -80,7 +80,9 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     }
     
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {
+		model.setIsSave(false);
+    }
 
     @Override
     public void mouseEntered(MouseEvent e) {}
