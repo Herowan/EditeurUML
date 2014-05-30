@@ -5,8 +5,6 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Observable;
@@ -299,10 +297,6 @@ public class MainView extends javax.swing.JFrame implements Observer{
 	private void cutItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutItemMenuActionPerformed
 		// TODO add your handling code here:
 	}//GEN-LAST:event_cutItemMenuActionPerformed
-
-	private void inheritanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inheritanceButtonActionPerformed
-		// TODO add your handling code here:
-	}//GEN-LAST:event_inheritanceButtonActionPerformed
 
 
 	

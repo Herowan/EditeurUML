@@ -6,10 +6,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Stroke;
-
 import javax.swing.JPanel;
-
 import model.Association;
 import model.ObjectUML;
 import model.ProjectUML;
@@ -189,6 +186,8 @@ public class JPanelDrawingTable extends JPanel{
 							0
 							));
 				}
+			} else if (a.getTypeOfAssociation()==3){
+				// TO DO : faire fleche simple
 			}
 			
 			g.drawLine(firstObjectX,
