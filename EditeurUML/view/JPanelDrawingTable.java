@@ -1,12 +1,13 @@
 package view;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-
+import java.awt.Graphics2D;
 import javax.swing.JPanel;
-
+import model.Association;
 import model.ObjectUML;
 import model.ProjectUML;
 import model.TypeObject;
@@ -34,6 +35,13 @@ public class JPanelDrawingTable extends JPanel{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		this.g=g;
+		
+		
+		for (int i=0; i<model.getAssociationList().size(); i++){
+			drawAssociation(i,g);
+		}
+		
+		
 		for (int i=0; i<model.objectsListSize(); i++){
 			int positionX=model.getObjectUmlAtIndex(i).getX();
 			int positionY=model.getObjectUmlAtIndex(i).getY();
@@ -85,13 +93,135 @@ public class JPanelDrawingTable extends JPanel{
 			positionY=positionY+30;
 			positionY=drawAttribute(obj, i, g, color, positionX,positionY);
 			positionY=drawMethod(obj, i, g, color, positionX, positionY);
-
-		
-		}	
-		
+		}
 		
 	}
-	
+
+	private void drawAssociation(int i, Graphics g) {
+
+		Association a=model.getAssociationList().get(i);
+		Graphics2D g2d = (Graphics2D) g;
+		int firstObjectX = a.getFirstObject().getX()+ (maxLength(model.getIndexOfObject(a.getFirstObject()), g)+40)/2;
+		int firstObjectY = a.getFirstObject().getY()+(70+20*a.getFirstObject().attributListSize()+20*a.getFirstObject().methodeListSize())/2;
+		int lastObjectX = a.getLastObject().getX()+(maxLength(model.getIndexOfObject(a.getLastObject()), g)+40)/2;
+		int lastObjectY = a.getLastObject().getY()+(70+20*a.getLastObject().attributListSize()+20*a.getLastObject().methodeListSize())/2;
+		
+		if (model.projectContains(a.getFirstObject()) && model.projectContains(a.getLastObject())){
+
+			if (a.getTypeOfAssociation()>0 && a.getTypeOfAssociation()<3){
+				int[] xPoints= new int[3];
+				int[] yPoints= new int[3];
+				
+				int right= a.getFirstObject().isOnTheRigth(a.getLastObject());
+				int above= a.getFirstObject().isAbove(a.getLastObject());
+				
+				if (right>0 && ((right>above && above>0) || (right>above*(-1) && above<0))){
+					System.out.println("Right");
+					// arrow right
+					lastObjectX=a.getLastObject().getX()+maxLength(model.getIndexOfObject(a.getLastObject()), g)+40;
+					xPoints[0]=lastObjectX;
+					xPoints[1]=lastObjectX+10;
+					xPoints[2]=lastObjectX+10;
+
+					yPoints[0] = lastObjectY;
+					yPoints[1] =lastObjectY+5;
+					yPoints[2] =lastObjectY-5;
+					
+					g.drawPolygon(xPoints, yPoints, 3);
+					lastObjectX=lastObjectX+10;
+				} else if (right<0 && ((right*(-1)>above && above>0) || (right*(-1)>above*(-1) && above<0))){
+					System.out.println("Left");
+					// arrow left
+					lastObjectX=a.getLastObject().getX();
+					xPoints[0]=lastObjectX;
+					xPoints[1]=lastObjectX-10;
+					xPoints[2]=lastObjectX-10;
+
+					yPoints[0] = lastObjectY;
+					yPoints[1] =lastObjectY+5;
+					yPoints[2] =lastObjectY-5;
+					
+					g.drawPolygon(xPoints, yPoints, 3);
+					lastObjectX=lastObjectX-10;
+				} else if (above>0 && above>right){
+					System.out.println("Top");
+					// arrow top
+					lastObjectY=a.getLastObject().getY();
+					
+					xPoints[0]=lastObjectX;
+					xPoints[1]=lastObjectX+5;
+					xPoints[2]=lastObjectX-5;
+
+					yPoints[0] = lastObjectY;
+					yPoints[1] =lastObjectY-10;
+					yPoints[2] =lastObjectY-10;
+					
+					g.drawPolygon(xPoints, yPoints, 3);
+					lastObjectY=lastObjectY-10;
+				} else{
+					// arrow botom
+					System.out.println("Bottom");
+					lastObjectY=a.getLastObject().getY()+70+20*a.getLastObject().attributListSize()+20*a.getLastObject().methodeListSize();
+					xPoints[0]=lastObjectX;
+					xPoints[1]=lastObjectX+5;
+					xPoints[2]=lastObjectX-5;
+
+					yPoints[0] = lastObjectY;
+					yPoints[1] =lastObjectY+10;
+					yPoints[2] =lastObjectY+10;
+					
+					g.drawPolygon(xPoints, yPoints, 3);
+					lastObjectY=lastObjectY+10;
+				}
+			} else if (a.getTypeOfAssociation()==3){
+				int right= a.getFirstObject().isOnTheRigth(a.getLastObject());
+				int above= a.getFirstObject().isAbove(a.getLastObject());
+				
+				if (right>0 && ((right>above && above>0) || (right>above*(-1) && above<0))){
+					// arrow right
+					lastObjectX=a.getLastObject().getX()+maxLength(model.getIndexOfObject(a.getLastObject()), g)+40;
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX+10, lastObjectY+5);
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX+10, lastObjectY-5);
+				} else if (right<0 && ((right*(-1)>above && above>0) || (right*(-1)>above*(-1) && above<0))){
+					// arrow left
+					lastObjectX=a.getLastObject().getX();					
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX-10, lastObjectY+5);
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX-10, lastObjectY-5);
+				} else if (above>0 && above>right){
+					// arrow top
+					lastObjectY=a.getLastObject().getY();
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX+5, lastObjectY-10);
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX-5, lastObjectY-10);
+				} else{
+					// arrow botom
+					lastObjectY=a.getLastObject().getY()+70+20*a.getLastObject().attributListSize()+20*a.getLastObject().methodeListSize();				
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX+5, lastObjectY+10);
+					g.drawLine(lastObjectX, lastObjectY, lastObjectX-5, lastObjectY+10);
+				}
+			}
+			if (a.getTypeOfAssociation()==2 || a.getTypeOfAssociation()==3){
+				float epaisseur=1; /** taille de la ligne */
+				float[] style = {10,5}; /** les pointillés seront 2 fois plus long que les blancs */
+				g2d.setStroke( new BasicStroke( 
+						epaisseur,
+						BasicStroke.CAP_BUTT,
+						BasicStroke.JOIN_MITER,
+						10.0f,
+						style,
+						0
+						));
+			}
+			
+			g.drawLine(firstObjectX,
+					firstObjectY, 
+					lastObjectX, 
+					lastObjectY);
+		} else {
+			model.getAssociationList().remove(a);
+		}
+		g2d.setStroke(new BasicStroke());
+	}
+
 	private int drawAttribute(ObjectUML obj,int i, Graphics g, Color color, int positionX, int positionY){
 			//draw the attribute
 			g.setColor(color);

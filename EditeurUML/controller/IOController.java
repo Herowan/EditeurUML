@@ -24,6 +24,7 @@ public class IOController {
 			if(!fileName.substring(fileName.length()-4).equals(".uml")){
 				fileName+=".uml";
 			}
+
 			model.getProject().setSavePath(fileName);
 			model.getProject().setIsSave(true);
 			model.saveProjectAs(fileName);

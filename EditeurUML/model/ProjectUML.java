@@ -72,6 +72,14 @@ public class ProjectUML extends Observable implements Serializable{
 	public ObjectUML getObjectUmlAtIndex(int index){
 		return objectsList.get(index);
 	}
+	public ObjectUML getObjectByName(String name){
+		for (int i=0; i<objectsListSize(); i++){
+			if (objectsList.get(i).getName().equals(name)){
+				return objectsList.get(i);
+			}
+		}
+		return null;
+	}
 
 	public int objectsListSize(){
 		return objectsList.size();
@@ -87,6 +95,12 @@ public class ProjectUML extends Observable implements Serializable{
 		return count;
 	}
 
+	public boolean projectContains(ObjectUML object){
+		for (int i=0; i<objectsListSize(); i++){
+			if (getObjectUmlAtIndex(i).equals(object)) return true;
+		}
+		return false;
+	}
 	public void addObjectUml(TypeObject type){
 		objectsList.add(new ObjectUML(type,  objectsListSize(),objectWhoHaveType(type)));
 		types.addType(objectsList.get(objectsListSize()-1).getName());
@@ -114,8 +128,6 @@ public class ProjectUML extends Observable implements Serializable{
 		setChanged();
 		notifyObservers();
 	}
-	
-
 
 	public void deleteObjectUml(int index){
 		objectsList.remove(index);
@@ -208,6 +220,13 @@ public class ProjectUML extends Observable implements Serializable{
 
 	public void setObjectOfMethodSelected(int objectOfMethodSelected) {
 		this.objectOfMethodSelected = objectOfMethodSelected;
+	}
+
+	public int getIndexOfObject(ObjectUML object) {
+		for (int i=0; i<objectsListSize(); i++){
+			if (getObjectUmlAtIndex(i).equals(object)) return i;
+		}
+		return -1;
 	}
 	
 	
