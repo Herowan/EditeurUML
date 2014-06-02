@@ -390,7 +390,6 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		aoc1.setModel(model.getProject());
 		aoc2.setModel(model.getProject());
 		aoc3.setModel(model.getProject());
-		System.out.println(model.getProject().getSavePath());
 		drawingTable.repaint();
 	}
 }

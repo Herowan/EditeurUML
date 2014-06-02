@@ -116,7 +116,6 @@ public class JPanelDrawingTable extends JPanel{
 				int above= a.getFirstObject().isAbove(a.getLastObject());
 				
 				if (right>0 && ((right>above && above>0) || (right>above*(-1) && above<0))){
-					System.out.println("Right");
 					// arrow right
 					lastObjectX=a.getLastObject().getX()+maxLength(model.getIndexOfObject(a.getLastObject()), g)+40;
 					xPoints[0]=lastObjectX;
@@ -130,7 +129,6 @@ public class JPanelDrawingTable extends JPanel{
 					g.drawPolygon(xPoints, yPoints, 3);
 					lastObjectX=lastObjectX+10;
 				} else if (right<0 && ((right*(-1)>above && above>0) || (right*(-1)>above*(-1) && above<0))){
-					System.out.println("Left");
 					// arrow left
 					lastObjectX=a.getLastObject().getX();
 					xPoints[0]=lastObjectX;
@@ -144,7 +142,6 @@ public class JPanelDrawingTable extends JPanel{
 					g.drawPolygon(xPoints, yPoints, 3);
 					lastObjectX=lastObjectX-10;
 				} else if (above>0 && above>right){
-					System.out.println("Top");
 					// arrow top
 					lastObjectY=a.getLastObject().getY();
 					
@@ -160,7 +157,6 @@ public class JPanelDrawingTable extends JPanel{
 					lastObjectY=lastObjectY-10;
 				} else{
 					// arrow botom
-					System.out.println("Bottom");
 					lastObjectY=a.getLastObject().getY()+70+20*a.getLastObject().attributListSize()+20*a.getLastObject().methodeListSize();
 					xPoints[0]=lastObjectX;
 					xPoints[1]=lastObjectX+5;
