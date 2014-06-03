@@ -17,9 +17,8 @@ import model.ProjectUML;
  * @author aur
  */
 public class NewAssociationView extends javax.swing.JFrame {
-	
-	ProjectUML model;
 
+	ProjectUML model;
     /**
 	 * 
 	 */
@@ -29,6 +28,7 @@ public class NewAssociationView extends javax.swing.JFrame {
      */
     public NewAssociationView(ProjectUML model) {
     	this.model=model;
+    	
         initComponents();
     }
 
@@ -46,27 +46,28 @@ public class NewAssociationView extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        nameTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("New Association");
 
         class1ComboBox.setModel(new ComboBoxClassModel(model));
+
         class2ComboBox.setModel(new ComboBoxClassModel(model));
-        if (model.objectsListSize()>0){
-        	class1ComboBox.setSelectedIndex(0);
-        	class2ComboBox.setSelectedIndex(0);
-        }
 
         okButton.setText("OK");
-        okButton.addActionListener(new okButtonNewAssociationController(model,this));
+        okButton.addActionListener(new okButtonNewAssociationController(model, this));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
+
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,7 +79,9 @@ public class NewAssociationView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(class1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                            .addComponent(nameTextField))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(class2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -93,13 +96,14 @@ public class NewAssociationView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(class1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(class2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(cancelButton))
@@ -108,6 +112,7 @@ public class NewAssociationView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
+                                          
 
     /**
      * @param args the command line arguments
@@ -149,8 +154,9 @@ public class NewAssociationView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> class1ComboBox;
     private javax.swing.JComboBox<String> class2ComboBox;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField nameTextField;
     private javax.swing.JButton okButton;
-    // End of variables declaration
+    // End of variables declaration    
 	public javax.swing.JComboBox<String> getClass1ComboBox() {
 		return class1ComboBox;
 	}
@@ -158,6 +164,10 @@ public class NewAssociationView extends javax.swing.JFrame {
 	public javax.swing.JComboBox<String> getClass2ComboBox() {
 		return class2ComboBox;
 	}
-    
+
+	public javax.swing.JTextField getNameTextField() {
+		return nameTextField;
+	}
     
 }
+
