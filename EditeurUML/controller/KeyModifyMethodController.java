@@ -56,13 +56,13 @@ public class KeyModifyMethodController implements KeyListener {
 				model.setWarning("This method already exist");
 				view.getOkButton().setEnabled(false);
 			}
+			if(view.getNameTextField().getText().charAt(0)>='A'&&view.getNameTextField().getText().charAt(0)<='Z'){
+				model.setWarning("Method Name begin with a lower case");
+			}
 		} else {
 			model.setWarning("Method name is empty");
 			view.getOkButton().setEnabled(false);
 		}		
-		if(view.getNameTextField().getText().charAt(0)>='A'&&view.getNameTextField().getText().charAt(0)<='Z'){
-			model.setWarning("Method Name begin with a lower case");
-		}
 	}
 
 }
