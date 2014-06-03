@@ -6,14 +6,28 @@
 
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JComboBox;
+
+import controller.KeyModifyAttributeObjectController;
+import controller.KeyModifyNameObjectController;
+import controller.okButtonModifyAttributeController;
+import model.ProjectUML;
 
 /**
  *
  * @author aur
  */
-public class ModifyAttributeObjectView extends javax.swing.JFrame {
+public class ModifyAttributeObjectView extends javax.swing.JFrame implements Observer{
 
+	
+	private ProjectUML model;
+	private int index;
+	private int attribute;
     /**
 	 * 
 	 */
@@ -23,6 +37,15 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
      */
     public ModifyAttributeObjectView() {
         initComponents();
+    }
+
+    public ModifyAttributeObjectView(ProjectUML model, int i, int j) {
+        this.model=model;
+        model.addObserver(this);
+        this.index=i;
+        this.attribute=j;
+    	initComponents();
+    	this.setLocation(100, 100);
     }
 
     /**
@@ -51,26 +74,37 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
 
         visibilityLabel.setText("Visibility");
 
-        visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "private", "protected", "default", "public" }));
+        visibilityComboBox.setSelectedItem(model.getObjectUmlAtIndex(index).getAttributeAt(attribute).getVisibilityA().getName());
 
         typeLabel.setText("Type");
 
-        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        typeComboBox.setModel(new ComboBoxTypeModel(model,0));
+        typeComboBox.setSelectedItem(model.getObjectUmlAtIndex(index).getAttributeAt(attribute).getType());
+        
         nameLabel.setText("Name");
 
-        nameTextField.setText("jTextField1");
+        nameTextField.setText(model.getObjectUmlAtIndex(index).getAttributeAt(attribute).getName());
+        nameTextField.addKeyListener(new KeyModifyAttributeObjectController(this,model));
 
         okButton.setText("OK");
+        okButton.addActionListener(new okButtonModifyAttributeController(this));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                dispose();
             }
         });
 
         deleteButton.setText("Delete");
+        deleteButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				model.getObjectUmlAtIndex(index).deleteAttribute(attribute);
+				dispose();
+			}
+		});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,7 +164,35 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    public javax.swing.JComboBox<String> getTypeComboBox() {
+		return typeComboBox;
+	}
+
+	public javax.swing.JComboBox<String> getVisibilityComboBox() {
+		return visibilityComboBox;
+	}
+
+	public ProjectUML getModel() {
+		return model;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public int getAttribute() {
+		return attribute;
+	}
+
+	public javax.swing.JTextField getNameTextField() {
+		return nameTextField;
+	}
+
+	public javax.swing.JButton getOkButton() {
+		return okButton;
+	}
+
+	private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
 
@@ -181,4 +243,8 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
     private javax.swing.JLabel visibilityLabel;
     private javax.swing.JLabel warningLabel;
     // End of variables declaration//GEN-END:variables
+	@Override
+	public void update(Observable o, Object arg) {
+		warningLabel.setText(model.getWarning());
+	}
 }
