@@ -17,6 +17,7 @@ import java.util.Observer;
 import javax.swing.JOptionPane;
 
 import controller.AddObjectControler;
+import controller.AssociationController;
 import controller.DrawingTableController;
 import controller.IOController;
 import controller.NewProjectController;
@@ -190,32 +191,20 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		interfaceButton.addActionListener(aoc3);
         
         associationButton.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/association.png")); // NOI18N
-        associationButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				new NewAssociationView(model.getProject()).setVisible(true);;
-			}
-		});
+        ac0 = new AssociationController(this,model.getProject(), 0);
+        associationButton.addActionListener(ac0);
         
         extendButton.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/extend.png")); // NOI18N
-        extendButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				new NewAssociationView(model.getProject()).setVisible(true);;
-			}
-		});
+        ac1 = new AssociationController(this,model.getProject(), 1);
+        extendButton.addActionListener(ac1);
 
         implementButton.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/implement.png")); // NOI18N
-        implementButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				new NewAssociationView(model.getProject()).setVisible(true);;
-			}
-		});
+        ac2=new AssociationController(this,model.getProject(), 2);
+        implementButton.addActionListener(ac2);
 
         dependenceButton.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/dependence.png")); // NOI18N
-        dependenceButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				new NewAssociationView(model.getProject()).setVisible(true);;
-			}
-		});
+        ac3 = new AssociationController(this,model.getProject(), 3);
+        dependenceButton.addActionListener(ac3);
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -432,13 +421,23 @@ public class MainView extends javax.swing.JFrame implements Observer {
     private javax.swing.JToolBar toolBar;
     private javax.swing.JMenuItem undoItemMenu;
     // End of variables declaration                   
-	@Override
+	
+	AssociationController ac0;
+	AssociationController ac1;
+	AssociationController ac2;
+	AssociationController ac3;
 	public void update(Observable o, Object arg) {
 		dtc.setModel(model.getProject());
 		drawingTable.setModel(model.getProject());
 		aoc1.setModel(model.getProject());
 		aoc2.setModel(model.getProject());
 		aoc3.setModel(model.getProject());
+		
+		ac0.setModel(model.getProject());
+		ac1.setModel(model.getProject());
+		ac2.setModel(model.getProject());
+		ac3.setModel(model.getProject());
+		
 		drawingTable.repaint();
 		
 	}

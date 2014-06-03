@@ -8,7 +8,6 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import controller.okButtonNewAssociationController;
 import model.ProjectUML;
 
@@ -19,6 +18,7 @@ import model.ProjectUML;
 public class NewAssociationView extends javax.swing.JFrame {
 
 	ProjectUML model;
+	int type;
     /**
 	 * 
 	 */
@@ -26,9 +26,9 @@ public class NewAssociationView extends javax.swing.JFrame {
 	/**
      * Creates new form NewAssociationView
      */
-    public NewAssociationView(ProjectUML model) {
+    public NewAssociationView(ProjectUML model, int type) {
     	this.model=model;
-    	
+    	this.type=type;
         initComponents();
     }
 
@@ -49,14 +49,33 @@ public class NewAssociationView extends javax.swing.JFrame {
         nameTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("New Association");
+        switch (type) {
+		case 0:
+			setTitle("New Association");
+			break;
+		case 1:
+			setTitle("New Extend");
+			break;
+		case 2:
+			setTitle("New Implement");
+			break;
+		case 3:
+			setTitle("New Dependence");
+			break;
+		default:
+			break;
+		}
+        
 
         class1ComboBox.setModel(new ComboBoxClassModel(model));
+        class1ComboBox.setSelectedIndex(0);
 
         class2ComboBox.setModel(new ComboBoxClassModel(model));
+        class2ComboBox.setSelectedIndex(1);
+
 
         okButton.setText("OK");
-        okButton.addActionListener(new okButtonNewAssociationController(model, this));
+        okButton.addActionListener(new okButtonNewAssociationController(model, this, type));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new ActionListener() {
@@ -144,7 +163,7 @@ public class NewAssociationView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewAssociationView(new ProjectUML()).setVisible(true);
+                new NewAssociationView(new ProjectUML(),0).setVisible(true);
             }
         });
     }
