@@ -149,6 +149,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 																		.addComponent(associationButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 																		.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
 				);
+	
 		buttonsMenuLayout.setVerticalGroup(
 				buttonsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(buttonsMenuLayout.createSequentialGroup()
