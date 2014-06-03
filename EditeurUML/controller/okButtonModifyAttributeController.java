@@ -3,14 +3,14 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import view.ModifyAttributeObjectView;
+import view.ModifyAttributeObjectView2;
 import model.Visibility;
 
 public class okButtonModifyAttributeController implements ActionListener{
 	
-	ModifyAttributeObjectView modifyAttributeView;
+	ModifyAttributeObjectView2 modifyAttributeView;
 	
-	public okButtonModifyAttributeController(ModifyAttributeObjectView modifyAttributeView) {
+	public okButtonModifyAttributeController(ModifyAttributeObjectView2 modifyAttributeView) {
 		this.modifyAttributeView=modifyAttributeView;
 	}
 

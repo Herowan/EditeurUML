@@ -7,13 +7,13 @@ import javax.swing.JOptionPane;
 
 import model.Method;
 import model.Visibility;
-import view.ModifyMethodObjectView;
+import view.ModifyMethodObjectView2;
 
 public class okButtonModifyMethodController implements ActionListener{
 	
-	ModifyMethodObjectView modifyMethodView;
+	ModifyMethodObjectView2 modifyMethodView;
 	
-	public okButtonModifyMethodController(ModifyMethodObjectView modifyMethodView) {
+	public okButtonModifyMethodController(ModifyMethodObjectView2 modifyMethodView) {
 		this.modifyMethodView=modifyMethodView;
 	}
 

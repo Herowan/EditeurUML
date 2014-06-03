@@ -5,9 +5,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import view.JPanelDrawingTable;
-import view.ModifyAttributeObjectView;
-import view.ModifyMethodObjectView;
-import view.ModifyNameObjectView;
+import view.ModifyAttributeObjectView2;
+import view.ModifyMethodObjectView2;
+import view.ModifyNameObjectView2;
 import view.NewAttributeView;
 import view.NewMethodView;
 import model.EditeurUML;
@@ -109,14 +109,14 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
             if(!quit) quit =crossMethodZone(e, i, buttonPositionX, buttonPositionY);
             if(!quit) quit =crossQuitZone(e,i);
             if(!quit && nameOfTheObject(e, i)){
-            	new ModifyNameObjectView(model,i).setVisible(true);
+            	new ModifyNameObjectView2(model,i).setVisible(true);
             	quit=true;
             }
             if (!quit){
             	for (int j=0; j<model.getObjectUmlAtIndex(i).attributListSize(); j++){
             		if(attributeOfTheObject(e, i, j) && !quit){
             			quit=true;
-            			new ModifyAttributeObjectView(model,i,j).setVisible(true);;
+            			new ModifyAttributeObjectView2(model,i,j).setVisible(true);;
             		}
             	}
             }
@@ -124,7 +124,7 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
             	for (int j=0; j<model.getObjectUmlAtIndex(i).methodeListSize();j++){
             		if(methodOfTheObject(e, i, j) && !quit){
             			quit = true;
-            			new ModifyMethodObjectView(model,i,j).setVisible(true);;
+            			new ModifyMethodObjectView2(model,i,j).setVisible(true);;
             		}
             	}
             }

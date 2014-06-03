@@ -13,7 +13,7 @@ import model.ProjectUML;
  *
  * @author aur
  */
-public class ModifyNameObjectView extends javax.swing.JFrame {
+public class ModifyNameObjectView2 extends javax.swing.JFrame {
 	
 	/**
 	 * 
@@ -27,7 +27,7 @@ public class ModifyNameObjectView extends javax.swing.JFrame {
      * @param i 
      * @param model 
      */
-    public ModifyNameObjectView(ProjectUML model, int i) {
+    public ModifyNameObjectView2(ProjectUML model, int i) {
     	this.model=model;
     	this.index=i;
         initComponents();
@@ -116,20 +116,20 @@ public class ModifyNameObjectView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModifyNameObjectView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyNameObjectView2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModifyNameObjectView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyNameObjectView2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModifyNameObjectView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyNameObjectView2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModifyNameObjectView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyNameObjectView2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModifyNameObjectView(new ProjectUML(),0).setVisible(true);
+                new ModifyNameObjectView2(new ProjectUML(),0).setVisible(true);
             }
         });
     }

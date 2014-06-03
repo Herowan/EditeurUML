@@ -15,7 +15,7 @@ import model.ProjectUML;
  *
  * @author aur
  */
-public class ModifyAttributeObjectView extends javax.swing.JFrame {
+public class ModifyAttributeObjectView2 extends javax.swing.JFrame {
 
     /**
 	 * 
@@ -32,7 +32,7 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
 	 * @param i 
 	 * @param model 
      */
-    public ModifyAttributeObjectView(ProjectUML model, int i, int j) {
+    public ModifyAttributeObjectView2(ProjectUML model, int i, int j) {
         this.model=model;
         this.index=i;
         this.attribute=j;
@@ -165,20 +165,20 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModifyAttributeObjectView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyAttributeObjectView2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModifyAttributeObjectView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyAttributeObjectView2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModifyAttributeObjectView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyAttributeObjectView2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModifyAttributeObjectView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyAttributeObjectView2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModifyAttributeObjectView(new ProjectUML(),0,0).setVisible(true);
+                new ModifyAttributeObjectView2(new ProjectUML(),0,0).setVisible(true);
             }
         });
     }

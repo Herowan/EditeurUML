@@ -4,13 +4,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import view.ModifyNameObjectView;
+import view.ModifyNameObjectView2;
 
 public class okButtonModifyNameController implements ActionListener{
-	ModifyNameObjectView view;
+	ModifyNameObjectView2 view;
 	
 
-	public okButtonModifyNameController(ModifyNameObjectView view) {
+	public okButtonModifyNameController(ModifyNameObjectView2 view) {
 		this.view=view;
 	}
 	public void actionPerformed(java.awt.event.ActionEvent evt) {
