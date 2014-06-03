@@ -6,12 +6,23 @@
 
 package view;
 
+import java.util.Observable;
+import java.util.Observer;
+
+import controller.KeyModifyNameObjectController;
+import controller.okButtonModifyNameController;
+import model.ProjectUML;
+
 /**
  *
  * @author aur
  */
-public class ModifyNameObjectView extends javax.swing.JFrame {
+public class ModifyNameObjectView extends javax.swing.JFrame implements Observer{
 
+	ProjectUML model;
+	
+
+	int index;
     /**
 	 * 
 	 */
@@ -23,6 +34,12 @@ public class ModifyNameObjectView extends javax.swing.JFrame {
         initComponents();
     }
 
+    public ModifyNameObjectView(ProjectUML model, int index){
+    	this.model=model;
+    	model.addObserver(this);
+    	this.index=index;
+        initComponents();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,24 +59,23 @@ public class ModifyNameObjectView extends javax.swing.JFrame {
         setTitle("Modify Name");
 
         okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
-            }
-        });
+        okButton.addActionListener(new okButtonModifyNameController(this));
+
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+            	dispose();
             }
         });
 
         nameLabel.setText("Name :");
 
-        nameJTextField.setText("jTextField1");
+        nameJTextField.setText(model.getObjectUmlAtIndex(index).getName());
+        nameJTextField.addKeyListener(new KeyModifyNameObjectController(this,model));
 
-        warningLabel.setText("jLabel1");
+        warningLabel.setText("");
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,13 +117,9 @@ public class ModifyNameObjectView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_okButtonActionPerformed
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    public javax.swing.JButton getOkButton() {
+		return okButton;
+	}
 
     /**
      * @param args the command line arguments
@@ -143,6 +155,18 @@ public class ModifyNameObjectView extends javax.swing.JFrame {
             }
         });
     }
+    
+    public ProjectUML getModel() {
+		return model;
+	}
+
+	public javax.swing.JTextField getNameJTextField() {
+		return nameJTextField;
+	}
+	
+	public int getIndex(){
+		return index;
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
@@ -151,4 +175,9 @@ public class ModifyNameObjectView extends javax.swing.JFrame {
     private javax.swing.JButton okButton;
     private javax.swing.JLabel warningLabel;
     // End of variables declaration//GEN-END:variables
+    
+	@Override
+	public void update(Observable o, Object arg) {
+		warningLabel.setText(model.getWarning());		
+	}
 }

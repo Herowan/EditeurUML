@@ -12,7 +12,7 @@ import view.ModifyMethodObjectView;
 public class KeyModifyMethodController implements KeyListener {
 
 	private ModifyMethodObjectView view;
-	ProjectUML model;
+	private ProjectUML model;
 
 	public KeyModifyMethodController(ModifyMethodObjectView view,ProjectUML model){
 		this.view=view;

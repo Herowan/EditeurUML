@@ -64,12 +64,6 @@ public class ModifyMethodObjectView extends javax.swing.JFrame implements Observ
         nameLabel = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         parameterLabel = new javax.swing.JLabel();
-        parameterComboBox4 = new javax.swing.JComboBox<String>();
-        paramterComboBox1 = new javax.swing.JComboBox<String>();
-        parameterComboBox2 = new javax.swing.JComboBox<String>();
-        parameterComboBox3 = new javax.swing.JComboBox<String>();
-        parameterComboBox5 = new javax.swing.JComboBox<String>();
-        parameterComboBox6 = new javax.swing.JComboBox<String>();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
@@ -80,7 +74,7 @@ public class ModifyMethodObjectView extends javax.swing.JFrame implements Observ
 
         visibilityLabel.setText("Visibility");
 
-        visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "private", "protected", "default", "public"  }));
+        visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "private", "protected", "default", "public"  }));
         visibilityComboBox.setSelectedItem(model.getObjectUmlAtIndex(index).getMehodAt(method).getVisibilityM().getName());
 
         returnTypeLabel.setText("Return Type");
@@ -324,13 +318,7 @@ public class ModifyMethodObjectView extends javax.swing.JFrame implements Observ
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton okButton;
-	private javax.swing.JComboBox<String> parameterComboBox2;
-    private javax.swing.JComboBox<String> parameterComboBox3;
-    private javax.swing.JComboBox<String> parameterComboBox4;
-    private javax.swing.JComboBox<String> parameterComboBox5;
-    private javax.swing.JComboBox<String> parameterComboBox6;
     private javax.swing.JLabel parameterLabel;
-    private javax.swing.JComboBox<String> paramterComboBox1;
     private javax.swing.JComboBox<String> returnTypeComboBox;
     private javax.swing.JLabel returnTypeLabel;
     private javax.swing.JComboBox<String> visibilityComboBox;
