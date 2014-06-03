@@ -3,7 +3,6 @@ package controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JOptionPane;
 
 import model.Method;
 import model.ProjectUML;
@@ -13,12 +12,10 @@ import view.ModifyMethodObjectView;
 public class KeyModifyMethodController implements KeyListener {
 
 	private ModifyMethodObjectView view;
-	private String name;
 	ProjectUML model;
 
-	public KeyModifyMethodController(ModifyMethodObjectView view,ProjectUML model,String name){
+	public KeyModifyMethodController(ModifyMethodObjectView view,ProjectUML model){
 		this.view=view;
-		this.name=name;
 		this.model=model;
 	}
 
@@ -30,13 +27,12 @@ public class KeyModifyMethodController implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if (!name.equals("")){
+		if (!view.getNameTextField().getText().equals("")){
 			boolean unique=true;
 			String visibility = (String) view.getVisibilityComboBox().getSelectedItem();
 			Visibility visi;
@@ -44,7 +40,7 @@ public class KeyModifyMethodController implements KeyListener {
 			else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
 			else if (visibility.equals("default")) visi = Visibility.DEFAULT;
 			else visi = Visibility.PUBLIC;
-			Method newMethod = new Method(name, (String) view.getReturnTypeComboBox().getSelectedItem(), visi, view.parameterValid());
+			Method newMethod = new Method(view.getNameTextField().getText(), (String) view.getReturnTypeComboBox().getSelectedItem(), visi, view.parameterValid());
 
 			for (int i=0; i<view.getModel().getObjectUmlAtIndex(view.getIndex()).methodeListSize(); i++){
 				if (view.getMethod()!=i
@@ -52,16 +48,19 @@ public class KeyModifyMethodController implements KeyListener {
 					unique=false;
 				}
 			}
-			if (unique){			
-				view.getOkButton().setEnabled(false);
+			if (unique){
+				model.setWarning("");
+
+				view.getOkButton().setEnabled(true);
 			} else {
 				model.setWarning("This method already exist");
 				view.getOkButton().setEnabled(false);
 			}
 		} else {
 			model.setWarning("Method name is empty");
+			view.getOkButton().setEnabled(false);
 		}		
-		if(name.charAt(0)>='A'&&name.charAt(0)<='Z'){
+		if(view.getNameTextField().getText().charAt(0)>='A'&&view.getNameTextField().getText().charAt(0)<='Z'){
 			model.setWarning("Method Name begin with a lower case");
 		}
 	}

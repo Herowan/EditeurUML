@@ -124,7 +124,7 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
             	for (int j=0; j<model.getObjectUmlAtIndex(i).methodeListSize();j++){
             		if(methodOfTheObject(e, i, j) && !quit){
             			quit = true;
-            			new ModifyMethodObjectView(i,j).setVisible(true);;
+            			new ModifyMethodObjectView(model,i,j).setVisible(true);;
             		}
             	}
             }

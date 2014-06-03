@@ -28,7 +28,6 @@ public class ModifyMethodObjectView extends javax.swing.JFrame implements Observ
 	
 	ProjectUML model;
 	int index,method;
-   
 	/**
 	 * 
 	 */
@@ -42,7 +41,8 @@ public class ModifyMethodObjectView extends javax.swing.JFrame implements Observ
     }
 
     
-    public ModifyMethodObjectView(int index, int method){
+    public ModifyMethodObjectView(ProjectUML model,int index, int method){
+    	this.model=model;
     	model.addObserver(this);
     	this.index=index;
     	this.method=method;
@@ -92,7 +92,7 @@ public class ModifyMethodObjectView extends javax.swing.JFrame implements Observ
         nameLabel.setText("Name");
 
         nameTextField.setText(model.getObjectUmlAtIndex(index).getMehodAt(method).getName());
-        nameTextField.addKeyListener(new KeyModifyMethodController(this,model,nameTextField.getText()));
+        nameTextField.addKeyListener(new KeyModifyMethodController(this,model));
         parameterLabel.setText("Parameter :");
 
         parameterList = new ArrayList<JComboBox<String>>();

@@ -89,7 +89,7 @@ public class MainView extends javax.swing.JFrame implements Observer{
 		deleteItemMenu = new javax.swing.JMenuItem();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-		setTitle("SogniDoro");
+		setTitle("test");
 
 		
 		buttonsMenu.setBackground(new java.awt.Color(224, 224, 224));
