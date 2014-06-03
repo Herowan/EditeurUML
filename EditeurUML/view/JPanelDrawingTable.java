@@ -217,7 +217,19 @@ public class JPanelDrawingTable extends JPanel{
 					lastObjectX, 
 					lastObjectY);
 			g2d.setStroke(new BasicStroke());
-			g.drawString(a.getName(), a.getFirstObject().getX()+a.getFirstObject().isOnTheRigth(a.getLastObject()), a.getFirstObject().getY()+a.getFirstObject().isAbove(a.getLastObject()));
+			int stringX, stringY;
+			if (firstObjectX>lastObjectX){
+				stringX = lastObjectX + (firstObjectX-lastObjectX)/2;
+			} else {
+				stringX = firstObjectX + (lastObjectX-firstObjectX)/2;
+			}
+			if (firstObjectX>lastObjectX){
+				stringY = lastObjectY + (firstObjectY-lastObjectY)/2;
+			} else {
+				stringY = firstObjectY + (lastObjectY-firstObjectY)/2;
+			}
+			
+			g.drawString(a.getName(), stringX+5, stringY-5);
 
 		} else {
 			model.getAssociationList().remove(a);
