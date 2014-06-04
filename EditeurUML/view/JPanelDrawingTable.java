@@ -173,17 +173,17 @@ public class JPanelDrawingTable extends JPanel{
 				int right= a.getFirstObject().isOnTheRigth(a.getLastObject());
 				int above= a.getFirstObject().isAbove(a.getLastObject());
 				
-				if (right>0 && ((right>above && above>0) || (right>above*(-1) && above<0))){
+				if (right>=0 && ((right>=above && above>=0) || (right>=above*(-1) && above<=0))){
 					// arrow right
 					lastObjectX=a.getLastObject().getX()+maxLength(model.getIndexOfObject(a.getLastObject()), g)+40;
 					g.drawLine(lastObjectX, lastObjectY, lastObjectX+10, lastObjectY+5);
 					g.drawLine(lastObjectX, lastObjectY, lastObjectX+10, lastObjectY-5);
-				} else if (right<0 && ((right*(-1)>above && above>0) || (right*(-1)>above*(-1) && above<0))){
+				} else if (right<=0 && ((right*(-1)>=above && above>=0) || (right*(-1)>=above*(-1) && above<=0))){
 					// arrow left
 					lastObjectX=a.getLastObject().getX();					
 					g.drawLine(lastObjectX, lastObjectY, lastObjectX-10, lastObjectY+5);
 					g.drawLine(lastObjectX, lastObjectY, lastObjectX-10, lastObjectY-5);
-				} else if (above>0 && above>right){
+				} else if (above>=0 && above>right){
 					// arrow top
 					lastObjectY=a.getLastObject().getY();
 					g.drawLine(lastObjectX, lastObjectY, lastObjectX+5, lastObjectY-10);

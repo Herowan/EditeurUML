@@ -13,6 +13,7 @@ import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import controller.AddObjectControler;
@@ -116,7 +117,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
 
 		toolBar.setRollover(true);
 
-		newButtonToolBar.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/new.jpg")); // NOI18N
+		newButtonToolBar.setIcon(new ImageIcon(this.getClass().getResource("../images/new.jpg"))); // NOI18N
 		newButtonToolBar.setBorderPainted(false);
 		newButtonToolBar.setFocusable(false);
 		newButtonToolBar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -124,7 +125,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		newButtonToolBar.addActionListener(new NewProjectController(model, this));
 		toolBar.add(newButtonToolBar);
 
-		openButtonToolBar.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/open.jpg")); // NOI18N
+		openButtonToolBar.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("../images/open.jpg"))); // NOI18N
 		openButtonToolBar.setBorderPainted(false);
 		openButtonToolBar.setFocusable(false);
 		openButtonToolBar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -132,7 +133,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		openButtonToolBar.addActionListener(new OpenProjectController(model, this));
 		toolBar.add(openButtonToolBar);
 
-		saveButtonToolBar.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/save.jpg")); // NOI18N
+		saveButtonToolBar.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("../images/save.jpg"))); // NOI18N
 		saveButtonToolBar.setBorderPainted(false);
 		saveButtonToolBar.setFocusable(false);
 		saveButtonToolBar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -140,11 +141,17 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		saveButtonToolBar.addActionListener(new SaveProjectController(model, this));
 		toolBar.add(saveButtonToolBar);
 
-		noteButtonToolBar.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/notes.jpg")); // NOI18N
+		noteButtonToolBar.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("../images/notes.jpg"))); // NOI18N
 		noteButtonToolBar.setBorderPainted(false);
 		noteButtonToolBar.setFocusable(false);
 		noteButtonToolBar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 		noteButtonToolBar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+		noteButtonToolBar.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ChangesNotesView(model.getProject()).setVisible(true);;				
+			}
+		});
 		toolBar.add(noteButtonToolBar);
 
 		panelTable.add(toolBar, java.awt.BorderLayout.PAGE_START);
@@ -175,33 +182,33 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		jPanel3.setMaximumSize(new java.awt.Dimension(153, 500));
 
 		classButton.setBackground(new java.awt.Color(204, 204, 204));
-		classButton.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/class.png")); // NOI18N
+		classButton.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("../images/class.png"))); // NOI18N
 		classButton.setBorderPainted(false);
 		aoc1=new AddObjectControler(TypeObject.CLASS, model);
 		classButton.addActionListener(aoc1);
 
-		abstractClassButton.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/abstract.png")); // NOI18N
+		abstractClassButton.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("../images/abstract.png"))); // NOI18N
 		abstractClassButton.setToolTipText("");
 		aoc2=new AddObjectControler(TypeObject.ABSTRACT_CLASS, model);
 		abstractClassButton.addActionListener(aoc2);
 
-		interfaceButton.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/interface.png")); // NOI18N
+		interfaceButton.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("../images/interface.png"))); // NOI18N
 		aoc3=new AddObjectControler(TypeObject.INTERFACE, model);
 		interfaceButton.addActionListener(aoc3);
 
-		associationButton.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/association.png")); // NOI18N
+		associationButton.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("../images/association.png"))); // NOI18N
 		ac0 = new AssociationController(this,model.getProject(), 0);
 		associationButton.addActionListener(ac0);
 
-		extendButton.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/extend.png")); // NOI18N
+		extendButton.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("../images/extend.png"))); // NOI18N
 		ac1 = new AssociationController(this,model.getProject(), 1);
 		extendButton.addActionListener(ac1);
 
-		implementButton.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/implement.png")); // NOI18N
+		implementButton.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("../images/implement.png"))); // NOI18N
 		ac2=new AssociationController(this,model.getProject(), 2);
 		implementButton.addActionListener(ac2);
 
-		dependenceButton.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/dependence.png")); // NOI18N
+		dependenceButton.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("../images/dependence.png"))); // NOI18N
 		ac3 = new AssociationController(this,model.getProject(), 3);
 		dependenceButton.addActionListener(ac3);
 
@@ -306,7 +313,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		});
 		generateMenu.add(javaItemMenu);
 
-		cItemMenu.setText("jMenuItem2");
+		cItemMenu.setText("C++");
 		generateMenu.add(cItemMenu);
 
 		menuBar.add(generateMenu);
