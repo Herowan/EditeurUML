@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -308,7 +309,11 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		javaItemMenu.setText("Java");
 		javaItemMenu.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				javaItemMenuActionPerformed(evt);
+				try {
+					model.getProject().generateJava();
+				} catch (IOException e) {
+					System.out.println("Fail Generate Java code");
+				}
 			}
 		});
 		generateMenu.add(javaItemMenu);
@@ -442,5 +447,6 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		ac2.setModel(model.getProject());
 		ac3.setModel(model.getProject());
 		drawingTable.repaint();
+		
 	}
 }

@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.smartcardio.ATR;
 /**
  * 
  * @author Dashell
@@ -114,5 +116,19 @@ public class ObjectUML implements Serializable{
 		position.setY(y);
 	}
 	
+	
+	public String toStringJava(){
+		String attributes="//Attributes list\n",methods="",defaultConstructor="";
+		for(int i=0;i<attributListSize();i++){
+			attributes+=attributList.get(i).toStringJava()+"\n";
+		}
+		attributes+="\n//End Attributes\n\n";
+		for(int i=0;i<methodeListSize();i++){
+			methods+=methodeList.get(i).toStringJava()+"\n";
+		}
+		defaultConstructor="//Default Constructor\n \tpublic" + getName()+"(){\n\n\t}\n\n";
+		return "public class " + getName()+ "{\n\n"+ attributes +defaultConstructor+ methods + "}";
+				
+	}
 	
 }

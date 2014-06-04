@@ -81,4 +81,14 @@ public class Method implements Serializable{
 	}
 	
 	
+	public String toStringJava(){
+		String aff= getName()+"(";
+		for(int i=0; i<getParams().size(); i++){
+			aff=aff+getParams().get(i);
+			if (i!=getParams().size()-1) aff=aff+", ";
+		}
+		aff="\t"+getReturnType()+" "+aff+"){"+"\n\n\t}\n";
+		return aff;
+			}
+	
 }
