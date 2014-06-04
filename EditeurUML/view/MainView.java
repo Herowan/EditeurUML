@@ -145,6 +145,12 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		noteButtonToolBar.setFocusable(false);
 		noteButtonToolBar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 		noteButtonToolBar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+		noteButtonToolBar.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ChangesNotesView(model.getProject()).setVisible(true);;				
+			}
+		});
 		toolBar.add(noteButtonToolBar);
 
 		panelTable.add(toolBar, java.awt.BorderLayout.PAGE_START);
@@ -306,7 +312,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		});
 		generateMenu.add(javaItemMenu);
 
-		cItemMenu.setText("jMenuItem2");
+		cItemMenu.setText("C++");
 		generateMenu.add(cItemMenu);
 
 		menuBar.add(generateMenu);
