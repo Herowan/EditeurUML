@@ -98,15 +98,15 @@ public class JPanelDrawingTable extends JPanel{
 	}
 
 	private void drawAssociation(int i, Graphics g) {
-
 		Association a=model.getAssociationList().get(i);
-		Graphics2D g2d = (Graphics2D) g;
-		int firstObjectX = a.getFirstObject().getX()+ (maxLength(model.getIndexOfObject(a.getFirstObject()), g)+40)/2;
-		int firstObjectY = a.getFirstObject().getY()+(70+20*a.getFirstObject().attributListSize()+20*a.getFirstObject().methodeListSize())/2;
-		int lastObjectX = a.getLastObject().getX()+(maxLength(model.getIndexOfObject(a.getLastObject()), g)+40)/2;
-		int lastObjectY = a.getLastObject().getY()+(70+20*a.getLastObject().attributListSize()+20*a.getLastObject().methodeListSize())/2;
-		
+
 		if (model.projectContains(a.getFirstObject()) && model.projectContains(a.getLastObject())){
+			
+			Graphics2D g2d = (Graphics2D) g;
+			int firstObjectX = a.getFirstObject().getX()+ (maxLength(model.getIndexOfObject(a.getFirstObject()), g)+40)/2;
+			int firstObjectY = a.getFirstObject().getY()+(70+20*a.getFirstObject().attributListSize()+20*a.getFirstObject().methodeListSize())/2;
+			int lastObjectX = a.getLastObject().getX()+(maxLength(model.getIndexOfObject(a.getLastObject()), g)+40)/2;
+			int lastObjectY = a.getLastObject().getY()+(70+20*a.getLastObject().attributListSize()+20*a.getLastObject().methodeListSize())/2;
 
 			if (a.getTypeOfAssociation()>0 && a.getTypeOfAssociation()<3){
 				int[] xPoints= new int[3];
@@ -116,7 +116,6 @@ public class JPanelDrawingTable extends JPanel{
 				int above= a.getFirstObject().isAbove(a.getLastObject());
 				
 				if (right>0 && ((right>above && above>0) || (right>above*(-1) && above<0))){
-					System.out.println("Right");
 					// arrow right
 					lastObjectX=a.getLastObject().getX()+maxLength(model.getIndexOfObject(a.getLastObject()), g)+40;
 					xPoints[0]=lastObjectX;
@@ -130,7 +129,6 @@ public class JPanelDrawingTable extends JPanel{
 					g.drawPolygon(xPoints, yPoints, 3);
 					lastObjectX=lastObjectX+10;
 				} else if (right<0 && ((right*(-1)>above && above>0) || (right*(-1)>above*(-1) && above<0))){
-					System.out.println("Left");
 					// arrow left
 					lastObjectX=a.getLastObject().getX();
 					xPoints[0]=lastObjectX;
@@ -144,7 +142,6 @@ public class JPanelDrawingTable extends JPanel{
 					g.drawPolygon(xPoints, yPoints, 3);
 					lastObjectX=lastObjectX-10;
 				} else if (above>0 && above>right){
-					System.out.println("Top");
 					// arrow top
 					lastObjectY=a.getLastObject().getY();
 					
@@ -160,7 +157,6 @@ public class JPanelDrawingTable extends JPanel{
 					lastObjectY=lastObjectY-10;
 				} else{
 					// arrow botom
-					System.out.println("Bottom");
 					lastObjectY=a.getLastObject().getY()+70+20*a.getLastObject().attributListSize()+20*a.getLastObject().methodeListSize();
 					xPoints[0]=lastObjectX;
 					xPoints[1]=lastObjectX+5;
@@ -216,11 +212,26 @@ public class JPanelDrawingTable extends JPanel{
 					firstObjectY, 
 					lastObjectX, 
 					lastObjectY);
+			g2d.setStroke(new BasicStroke());
+			int stringX, stringY;
+			if (firstObjectX>lastObjectX){
+				stringX = lastObjectX + (firstObjectX-lastObjectX)/2;
+			} else {
+				stringX = firstObjectX + (lastObjectX-firstObjectX)/2;
+			}
+			if (firstObjectX>lastObjectX){
+				stringY = lastObjectY + (firstObjectY-lastObjectY)/2;
+			} else {
+				stringY = firstObjectY + (lastObjectY-firstObjectY)/2;
+			}
+			
+			g.drawString(a.getName(), stringX+5, stringY-5);
+
 		} else {
 			model.getAssociationList().remove(a);
 		}
-		g2d.setStroke(new BasicStroke());
-	}
+		
+			}
 
 	private int drawAttribute(ObjectUML obj,int i, Graphics g, Color color, int positionX, int positionY){
 			//draw the attribute

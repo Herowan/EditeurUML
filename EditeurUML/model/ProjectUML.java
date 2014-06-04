@@ -21,6 +21,8 @@ public class ProjectUML extends Observable implements Serializable{
 	private String savePath=null; // save du chemin ou est enregistr�� le projet pour le controller Save
 	private boolean isSave=true;
 	private Type types;
+	private String warning="";
+	private String notes;
 	
 	// Attributes selected for the view
 	private int nameSelected=-1;
@@ -229,7 +231,24 @@ public class ProjectUML extends Observable implements Serializable{
 		return -1;
 	}
 	
-	
+	public String getWarning() {
+		return warning;
+	}
+
+	public void setWarning(String warning) {
+		this.warning = warning;
+		setChanged();
+		notifyObservers();
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
 	
 	
 	

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Stack;
 
 
 public class EditeurUML extends Observable implements Serializable,Observer{
@@ -15,10 +16,11 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ProjectUML> projectList;
 	private ProjectUML project;
-	
-	/**
-	 * Constructs a EditeurUML an empty list<ProjectUML> and instantiation of a ProjectUML object.
-	 */
+
+
+	private ProjectUML projectRedo;
+	private Stack<ProjectUML> undoRedoPile=new Stack<ProjectUML>();
+
 	public EditeurUML(){
 		projectList=new ArrayList<ProjectUML>();
 		project=new ProjectUML();
@@ -109,10 +111,19 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 		setChanged();
 		notifyObservers();
 	}
+	
+	public void Undo(){
+		projectRedo=undoRedoPile.pop();
+		setProject(undoRedoPile.pop());
+	}
+	
+	public void Redo(){
+		setProject(projectRedo);
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-
+		undoRedoPile.push(project);
 		setChanged();
 		notifyObservers();
 	}
