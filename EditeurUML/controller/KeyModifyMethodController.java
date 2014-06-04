@@ -17,6 +17,8 @@ public class KeyModifyMethodController implements KeyListener {
 	public KeyModifyMethodController(ModifyMethodObjectView view,ProjectUML model){
 		this.view=view;
 		this.model=model;
+		model.setWarning("");
+
 	}
 
 	@Override

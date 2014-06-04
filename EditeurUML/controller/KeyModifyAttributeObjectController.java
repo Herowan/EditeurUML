@@ -17,6 +17,8 @@ public class KeyModifyAttributeObjectController implements KeyListener {
 	public KeyModifyAttributeObjectController(ModifyAttributeObjectView view,ProjectUML model){
 		this.model=model;
 		this.view=view;
+		model.setWarning("");
+
 	}
 	@Override
 	public void keyTyped(KeyEvent e) {
