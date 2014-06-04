@@ -347,10 +347,6 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		pack();
 	}// </editor-fold>                        
 
-	private void javaItemMenuActionPerformed(java.awt.event.ActionEvent evt) {                                             
-		// TODO add your handling code here:
-	}                                            
-
 	/**
 	 * @param args the command line arguments
 	 */
