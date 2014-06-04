@@ -7,7 +7,12 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JComboBox;
+
+import controller.KeyNewMethodController;
 import controller.okButtonNewMethodController;
 import model.ProjectUML;
 
@@ -15,7 +20,7 @@ import model.ProjectUML;
  *
  * @author aur
  */
-public class NewMethodView extends javax.swing.JFrame {
+public class NewMethodView extends javax.swing.JFrame implements Observer{
 
     /**
 	 * 
@@ -31,6 +36,7 @@ public class NewMethodView extends javax.swing.JFrame {
 	
     public NewMethodView(ProjectUML model, int i) {
     	this.model=model;
+    	model.addObserver(this);
     	this.index=i;
         initComponents();
     	this.setLocation(100, 100);
@@ -55,6 +61,7 @@ public class NewMethodView extends javax.swing.JFrame {
         parameterLabel = new javax.swing.JLabel();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        warningLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("New Method");
@@ -63,6 +70,7 @@ public class NewMethodView extends javax.swing.JFrame {
 
         visibilityComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "private", "protected", "default", "public" }));
 
+        nameTextField.addKeyListener(new KeyNewMethodController(this,model));
         
         returnTypeLabel.setText("Return Type");
 
@@ -112,6 +120,12 @@ public class NewMethodView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nameTextField)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(okButton)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -133,11 +147,9 @@ public class NewMethodView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(parameterList.get(2), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(52, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(okButton)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(warningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -165,17 +177,25 @@ public class NewMethodView extends javax.swing.JFrame {
                     .addComponent(parameterList.get(3), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(parameterList.get(4), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(parameterList.get(5), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(warningLabel)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(cancelButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>                        
 
-    /**
+                  
+
+    public javax.swing.JButton getOkButton() {
+		return okButton;
+	}
+
+	/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -230,6 +250,8 @@ public class NewMethodView extends javax.swing.JFrame {
     private javax.swing.JLabel returnTypeLabel;
     private javax.swing.JComboBox<String> visibilityComboBox;
     private javax.swing.JLabel visibilityLabel;
+    private javax.swing.JLabel warningLabel;
+
     // End of variables declaration    
     private ArrayList<JComboBox<String>> parameterList;
 
@@ -256,6 +278,12 @@ public class NewMethodView extends javax.swing.JFrame {
 
 	public ArrayList<JComboBox<String>> getParameterList() {
 		return parameterList;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		warningLabel.setText(model.getWarning());
+		
 	}
     
     

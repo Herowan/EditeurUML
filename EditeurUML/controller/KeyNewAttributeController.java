@@ -2,23 +2,20 @@ package controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import model.Method;
+import view.NewAttributeView;
+import model.Attribute;
 import model.ProjectUML;
 import model.Visibility;
-import view.ModifyMethodObjectView;
 
-public class KeyModifyMethodController implements KeyListener {
+public class KeyNewAttributeController implements KeyListener {
 
-	
-	private ModifyMethodObjectView view;
-	private ProjectUML model;
+	NewAttributeView view;
+	ProjectUML model;
 
-	public KeyModifyMethodController(ModifyMethodObjectView view,ProjectUML model){
+	public KeyNewAttributeController(NewAttributeView view,ProjectUML model) {
 		this.view=view;
 		this.model=model;
 		model.setWarning("");
-
 	}
 
 	@Override
@@ -29,7 +26,8 @@ public class KeyModifyMethodController implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -42,30 +40,28 @@ public class KeyModifyMethodController implements KeyListener {
 			else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
 			else if (visibility.equals("default")) visi = Visibility.DEFAULT;
 			else visi = Visibility.PUBLIC;
-			Method newMethod = new Method(view.getNameTextField().getText(), (String) view.getReturnTypeComboBox().getSelectedItem(), visi, view.parameterValid());
+			Attribute newAttribute = new Attribute(view.getNameTextField().getText(),(String) view.getTypeComboBox().getSelectedItem(),visi);
 
-			for (int i=0; i<view.getModel().getObjectUmlAtIndex(view.getIndex()).methodeListSize(); i++){
-				if (view.getMethod()!=i
-						&& view.getModel().getObjectUmlAtIndex(view.getIndex()).getMehodAt(i).equals(newMethod)){
+			for (int i=0; i<view.getModel().getObjectUmlAtIndex(view.getIndex()).attributListSize(); i++){
+				if (view.getModel().getObjectUmlAtIndex(view.getIndex()).getAttributeAt(i).equals(newAttribute)){
 					unique=false;
 				}
 			}
+
 			if (unique){
 				model.setWarning("");
-
 				view.getOkButton().setEnabled(true);
 			} else {
-				model.setWarning("This method already exist");
+				model.setWarning("This Attribute already exist");
 				view.getOkButton().setEnabled(false);
 			}
 			if(view.getNameTextField().getText().charAt(0)>='A'&&view.getNameTextField().getText().charAt(0)<='Z'){
-				model.setWarning("Method Name begin with a lower case");
+				model.setWarning("Attribute Name begin with a lower case");
 			}
 		} else {
-			model.setWarning("Method name is empty");
+			model.setWarning("Attribute name is empty");
 			view.getOkButton().setEnabled(false);
-		}		
+		}			
 	}
 
 }
-
