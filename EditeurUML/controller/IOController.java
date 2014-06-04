@@ -45,6 +45,7 @@ public class IOController {
 	public void showOpenFileDialog(EditeurUML model,JFrame view) throws ClassNotFoundException{
 		FileFilter uml=new Filter("Uml Project",".uml");
 		JFileChooser fileChooserOpen = new JFileChooser();
+		fileChooserOpen.setAcceptAllFileFilterUsed(false);
 		fileChooserOpen.addChoosableFileFilter(uml);
 		fileChooserOpen.setDialogTitle("Specify a file to open");
 		UIManager.put("FileChooserOpen.openButtonText","Save");
