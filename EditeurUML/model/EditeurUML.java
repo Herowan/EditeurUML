@@ -16,11 +16,12 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ProjectUML> projectList;
 	private ProjectUML project;
-
-
 	private ProjectUML projectRedo;
 	private Stack<ProjectUML> undoRedoPile=new Stack<ProjectUML>();
-
+	
+	/**
+	 * Constructs an EditeurUML with a List<ProjectUML> and instantiate a new ProjectUML.
+	 */
 	public EditeurUML(){
 		projectList=new ArrayList<ProjectUML>();
 		project=new ProjectUML();
@@ -36,7 +37,7 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 	}
 	
 	/**
-	 * Defines the Arraylist of the ProjectUMl
+	 * Defines the Arraylist of the EditeurUML
 	 * @param projectList : a List<ProjectUML> of a EditeurUML
 	 */
 	public void setProjectList(ArrayList<ProjectUML> projectList) {
@@ -44,24 +45,34 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Return a ProjectUML corresponding EditeurUML
+	 * @return  Return a ProjectUML of a EditeurUML
 	 */
 	public ProjectUML getProject() {
 		return project;
 	}
 
+	/**
+	 * Defines the ProjectUML of the EditeurUML
+	 * @param project : a list<ObjetUML>, a list<Association> and a Type of the ProjectUML
+	 */
 	public void setProject(ProjectUML project) {
 		this.project = project;
 		setChanged();
 		notifyObservers();
 	}
 
-	
+	/**
+	 * Add a ProjectUML in EditeurUML
+	 * @param p : a list<ObjetUML>, a list<Association> and a Type of the ProjectUML
+	 */
 	public void addProject(ProjectUML p){
 		projectList.add(p);
 	}
 	
+	/**
+	 * 
+	 */
 	public void saveProject(){
 		try {
 			project.setIsSave(true);
@@ -77,6 +88,10 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param path
+	 */
 	public void saveProjectAs(String path){
 		try {
 			project.setIsSave(true);
@@ -93,6 +108,11 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 		}
 	}
 	
+	/**
+	 * Open ProjectUML through the path parameter set.
+	 * @param path : The path of the file UML in order to open it.
+	 * @throws ClassNotFoundException : when the class cannot be found
+	 */
 	public void openProject(String path) throws ClassNotFoundException{
 		try {
 			FileInputStream fichier = new FileInputStream(path);
@@ -112,11 +132,17 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 		notifyObservers();
 	}
 	
+	/**
+	 * Delete the last manipulation.
+	 */
 	public void Undo(){
 		projectRedo=undoRedoPile.pop();
 		setProject(undoRedoPile.pop());
 	}
 	
+	/**
+	 * Restore the last manipulation.
+	 */
 	public void Redo(){
 		setProject(projectRedo);
 	}

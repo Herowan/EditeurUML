@@ -16,6 +16,7 @@ public class Association implements Serializable{
 	 * @param firstObject : the first object attached to the Association
 	 * @param lastObject : the last object attached to the Association
 	 * @param typeOfAssociation : the type of the corresponding Association
+	 * @param name : the name of the Association
 	 */
 	public Association(ObjectUML firstObject, ObjectUML lastObject,int typeOfAssociation,String name){
 		this.firstObject=firstObject;
@@ -72,10 +73,18 @@ public class Association implements Serializable{
 		this.typeOfAssociation = typeOfAssociation;
 	}
 
+	/**
+	 * return the name of the Association 
+	 * @return return the name of the Association 
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Defines the name of the corresponding Association
+	 * @param name ; the name of the Association 
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
