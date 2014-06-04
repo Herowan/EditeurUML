@@ -12,12 +12,12 @@ import java.util.Stack;
 
 
 public class EditeurUML extends Observable implements Serializable,Observer{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ProjectUML> projectList;
 	private ProjectUML project;
+
+
 	private ProjectUML projectRedo;
 	private Stack<ProjectUML> undoRedoPile=new Stack<ProjectUML>();
 
@@ -26,16 +26,28 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 		project=new ProjectUML();
 		project.addObserver(this);
 	}
+	
+	/**
+	 * Return a List<ProjectUML> of a EditeurUML
+	 * @return Return a list of the ProjectUML
+	 */
 	public ArrayList<ProjectUML> getProjectList() {
 		return projectList;
 	}
-
+	
+	/**
+	 * Defines the Arraylist of the ProjectUMl
+	 * @param projectList : a List<ProjectUML> of a EditeurUML
+	 */
 	public void setProjectList(ArrayList<ProjectUML> projectList) {
 		this.projectList = projectList;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public ProjectUML getProject() {
-
 		return project;
 	}
 

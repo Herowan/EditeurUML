@@ -11,9 +11,9 @@ TO DO :
 
 - Verif : pas meme nom pour classe atribut et methode => DONE
 - Selection quand object superposé => DONE
-- Association
-- ToolBar
-- Undo / Redo
+- Association ->DONE
+- ToolBar -> DONE
+- Undo / Redo -> give up
 
 
 - test

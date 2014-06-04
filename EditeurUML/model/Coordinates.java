@@ -9,13 +9,15 @@ import java.io.Serializable;
  */
 public class Coordinates  implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	int x;
 	int y;
 	
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public Coordinates(int x,int y){
 		this.x=x;
 		this.y=y;
