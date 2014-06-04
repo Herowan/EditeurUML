@@ -104,10 +104,6 @@ public class ChangesNotesView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
-
     /**
      * @param args the command line arguments
      */
