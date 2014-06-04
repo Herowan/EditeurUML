@@ -16,11 +16,12 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ProjectUML> projectList;
 	private ProjectUML project;
-
-
 	private ProjectUML projectRedo;
 	private Stack<ProjectUML> undoRedoPile=new Stack<ProjectUML>();
-
+	
+	/**
+	 * Constructs an EditeurUML with a List<ProjectUML> and instantiate a new ProjectUML.
+	 */
 	public EditeurUML(){
 		projectList=new ArrayList<ProjectUML>();
 		project=new ProjectUML();
@@ -44,13 +45,17 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Return a ProjectUML corresponding EditeurUML
+	 * @return  Return a ProjectUML of a EditeurUML
 	 */
 	public ProjectUML getProject() {
 		return project;
 	}
 
+	/**
+	 * 
+	 * @param project
+	 */
 	public void setProject(ProjectUML project) {
 		this.project = project;
 		setChanged();
