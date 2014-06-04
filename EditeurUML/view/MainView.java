@@ -116,7 +116,7 @@ public class MainView extends javax.swing.JFrame implements Observer {
 
 		toolBar.setRollover(true);
 
-		newButtonToolBar.setIcon(new javax.swing.ImageIcon("/Users/aur/Downloads/blebleble/new.jpg")); // NOI18N
+		newButtonToolBar.setIcon(new javax.swing.ImageIcon("./new.jpg")); // NOI18N
 		newButtonToolBar.setBorderPainted(false);
 		newButtonToolBar.setFocusable(false);
 		newButtonToolBar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
