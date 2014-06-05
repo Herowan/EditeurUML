@@ -9,6 +9,8 @@ package view;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JTextField;
+
 import controller.KeyModifyNameObjectController;
 import controller.OkButtonModifyNameController;
 import model.ProjectUML;
@@ -179,5 +181,9 @@ public class ModifyNameObjectView extends javax.swing.JFrame implements Observer
 	@Override
 	public void update(Observable o, Object arg) {
 		warningLabel.setText(model.getWarning());		
+	}
+
+	public JTextField getNameTextField() {
+		return nameJTextField;
 	}
 }
