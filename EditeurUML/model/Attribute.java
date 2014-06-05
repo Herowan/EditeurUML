@@ -92,6 +92,6 @@ public class Attribute implements Serializable{
 	}
 	
 	public String toStringJava(){
-		return "\t"+visibilityA.getName()+" "+type+" "+name;
+		return "\t"+visibilityA.getName()+" "+type+" "+name+";";
 	}
 }
