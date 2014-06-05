@@ -26,6 +26,7 @@ import controller.OpenProjectController;
 import controller.SaveAsProjectController;
 import controller.SaveProjectController;
 import model.EditeurUML;
+import model.ProjectUML;
 import model.TypeObject;
 
 /**
@@ -447,5 +448,9 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		ac2.setModel(model.getProject());
 		ac3.setModel(model.getProject());
 		drawingTable.repaint();
+	}
+
+	public EditeurUML getModel() {
+		return model;
 	}
 }
