@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import view.JPanelDrawingTable;
+import view.ModifyAssociationView;
 import view.ModifyAttributeObjectView;
 import view.ModifyMethodObjectView;
 import view.ModifyNameObjectView;
@@ -142,6 +143,14 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
             }
             i--;
         }
+        i=0;
+        while (!quit && i<model.getAssociationList().size()){
+        	if (association(e, i)){
+        		new ModifyAssociationView(model,model.getAssociationList().get(i).getTypeOfAssociation(),i).setVisible(true);
+        		quit=true;
+        	}
+        	i++;
+        }
     }
     
     private boolean crossQuitZone(MouseEvent e, int i) {
@@ -198,13 +207,12 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     private boolean association(MouseEvent e,int i){
     	// Je determine l'equation de la droite :
     	// On commence par p :
-    	int p = (model.getAssociationList().get(i).getLast().getY()-model.getAssociationList().get(i).getFirst().getY())/(model.getAssociationList().get(i).getLast().getX()-model.getAssociationList().get(i).getFirst().getX());
+    	double p = ((double) model.getAssociationList().get(i).getLast().getY()-model.getAssociationList().get(i).getFirst().getY())/((double) model.getAssociationList().get(i).getLast().getX()-model.getAssociationList().get(i).getFirst().getX());
     	// Puis d :
-    	int d = (model.getAssociationList().get(i).getFirst().getY()-(p*model.getAssociationList().get(i).getFirst().getX()));
-    	
-    	if (e.getX()*p+d<=e.getY()+5  && e.getX()*p+d>=e.getY()-5){
-    		return true;
-    	}
+    	double d = ((double) model.getAssociationList().get(i).getFirst().getY()-((double) p*model.getAssociationList().get(i).getFirst().getX()));
+    		if (((double)e.getX()*p+d-8)<=e.getY()  && ((double)e.getX()*p+d+8>=e.getY())){
+    			return true;
+    		}
     	return false;
     }
 

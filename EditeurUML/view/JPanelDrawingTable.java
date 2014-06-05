@@ -110,6 +110,12 @@ public class JPanelDrawingTable extends JPanel{
 			int lastObjectX = a.getLastObject().getX()+(maxLength(model.getIndexOfObject(a.getLastObject()), g)+40)/2;
 			int lastObjectY = a.getLastObject().getY()+(70+20*a.getLastObject().attributListSize()+20*a.getLastObject().methodeListSize())/2;
 
+			if (model.getAssociationSelected()==i){
+				g.setColor(Color.RED);
+			} else {
+				g.setColor(Color.BLACK);
+			}
+			
 			if (a.getTypeOfAssociation()>0 && a.getTypeOfAssociation()<3){
 				int[] xPoints= new int[3];
 				int[] yPoints= new int[3];
@@ -210,18 +216,13 @@ public class JPanelDrawingTable extends JPanel{
 						));
 			}
 			
-			if (model.getAssociationSelected()==i){
-				g.setColor(Color.RED);
-			} else {
-				g.setColor(Color.BLACK);
-			}
 			g.drawLine(firstObjectX,
 					firstObjectY, 
 					lastObjectX, 
 					lastObjectY);
+			
 			a.setFirst(new Coordinates(firstObjectX, firstObjectY));
 			a.setLast(new Coordinates(lastObjectX, lastObjectY));
-			//System.out.println("Nouvelles Coordonnée :"+ firstObjectX+ " " + firstObjectY+" "+lastObjectX+ " " +lastObjectY);
 			g2d.setStroke(new BasicStroke());
 
 			int stringX, stringY;
