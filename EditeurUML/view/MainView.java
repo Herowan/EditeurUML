@@ -443,6 +443,6 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		ac2.setModel(model.getProject());
 		ac3.setModel(model.getProject());
 		drawingTable.repaint();
-		
+
 	}
 }

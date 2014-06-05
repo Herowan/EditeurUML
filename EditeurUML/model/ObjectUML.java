@@ -124,7 +124,7 @@ public class ObjectUML implements Serializable{
 		for(int i=0;i<methodeListSize();i++){
 			methods+=methodeList.get(i).toStringJava()+"\n";
 		}
-		defaultConstructor="//Default Constructor\n \tpublic" + getName()+"(){\n\n\t}\n\n";
+		defaultConstructor="//Default Constructor\n \tpublic " + getName()+"(){\n\n\t}\n\n";
 		return "public class " + getName()+ "{\n\n"+ attributes +defaultConstructor+ methods + "}";
 				
 	}

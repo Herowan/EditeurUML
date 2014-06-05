@@ -251,19 +251,21 @@ public class ProjectUML extends Observable implements Serializable{
 	}
 
 	public void generateJava() throws IOException{
-		String pathR;
+		String pathR,pathFile="";
 		int last=0;
 		for(int i=0;i<this.savePath.length();i++){
 			if(savePath.charAt(i)=='/') last=i;
 		}
 		pathR=savePath.substring(0,last+1);
 		for(int j=0;j<objectsListSize();j++){
-			pathR+=objectsList.get(j).getName()+".java";
-			FileOutputStream fichier = new FileOutputStream(pathR);
+			pathFile=pathR+objectsList.get(j).getName()+".java";
+			System.out.println(pathFile);
+			FileOutputStream fichier = new FileOutputStream(pathFile);
 			ObjectOutputStream out = new ObjectOutputStream(fichier);
 			out.writeObject(objectsList.get(j).toStringJava());
 			out.flush();
 			out.close();
+			System.out.println("test"+j);
 		}
 	}
 
