@@ -6,14 +6,14 @@ import java.awt.event.ActionListener;
 import view.ModifyAssociationView;
 import model.ProjectUML;
 
-public class okButtonModifyAssociationController implements ActionListener {
+public class OkButtonModifyAssociationController implements ActionListener {
 	
 	ProjectUML model;
 	ModifyAssociationView view;
 	int type;
 	int index;
 
-	public okButtonModifyAssociationController(ProjectUML model,
+	public OkButtonModifyAssociationController(ProjectUML model,
 			ModifyAssociationView modifyAssociationView, int type, int i) {
 		this.model=model;
 		this.view=modifyAssociationView;
@@ -26,6 +26,7 @@ public class okButtonModifyAssociationController implements ActionListener {
 		model.getAssociationList().get(index).setFirstObject(model.getObjectUmlAtIndex(view.getClass1ComboBox().getSelectedIndex()));
 		model.getAssociationList().get(index).setLastObject(model.getObjectUmlAtIndex(view.getClass2ComboBox().getSelectedIndex()));
 		model.getAssociationList().get(index).setName(view.getNameTextField().getText());
+		
 		
 		view.dispose();
 	}

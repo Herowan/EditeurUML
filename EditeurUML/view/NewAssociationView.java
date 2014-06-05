@@ -8,7 +8,7 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import controller.okButtonNewAssociationController;
+import controller.OkButtonNewAssociationController;
 import model.ProjectUML;
 
 /**
@@ -75,7 +75,7 @@ public class NewAssociationView extends javax.swing.JFrame {
 
 
         okButton.setText("OK");
-        okButton.addActionListener(new okButtonNewAssociationController(model, this, type));
+        okButton.addActionListener(new OkButtonNewAssociationController(model, this, type));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new ActionListener() {
@@ -133,7 +133,15 @@ public class NewAssociationView extends javax.swing.JFrame {
     }// </editor-fold>                        
                                           
 
-    /**
+    public void setClass1ComboBox(javax.swing.JComboBox<String> class1ComboBox) {
+		this.class1ComboBox = class1ComboBox;
+	}
+
+	public void setClass2ComboBox(javax.swing.JComboBox<String> class2ComboBox) {
+		this.class2ComboBox = class2ComboBox;
+	}
+
+	/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {

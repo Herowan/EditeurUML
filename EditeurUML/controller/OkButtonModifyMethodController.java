@@ -7,11 +7,11 @@ import java.awt.event.ActionListener;
 import model.Visibility;
 import view.ModifyMethodObjectView;
 
-public class okButtonModifyMethodController implements ActionListener{
+public class OkButtonModifyMethodController implements ActionListener{
 
 	ModifyMethodObjectView modifyMethodView;
 
-	public okButtonModifyMethodController(ModifyMethodObjectView modifyMethodView) {
+	public OkButtonModifyMethodController(ModifyMethodObjectView modifyMethodView) {
 		this.modifyMethodView=modifyMethodView;
 	}
 
@@ -24,6 +24,7 @@ public class okButtonModifyMethodController implements ActionListener{
 		else if (visibility.equals("protected")) visi =Visibility.PROTECTED;
 		else if (visibility.equals("default")) visi = Visibility.DEFAULT;
 		else visi = Visibility.PUBLIC;
+		
 		
 		modifyMethodView.getModel().getObjectUmlAtIndex(modifyMethodView.getIndex()).getMehodAt(modifyMethodView.getMethod()).setName(modifyMethodView.getNameTextField().getText());
 		modifyMethodView.getModel().getObjectUmlAtIndex(modifyMethodView.getIndex()).getMehodAt(modifyMethodView.getMethod()).setReturnType((String) modifyMethodView.getReturnTypeComboBox().getSelectedItem());

@@ -8,10 +8,10 @@ import view.NewMethodView;
 import model.Method;
 import model.Visibility;
 
-public class okButtonNewMethodController implements ActionListener{
+public class OkButtonNewMethodController implements ActionListener{
 	NewMethodView newMethodView;
 
-	public okButtonNewMethodController(NewMethodView newMethodView) {
+	public OkButtonNewMethodController(NewMethodView newMethodView) {
 		this.newMethodView=newMethodView;
 	}
 
@@ -24,6 +24,7 @@ public class okButtonNewMethodController implements ActionListener{
 		else if (visibility.equals("default")) visi = Visibility.DEFAULT;
 		else visi = Visibility.PUBLIC;
 
+		
 		Method newMethod = new Method(newMethodView.getNameTextField().getText(), (String) newMethodView.getReturnTypeComboBox().getSelectedItem(), visi, newMethodView.parameterValid());
 		newMethodView.getModel().addMethod(newMethodView.getIndex(), newMethod);
 		newMethodView.dispose();

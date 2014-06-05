@@ -10,7 +10,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import controller.KeyNewAttributeController;
-import controller.okButtonNewAttributeController;
+import controller.OkButtonNewAttributeController;
 import model.ProjectUML;
 
 /**
@@ -85,7 +85,7 @@ public class NewAttributeView extends javax.swing.JFrame implements Observer{
 		});
 
 		okButton.setText("OK");
-		okButton.addActionListener(new okButtonNewAttributeController(this));
+		okButton.addActionListener(new OkButtonNewAttributeController(this));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);

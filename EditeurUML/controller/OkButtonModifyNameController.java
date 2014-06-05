@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 
 import view.ModifyNameObjectView;
 
-public class okButtonModifyNameController implements ActionListener{
+public class OkButtonModifyNameController implements ActionListener{
 	ModifyNameObjectView view;
 	
 
-	public okButtonModifyNameController(ModifyNameObjectView view) {
+	public OkButtonModifyNameController(ModifyNameObjectView view) {
 		this.view=view;
 	}
 	public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -18,6 +18,5 @@ public class okButtonModifyNameController implements ActionListener{
 				view.getModel().getTypes().addType(view.getNameJTextField().getText());
 				view.getModel().getObjectUmlAtIndex(view.getIndex()).setName(view.getNameJTextField().getText());
 				view.dispose();
-		
 	}
 }

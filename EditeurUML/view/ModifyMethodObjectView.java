@@ -15,7 +15,7 @@ import java.util.Observer;
 import javax.swing.JComboBox;
 
 import controller.KeyModifyMethodController;
-import controller.okButtonModifyMethodController;
+import controller.OkButtonModifyMethodController;
 import model.ProjectUML;
 
 /**
@@ -101,7 +101,7 @@ public class ModifyMethodObjectView extends javax.swing.JFrame implements Observ
         }
         
         okButton.setText("OK");
-        okButton.addActionListener(new okButtonModifyMethodController(this));
+        okButton.addActionListener(new OkButtonModifyMethodController(this));
 
 
         cancelButton.setText("Cancel");
