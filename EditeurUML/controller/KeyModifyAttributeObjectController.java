@@ -3,11 +3,11 @@ package controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JOptionPane;
+
 
 import view.ModifyAttributeObjectView;
 import model.ProjectUML;
-import model.Visibility;
+
 
 public class KeyModifyAttributeObjectController implements KeyListener {
 

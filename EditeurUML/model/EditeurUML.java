@@ -71,7 +71,7 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 	}
 	
 	/**
-	 * 
+	 * Save the file to the location previously chosen.
 	 */
 	public void saveProject(){
 		try {
@@ -89,8 +89,8 @@ public class EditeurUML extends Observable implements Serializable,Observer{
 	}
 	
 	/**
-	 * 
-	 * @param path
+	 * Save as to the location of the path passed in parameter.
+	 * @param path : The path to save the file to this location.
 	 */
 	public void saveProjectAs(String path){
 		try {
