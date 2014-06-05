@@ -30,6 +30,7 @@ public class ProjectUML extends Observable implements Serializable{
 	private int objectOfAttributeSelected=-1;
 	private int methodSelected=-1;
 	private int objectOfMethodSelected =-1;
+	private int associationSelected=-1;
 
 	public ProjectUML(){
 		objectsList = new ArrayList<ObjectUML>();
@@ -266,6 +267,14 @@ public class ProjectUML extends Observable implements Serializable{
 			out.close();
 			System.out.println("test"+j);
 		}
+	}
+
+	public int getAssociationSelected() {
+		return associationSelected;
+	}
+
+	public void setAssociationSelected(int associationSelected) {
+		this.associationSelected = associationSelected;
 	}
 	
 	
