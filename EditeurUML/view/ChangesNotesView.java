@@ -145,5 +145,15 @@ public class ChangesNotesView extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel notesLabel;
     private javax.swing.JButton saveButton;
-    // End of variables declaration                   
+    // End of variables declaration      
+    
+	public javax.swing.JTextArea getjTextArea1() {
+		return jTextArea1;
+	}
+
+	public ProjectUML getModel() {
+		return model;
+	}
+	
+    
 }
