@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import javax.smartcardio.ATR;
+
 /**
  * 
  * @author Dashell
