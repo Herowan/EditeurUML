@@ -25,6 +25,8 @@ public class Association implements Serializable{
 		this.lastObject=lastObject;
 		this.typeOfAssociation=typeOfAssociation;
 		this.name=name;
+		this.first=new Coordinates(0,0);
+		this.last=new Coordinates(10,10);
 	}
 
 	/**

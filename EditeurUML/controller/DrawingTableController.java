@@ -198,10 +198,11 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     private boolean association(MouseEvent e,int i){
     	// Je determine l'equation de la droite :
     	// On commence par p :
-    	int p = (model.getAssociationList().get(i).getLastObject().getY()-model.getAssociationList().get(i).getFirstObject().getY())/(model.getAssociationList().get(i).getLastObject().getX()-model.getAssociationList().get(i).getFirstObject().getX());
+    	int p = (model.getAssociationList().get(i).getLast().getY()-model.getAssociationList().get(i).getFirst().getY())/(model.getAssociationList().get(i).getLast().getX()-model.getAssociationList().get(i).getFirst().getX());
     	// Puis d :
-    	int d = (model.getAssociationList().get(i).getFirstObject().getY()-p*model.getAssociationList().get(i).getFirstObject().getX());
-    	if (e.getX()*p+d==e.getY()){
+    	int d = (model.getAssociationList().get(i).getFirst().getY()-(p*model.getAssociationList().get(i).getFirst().getX()));
+    	
+    	if (e.getX()*p+d<=e.getY()+5  && e.getX()*p+d>=e.getY()-5){
     		return true;
     	}
     	return false;

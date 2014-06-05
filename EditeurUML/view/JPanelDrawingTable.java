@@ -104,7 +104,6 @@ public class JPanelDrawingTable extends JPanel{
 		Association a=model.getAssociationList().get(i);
 
 		if (model.projectContains(a.getFirstObject()) && model.projectContains(a.getLastObject())){
-			
 			Graphics2D g2d = (Graphics2D) g;
 			int firstObjectX = a.getFirstObject().getX()+ (maxLength(model.getIndexOfObject(a.getFirstObject()), g)+40)/2;
 			int firstObjectY = a.getFirstObject().getY()+(70+20*a.getFirstObject().attributListSize()+20*a.getFirstObject().methodeListSize())/2;
@@ -220,8 +219,9 @@ public class JPanelDrawingTable extends JPanel{
 					firstObjectY, 
 					lastObjectX, 
 					lastObjectY);
-			model.getAssociationList().get(i).setFirst(new Coordinates(firstObjectX, firstObjectY));
-			model.getAssociationList().get(i).setLast(new Coordinates(lastObjectX, lastObjectY));
+			a.setFirst(new Coordinates(firstObjectX, firstObjectY));
+			a.setLast(new Coordinates(lastObjectX, lastObjectY));
+			//System.out.println("Nouvelles Coordonnée :"+ firstObjectX+ " " + firstObjectY+" "+lastObjectX+ " " +lastObjectY);
 			g2d.setStroke(new BasicStroke());
 
 			int stringX, stringY;
