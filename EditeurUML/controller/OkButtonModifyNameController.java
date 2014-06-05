@@ -18,6 +18,5 @@ public class OkButtonModifyNameController implements ActionListener{
 				view.getModel().getTypes().addType(view.getNameJTextField().getText());
 				view.getModel().getObjectUmlAtIndex(view.getIndex()).setName(view.getNameJTextField().getText());
 				view.dispose();
-		
 	}
 }

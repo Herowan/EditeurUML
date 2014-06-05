@@ -27,6 +27,7 @@ public class OkButtonModifyAssociationController implements ActionListener {
 		model.getAssociationList().get(index).setLastObject(model.getObjectUmlAtIndex(view.getClass2ComboBox().getSelectedIndex()));
 		model.getAssociationList().get(index).setName(view.getNameTextField().getText());
 		
+		
 		view.dispose();
 	}
 

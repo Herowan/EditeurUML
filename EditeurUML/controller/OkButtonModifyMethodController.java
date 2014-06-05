@@ -25,6 +25,7 @@ public class OkButtonModifyMethodController implements ActionListener{
 		else if (visibility.equals("default")) visi = Visibility.DEFAULT;
 		else visi = Visibility.PUBLIC;
 		
+		
 		modifyMethodView.getModel().getObjectUmlAtIndex(modifyMethodView.getIndex()).getMehodAt(modifyMethodView.getMethod()).setName(modifyMethodView.getNameTextField().getText());
 		modifyMethodView.getModel().getObjectUmlAtIndex(modifyMethodView.getIndex()).getMehodAt(modifyMethodView.getMethod()).setReturnType((String) modifyMethodView.getReturnTypeComboBox().getSelectedItem());
 		modifyMethodView.getModel().getObjectUmlAtIndex(modifyMethodView.getIndex()).getMehodAt(modifyMethodView.getMethod()).setVisibilityM(visi);

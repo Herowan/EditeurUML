@@ -22,7 +22,6 @@ public class OkButtonNewAssociationController implements ActionListener {
 		Association a = new Association(model.getObjectUmlAtIndex(view.getClass1ComboBox().getSelectedIndex()), model.getObjectUmlAtIndex(view.getClass2ComboBox().getSelectedIndex()), type,view.getNameTextField().getText());
 		model.getAssociationList().add(a);
 		view.dispose();
-		
 	}
 
 }

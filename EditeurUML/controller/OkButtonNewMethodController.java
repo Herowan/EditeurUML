@@ -24,6 +24,7 @@ public class OkButtonNewMethodController implements ActionListener{
 		else if (visibility.equals("default")) visi = Visibility.DEFAULT;
 		else visi = Visibility.PUBLIC;
 
+		
 		Method newMethod = new Method(newMethodView.getNameTextField().getText(), (String) newMethodView.getReturnTypeComboBox().getSelectedItem(), visi, newMethodView.parameterValid());
 		newMethodView.getModel().addMethod(newMethodView.getIndex(), newMethod);
 		newMethodView.dispose();

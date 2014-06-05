@@ -24,6 +24,7 @@ public class OkButtonNewAttributeController implements ActionListener{
 		else visi = Visibility.PUBLIC;
 		Attribute newAttribute = new Attribute(newAttributeView.getNameTextField().getText(),(String) newAttributeView.getTypeComboBox().getSelectedItem(),visi);
 
+		
 		newAttributeView.getModel().addAttribute(newAttributeView.getIndex(),newAttribute);
 		newAttributeView.dispose();
 
