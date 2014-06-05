@@ -205,12 +205,17 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     	return false;
     }
     private boolean association(MouseEvent e,int i){
+    	boolean ordre;
     	// Je determine l'equation de la droite :
     	// On commence par p :
     	double p = ((double) model.getAssociationList().get(i).getLast().getY()-model.getAssociationList().get(i).getFirst().getY())/((double) model.getAssociationList().get(i).getLast().getX()-model.getAssociationList().get(i).getFirst().getX());
     	// Puis d :
     	double d = ((double) model.getAssociationList().get(i).getFirst().getY()-((double) p*model.getAssociationList().get(i).getFirst().getX()));
-    		if (((double)e.getX()*p+d-8)<=e.getY()  && ((double)e.getX()*p+d+8>=e.getY())){
+    	if (model.getAssociationList().get(i).getFirst().getX()<(model.getAssociationList().get(i).getLast().getX())) ordre = true;
+    	else ordre=false;
+    	if (((double)e.getX()*p+d-8)<=e.getY()  && ((double)e.getX()*p+d+8>=e.getY())
+    			&& ((ordre && e.getX()>model.getAssociationList().get(i).getFirst().getX() && e.getX()<model.getAssociationList().get(i).getLast().getX())
+    					|| (ordre && e.getX()<model.getAssociationList().get(i).getFirst().getX() && e.getX()>model.getAssociationList().get(i).getLast().getX()))){
     			return true;
     		}
     	return false;

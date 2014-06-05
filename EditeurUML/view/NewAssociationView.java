@@ -67,12 +67,16 @@ public class NewAssociationView extends javax.swing.JFrame {
 		}
         
 
-        class1ComboBox.setModel(new ComboBoxClassModel(model));
-        class1ComboBox.setSelectedIndex(0);
-
+        class1ComboBox.setModel(new ComboBoxClassModel(model)); 
         class2ComboBox.setModel(new ComboBoxClassModel(model));
-        class2ComboBox.setSelectedIndex(1);
+        if(model.getAssociationList().size()>2){
+        	class1ComboBox.setSelectedIndex(0);
+        	class2ComboBox.setSelectedIndex(1);
+        }
+        
 
+       
+        
 
         okButton.setText("OK");
         okButton.addActionListener(new OkButtonNewAssociationController(model, this, type));
