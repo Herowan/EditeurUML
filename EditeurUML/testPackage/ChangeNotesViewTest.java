@@ -1,19 +1,13 @@
 package testPackage;
 
 import static org.junit.Assert.*;
-
 import java.awt.Component;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-
 import model.EditeurUML;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import view.ChangesNotesView;
 
 public class ChangeNotesViewTest {
