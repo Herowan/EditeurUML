@@ -8,7 +8,7 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import controller.okButtonNewAssociationController;
+import controller.OkButtonNewAssociationController;
 import model.ProjectUML;
 
 /**
@@ -75,7 +75,7 @@ public class NewAssociationView extends javax.swing.JFrame {
 
 
         okButton.setText("OK");
-        okButton.addActionListener(new okButtonNewAssociationController(model, this, type));
+        okButton.addActionListener(new OkButtonNewAssociationController(model, this, type));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new ActionListener() {

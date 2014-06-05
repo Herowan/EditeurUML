@@ -7,12 +7,12 @@ import view.NewAssociationView;
 import model.Association;
 import model.ProjectUML;
 
-public class okButtonNewAssociationController implements ActionListener {
+public class OkButtonNewAssociationController implements ActionListener {
 	ProjectUML model;
 	NewAssociationView view;
 	int type;
 	
-	public okButtonNewAssociationController(ProjectUML model,NewAssociationView view, int type) {
+	public OkButtonNewAssociationController(ProjectUML model,NewAssociationView view, int type) {
 		this.type=type;
 		this.model=model;
 		this.view=view;

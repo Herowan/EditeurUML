@@ -8,11 +8,11 @@ import javax.swing.JOptionPane;
 import view.ModifyAttributeObjectView;
 import model.Visibility;
 
-public class okButtonModifyAttributeController implements ActionListener{
+public class OkButtonModifyAttributeController implements ActionListener{
 	
 	ModifyAttributeObjectView modifyAttributeView;
 	
-	public okButtonModifyAttributeController(ModifyAttributeObjectView modifyAttributeView) {
+	public OkButtonModifyAttributeController(ModifyAttributeObjectView modifyAttributeView) {
 		this.modifyAttributeView=modifyAttributeView;
 	}
 

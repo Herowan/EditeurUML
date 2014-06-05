@@ -10,7 +10,7 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import controller.okButtonModifyAssociationController;
+import controller.OkButtonModifyAssociationController;
 import model.ProjectUML;
 
 /**
@@ -66,7 +66,7 @@ public class ModifyAssociationView extends javax.swing.JFrame {
         class2ComboBox.setSelectedItem(model.getAssociationList().get(index).getLastObject().getName());
 
         okButton.setText("OK");
-		okButton.addActionListener(new okButtonModifyAssociationController(model, this, type, index));
+		okButton.addActionListener(new OkButtonModifyAssociationController(model, this, type, index));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new ActionListener() {	

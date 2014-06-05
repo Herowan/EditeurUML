@@ -13,7 +13,7 @@ import java.util.Observer;
 import javax.swing.JComboBox;
 
 import controller.KeyNewMethodController;
-import controller.okButtonNewMethodController;
+import controller.OkButtonNewMethodController;
 import model.ProjectUML;
 
 /**
@@ -92,7 +92,7 @@ public class NewMethodView extends javax.swing.JFrame implements Observer{
         
         
         okButton.setText("OK");
-        okButton.addActionListener(new okButtonNewMethodController(this));
+        okButton.addActionListener(new OkButtonNewMethodController(this));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {

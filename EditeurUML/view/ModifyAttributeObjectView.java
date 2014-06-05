@@ -14,7 +14,7 @@ import java.util.Observer;
 import javax.swing.JComboBox;
 
 import controller.KeyModifyAttributeObjectController;
-import controller.okButtonModifyAttributeController;
+import controller.OkButtonModifyAttributeController;
 import model.ProjectUML;
 
 /**
@@ -86,7 +86,7 @@ public class ModifyAttributeObjectView extends javax.swing.JFrame implements Obs
         nameTextField.addKeyListener(new KeyModifyAttributeObjectController(this,model));
 
         okButton.setText("OK");
-        okButton.addActionListener(new okButtonModifyAttributeController(this));
+        okButton.addActionListener(new OkButtonModifyAttributeController(this));
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
