@@ -91,6 +91,10 @@ public class Attribute implements Serializable{
 		return getVisibilityA().getCharac()+" "+getName()+": "+getType();
 	}
 	
+	/**
+	 * returns a string for the generated Java code with the visibility, name and type (separate by a space).
+	 * @return returns a string for the generated Java code
+	 */
 	public String toStringJava(){
 		return "\t"+visibilityA.getName()+" "+type+" "+name;
 	}
