@@ -309,10 +309,14 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		javaItemMenu.setText("Java");
 		javaItemMenu.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				try {
-					model.getProject().generateJava();
-				} catch (IOException e) {
-					System.out.println("Fail Generate Java code");
+				if(!model.getProject().isSave()){
+					JOptionPane.showMessageDialog(panelTable, "Save before generate java code");
+				}else{
+					try {
+						model.getProject().generateJava();
+					} catch (IOException e) {
+						System.out.println("Fail Generate Java code");
+					}
 				}
 			}
 		});
@@ -443,6 +447,5 @@ public class MainView extends javax.swing.JFrame implements Observer {
 		ac2.setModel(model.getProject());
 		ac3.setModel(model.getProject());
 		drawingTable.repaint();
-		
 	}
 }

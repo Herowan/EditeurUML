@@ -198,7 +198,16 @@ public class ObjectUML implements Serializable{
 	 * @return returns a string for the generated Java code
 	 */
 	public String toStringJava(){
-		String attributes="//Attributes list\n",methods="",defaultConstructor="";
+		String attributes="//Attributes list\n",methods="",defaultConstructor="",publicS="";
+		if(OBJECTTYPE.getName().equals("Class")){
+			publicS="public class ";
+		}
+		if(OBJECTTYPE.getName().equals("Interface")){
+			publicS="public interface ";
+		}
+		if(OBJECTTYPE.getName().equals("Abstract")){
+			publicS="public abstract class ";
+		}
 		for(int i=0;i<attributListSize();i++){
 			attributes+=attributList.get(i).toStringJava()+"\n";
 		}
@@ -206,8 +215,8 @@ public class ObjectUML implements Serializable{
 		for(int i=0;i<methodeListSize();i++){
 			methods+=methodeList.get(i).toStringJava()+"\n";
 		}
-		defaultConstructor="//Default Constructor\n \tpublic" + getName()+"(){\n\n\t}\n\n";
-		return "public class " + getName()+ "{\n\n"+ attributes +defaultConstructor+ methods + "}";
+		defaultConstructor="//Default Constructor\n \tpublic " + getName()+"(){\n\n\t}\n\n";
+		return publicS + getName()+ "{\n\n"+ attributes +defaultConstructor+ methods + "}";
 				
 	}
 	

@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import view.JPanelDrawingTable;
+import view.ModifyAssociationView;
 import view.ModifyAttributeObjectView;
 import view.ModifyMethodObjectView;
 import view.ModifyNameObjectView;
@@ -41,6 +42,7 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     	boolean quitName=false;
     	boolean quitAttribute=false;
     	boolean quitMethod=false;
+    	boolean quitAssociation=false;
     	while(!quitName && !quitAttribute && i<model.objectsListSize()){
     		if (nameOfTheObject(e, i)){
     			model.setNameSelected(i);
@@ -66,6 +68,14 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     		}
     		i++;
     	}
+    	i=0;
+    	while (!quitAssociation && i<model.getAssociationList().size()){
+    		if(association(e, i)){
+    			model.setAssociationSelected(i);
+    			quitAssociation=true;
+    		}
+    		i++;
+    	}
     	if (!quitName){
     		model.setNameSelected(-1); 
     	}
@@ -76,6 +86,9 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     	if(!quitMethod){
     		model.setMethodSelected(-1);
     		model.setObjectOfMethodSelected(-1);
+    	}
+    	if(!quitAssociation){
+    		model.setAssociationSelected(-1);
     	}
     }
     
@@ -130,6 +143,14 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
             }
             i--;
         }
+        i=0;
+        while (!quit && i<model.getAssociationList().size()){
+        	if (association(e, i)){
+        		new ModifyAssociationView(model,model.getAssociationList().get(i).getTypeOfAssociation(),i).setVisible(true);
+        		quit=true;
+        	}
+        	i++;
+        }
     }
     
     private boolean crossQuitZone(MouseEvent e, int i) {
@@ -181,6 +202,17 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     		&& e.getY()>=model.getObjectUmlAtIndex(i).getY()+59+20*model.getObjectUmlAtIndex(i).attributListSize()+20*j && e.getY()<=model.getObjectUmlAtIndex(i).getY()+71+20*model.getObjectUmlAtIndex(i).attributListSize()+20*j){
     		return true;
     	}
+    	return false;
+    }
+    private boolean association(MouseEvent e,int i){
+    	// Je determine l'equation de la droite :
+    	// On commence par p :
+    	double p = ((double) model.getAssociationList().get(i).getLast().getY()-model.getAssociationList().get(i).getFirst().getY())/((double) model.getAssociationList().get(i).getLast().getX()-model.getAssociationList().get(i).getFirst().getX());
+    	// Puis d :
+    	double d = ((double) model.getAssociationList().get(i).getFirst().getY()-((double) p*model.getAssociationList().get(i).getFirst().getX()));
+    		if (((double)e.getX()*p+d-8)<=e.getY()  && ((double)e.getX()*p+d+8>=e.getY())){
+    			return true;
+    		}
     	return false;
     }
 

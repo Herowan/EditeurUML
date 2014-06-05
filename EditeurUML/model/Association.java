@@ -8,6 +8,8 @@ public class Association implements Serializable{
 	private static final long serialVersionUID = 1L;
 	ObjectUML firstObject;
 	ObjectUML lastObject;
+	private Coordinates first;
+	private Coordinates last;
 	int typeOfAssociation;
 	String name;
 	
@@ -23,6 +25,8 @@ public class Association implements Serializable{
 		this.lastObject=lastObject;
 		this.typeOfAssociation=typeOfAssociation;
 		this.name=name;
+		this.first=new Coordinates(0,0);
+		this.last=new Coordinates(1,1);
 	}
 
 	/**
@@ -87,6 +91,22 @@ public class Association implements Serializable{
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Coordinates getFirst() {
+		return first;
+	}
+
+	public void setFirst(Coordinates first) {
+		this.first = first;
+	}
+
+	public Coordinates getLast() {
+		return last;
+	}
+
+	public void setLast(Coordinates last) {
+		this.last = last;
 	}
 	
 }
