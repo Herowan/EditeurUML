@@ -12,7 +12,6 @@ public class AttributeClassTest {
 		Attribute a=new Attribute("name","Type",Visibility.DEFAULT);
 		assertEquals("name",a.getName());
 		assertEquals("Type",a.getType());
-		assertEquals("name",a.getName());
 		assertEquals(Visibility.DEFAULT,a.getVisibilityA());
 	}
 
@@ -32,4 +31,46 @@ public class AttributeClassTest {
 		Attribute a=new Attribute("name","Type",Visibility.PRIVATE);
 		assertEquals("- name: Type",a.toString());
 	}
+	
+	@Test
+	public void testgetName(){
+		Attribute a=new Attribute("name","Type",Visibility.DEFAULT);
+		assertEquals("name",a.getName());
+	}
+	
+	@Test
+	public void testsetName(){
+		Attribute a=new Attribute("name","Type",Visibility.DEFAULT);
+		a.setName("new");
+		assertEquals("new",a.getName());
+	}
+	
+	@Test
+	public void testgetType(){
+		Attribute a=new Attribute("name","Type",Visibility.DEFAULT);
+		assertEquals("Type",a.getType());
+	}
+	
+	@Test
+	public void testsetType(){
+		Attribute a=new Attribute("name","Type",Visibility.DEFAULT);
+		a.setType("void");
+		assertEquals("void",a.getType());
+	}
+	
+	@Test
+	public void testgetVisibilityA(){
+		Attribute a=new Attribute("name","Type",Visibility.DEFAULT);
+		assertEquals(Visibility.DEFAULT,a.getVisibilityA());
+	}
+	
+	@Test
+	public void testsetVisibilityA(){
+		Attribute a=new Attribute("name","Type",Visibility.DEFAULT);
+		a.setVisibilityA(Visibility.PUBLIC);
+		assertEquals("public",a.getVisibilityA().getName());
+		assertEquals('+',a.getVisibilityA().getCharac());
+	}
+	
+	
 }
