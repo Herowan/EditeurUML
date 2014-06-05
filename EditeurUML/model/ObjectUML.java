@@ -15,7 +15,6 @@ public class ObjectUML implements Serializable{
 	private String name;
 	private ArrayList<Method> methodeList;
 	private ArrayList<Attribute> attributList;
-	//Type de l'objet , 1 pour une classe , 2 pour une interface, 3 pour une classe abstraite
 	private final TypeObject OBJECTTYPE;
 	private Coordinates position;
 	
@@ -29,7 +28,6 @@ public class ObjectUML implements Serializable{
 		methodeList= new ArrayList<Method>();
 		attributList=new ArrayList<Attribute>();
 		position=new Coordinates(10+10*number,10+10*number);
-		//Cr��ation d'un objet vide
 		this.OBJECTTYPE=objectType;
 		name=objectType.getName()+(count+1);
 	}
