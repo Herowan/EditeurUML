@@ -1,7 +1,6 @@
 package testPackage;
 
 import static org.junit.Assert.*;
-
 import java.awt.Component;
 import java.util.Observable;
 import javax.swing.JButton;
@@ -10,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JToolBar;
 import model.EditeurUML;
+import model.TypeObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -139,7 +139,42 @@ public class testView {
 		btn.doClick();
 		assertEquals(null, view.getModel().getProject().getSavePath());
 	}
-
+	@Test
+	public void testButtonClass(){
+		java.awt.Container c = view.getContentPane();
+		JPanel p = (JPanel) c.getComponent(1);
+		JButton btn = (JButton) p.getComponent(2);
+		btn.doClick();
+		assertEquals(1, view.getModel().getProject().objectsListSize());
+		assertEquals(TypeObject.CLASS, view.getModel().getProject().getObjectUmlAtIndex(0).getObjectType());
+		assertEquals("Class1", view.getModel().getProject().getObjectUmlAtIndex(0).getName());
+		assertEquals(0, view.getModel().getProject().getObjectUmlAtIndex(0).attributListSize());
+		assertEquals(0, view.getModel().getProject().getObjectUmlAtIndex(0).methodeListSize());
+	}
+	@Test
+	public void testButtonAbstract(){
+		java.awt.Container c = view.getContentPane();
+		JPanel p = (JPanel) c.getComponent(1);
+		JButton btn = (JButton) p.getComponent(1);
+		btn.doClick();
+		assertEquals(1, view.getModel().getProject().objectsListSize());
+		assertEquals(TypeObject.ABSTRACT_CLASS, view.getModel().getProject().getObjectUmlAtIndex(0).getObjectType());
+		assertEquals("AbstractClass1", view.getModel().getProject().getObjectUmlAtIndex(0).getName());
+		assertEquals(0, view.getModel().getProject().getObjectUmlAtIndex(0).attributListSize());
+		assertEquals(0, view.getModel().getProject().getObjectUmlAtIndex(0).methodeListSize());
+	}
+	public void testButtonInterface(){
+		java.awt.Container c = view.getContentPane();
+		JPanel p = (JPanel) c.getComponent(1);
+		JButton btn = (JButton) p.getComponent(2);
+		btn.doClick();
+		assertEquals(1, view.getModel().getProject().objectsListSize());
+		assertEquals(TypeObject.INTERFACE, view.getModel().getProject().getObjectUmlAtIndex(0).getObjectType());
+		assertEquals("Interface1", view.getModel().getProject().getObjectUmlAtIndex(0).getName());
+		assertEquals(0, view.getModel().getProject().getObjectUmlAtIndex(0).attributListSize());
+		assertEquals(0, view.getModel().getProject().getObjectUmlAtIndex(0).methodeListSize());
+	}
+	
 	
 
 	@After

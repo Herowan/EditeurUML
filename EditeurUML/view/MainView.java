@@ -13,10 +13,8 @@ import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
 import controller.AddObjectControler;
 import controller.AssociationController;
 import controller.DrawingTableController;
@@ -26,7 +24,6 @@ import controller.OpenProjectController;
 import controller.SaveAsProjectController;
 import controller.SaveProjectController;
 import model.EditeurUML;
-import model.ProjectUML;
 import model.TypeObject;
 
 /**
