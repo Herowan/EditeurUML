@@ -39,6 +39,7 @@ public class OkButtonModifyAttributeController implements ActionListener{
 				modifyAttributeView.dispose();
 			}
 			else {
+				
 				JOptionPane.showMessageDialog(modifyAttributeView, "This attribute already exist.");
 			}
 		}
