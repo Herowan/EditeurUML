@@ -10,9 +10,7 @@ import java.util.Observable;
  */
 
 public class ProjectUML extends Observable implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private ArrayList<ObjectUML> objectsList;
 	private ArrayList<Association> associationList;
