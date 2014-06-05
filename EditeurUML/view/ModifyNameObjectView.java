@@ -10,7 +10,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import controller.KeyModifyNameObjectController;
-import controller.okButtonModifyNameController;
+import controller.OkButtonModifyNameController;
 import model.ProjectUML;
 
 /**
@@ -59,7 +59,7 @@ public class ModifyNameObjectView extends javax.swing.JFrame implements Observer
         setTitle("Modify Name");
 
         okButton.setText("OK");
-        okButton.addActionListener(new okButtonModifyNameController(this));
+        okButton.addActionListener(new OkButtonModifyNameController(this));
 
 
         cancelButton.setText("Cancel");

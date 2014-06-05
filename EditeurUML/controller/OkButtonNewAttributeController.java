@@ -6,11 +6,11 @@ import view.NewAttributeView;
 import model.Attribute;
 import model.Visibility;
 
-public class okButtonNewAttributeController implements ActionListener{
+public class OkButtonNewAttributeController implements ActionListener{
 
 	NewAttributeView newAttributeView;
 
-	public okButtonNewAttributeController(NewAttributeView newAttributeView) {
+	public OkButtonNewAttributeController(NewAttributeView newAttributeView) {
 		this.newAttributeView=newAttributeView;
 	}
 

@@ -7,11 +7,11 @@ import java.awt.event.ActionListener;
 import model.Visibility;
 import view.ModifyMethodObjectView;
 
-public class okButtonModifyMethodController implements ActionListener{
+public class OkButtonModifyMethodController implements ActionListener{
 
 	ModifyMethodObjectView modifyMethodView;
 
-	public okButtonModifyMethodController(ModifyMethodObjectView modifyMethodView) {
+	public OkButtonModifyMethodController(ModifyMethodObjectView modifyMethodView) {
 		this.modifyMethodView=modifyMethodView;
 	}
 

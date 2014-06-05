@@ -8,10 +8,10 @@ import view.NewMethodView;
 import model.Method;
 import model.Visibility;
 
-public class okButtonNewMethodController implements ActionListener{
+public class OkButtonNewMethodController implements ActionListener{
 	NewMethodView newMethodView;
 
-	public okButtonNewMethodController(NewMethodView newMethodView) {
+	public OkButtonNewMethodController(NewMethodView newMethodView) {
 		this.newMethodView=newMethodView;
 	}
 
