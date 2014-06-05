@@ -133,7 +133,15 @@ public class NewAssociationView extends javax.swing.JFrame {
     }// </editor-fold>                        
                                           
 
-    /**
+    public void setClass1ComboBox(javax.swing.JComboBox<String> class1ComboBox) {
+		this.class1ComboBox = class1ComboBox;
+	}
+
+	public void setClass2ComboBox(javax.swing.JComboBox<String> class2ComboBox) {
+		this.class2ComboBox = class2ComboBox;
+	}
+
+	/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
