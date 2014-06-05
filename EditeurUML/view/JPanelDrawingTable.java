@@ -6,8 +6,11 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+
 import javax.swing.JPanel;
+
 import model.Association;
+import model.Coordinates;
 import model.ObjectUML;
 import model.ProjectUML;
 import model.TypeObject;
@@ -173,12 +176,12 @@ public class JPanelDrawingTable extends JPanel{
 				int right= a.getFirstObject().isOnTheRigth(a.getLastObject());
 				int above= a.getFirstObject().isAbove(a.getLastObject());
 				
-				if (right>=0 && ((right>=above && above>=0) || (right>=above*(-1) && above<=0))){
+				if (right>=0 && ((right>=above && above>0) || (right>=above*(-1) && above<0))){
 					// arrow right
 					lastObjectX=a.getLastObject().getX()+maxLength(model.getIndexOfObject(a.getLastObject()), g)+40;
 					g.drawLine(lastObjectX, lastObjectY, lastObjectX+10, lastObjectY+5);
 					g.drawLine(lastObjectX, lastObjectY, lastObjectX+10, lastObjectY-5);
-				} else if (right<=0 && ((right*(-1)>=above && above>=0) || (right*(-1)>=above*(-1) && above<=0))){
+				} else if (right<=0 && ((right*(-1)>=above && above>0) || (right*(-1)>=above*(-1) && above<0))){
 					// arrow left
 					lastObjectX=a.getLastObject().getX();					
 					g.drawLine(lastObjectX, lastObjectY, lastObjectX-10, lastObjectY+5);
@@ -208,11 +211,19 @@ public class JPanelDrawingTable extends JPanel{
 						));
 			}
 			
+			if (model.getAssociationSelected()==i){
+				g.setColor(Color.RED);
+			} else {
+				g.setColor(Color.BLACK);
+			}
 			g.drawLine(firstObjectX,
 					firstObjectY, 
 					lastObjectX, 
 					lastObjectY);
+			model.getAssociationList().get(i).setFirst(new Coordinates(firstObjectX, firstObjectY));
+			model.getAssociationList().get(i).setLast(new Coordinates(lastObjectX, lastObjectY));
 			g2d.setStroke(new BasicStroke());
+
 			int stringX, stringY;
 			if (firstObjectX>lastObjectX){
 				stringX = lastObjectX + (firstObjectX-lastObjectX)/2;
@@ -224,14 +235,14 @@ public class JPanelDrawingTable extends JPanel{
 			} else {
 				stringY = firstObjectY + (lastObjectY-firstObjectY)/2;
 			}
-			
+
 			g.drawString(a.getName(), stringX+5, stringY-5);
+			g.setColor(Color.BLACK);
 
 		} else {
 			model.getAssociationList().remove(a);
 		}
-		
-			}
+	}
 
 	private int drawAttribute(ObjectUML obj,int i, Graphics g, Color color, int positionX, int positionY){
 			//draw the attribute

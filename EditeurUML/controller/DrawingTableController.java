@@ -41,6 +41,7 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     	boolean quitName=false;
     	boolean quitAttribute=false;
     	boolean quitMethod=false;
+    	boolean quitAssociation=false;
     	while(!quitName && !quitAttribute && i<model.objectsListSize()){
     		if (nameOfTheObject(e, i)){
     			model.setNameSelected(i);
@@ -66,6 +67,14 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     		}
     		i++;
     	}
+    	i=0;
+    	while (!quitAssociation && i<model.getAssociationList().size()){
+    		if(association(e, i)){
+    			model.setAssociationSelected(i);
+    			quitAssociation=true;
+    		}
+    		i++;
+    	}
     	if (!quitName){
     		model.setNameSelected(-1); 
     	}
@@ -76,6 +85,9 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     	if(!quitMethod){
     		model.setMethodSelected(-1);
     		model.setObjectOfMethodSelected(-1);
+    	}
+    	if(!quitAssociation){
+    		model.setAssociationSelected(-1);
     	}
     }
     
@@ -179,6 +191,17 @@ public class DrawingTableController implements MouseMotionListener, MouseListene
     private boolean methodOfTheObject(MouseEvent e, int i, int j){
     	if(e.getX()>=model.getObjectUmlAtIndex(i).getX()+20 && e.getX()<=model.getObjectUmlAtIndex(i).getX()+20+jPanelDrawingtable.lengthOf(model.getObjectUmlAtIndex(i).getMehodAt(j).toString(), jPanelDrawingtable.getGraphics())
     		&& e.getY()>=model.getObjectUmlAtIndex(i).getY()+59+20*model.getObjectUmlAtIndex(i).attributListSize()+20*j && e.getY()<=model.getObjectUmlAtIndex(i).getY()+71+20*model.getObjectUmlAtIndex(i).attributListSize()+20*j){
+    		return true;
+    	}
+    	return false;
+    }
+    private boolean association(MouseEvent e,int i){
+    	// Je determine l'equation de la droite :
+    	// On commence par p :
+    	int p = (model.getAssociationList().get(i).getLastObject().getY()-model.getAssociationList().get(i).getFirstObject().getY())/(model.getAssociationList().get(i).getLastObject().getX()-model.getAssociationList().get(i).getFirstObject().getX());
+    	// Puis d :
+    	int d = (model.getAssociationList().get(i).getFirstObject().getY()-p*model.getAssociationList().get(i).getFirstObject().getX());
+    	if (e.getX()*p+d==e.getY()){
     		return true;
     	}
     	return false;
