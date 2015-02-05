@@ -1,20 +1,5 @@
 EditeurUML
 ==========
 
-creation d'un editeur de diagramme UML pour du langage JAVA
-
-TO DO :
-
-
-- Faire un exécutable
-- Mettre icone sauvegarde serialization
-
-- Verif : pas meme nom pour classe atribut et methode => DONE
-- Selection quand object superposé => DONE
-- Association ->DONE
-- ToolBar -> DONE
-- Undo / Redo -> give up
-
-
-- test
-- doc
+Création d'un éditeur de *diagramme UML* en JAVA dans le cadre d'un projet de 3éme semestre de DUT.
+Il permettra de réaliser le plus facilement possible des diagramme UML clairs et complets.
